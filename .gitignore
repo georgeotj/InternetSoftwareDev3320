@@ -1,0 +1,10 @@
+
+.gitignore
+.idea/.gitignore
+.idea/InternetSoftwareDev3320.iml
+.idea/codeStyles/
+.idea/dbnavigator.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/sonarlint/
+.idea/vcs.xml
