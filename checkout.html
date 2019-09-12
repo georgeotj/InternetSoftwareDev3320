@@ -1,15 +1,94 @@
 <!DOCTYPE html>
 <html class="checkout" lang="en">
+  <!-- head  -->
   <head>
     <meta name="viewport" content="initial-scale=1, width=device-width" />
     <title>Checkout Page</title>
   </head>
+  <!-- /head -->
 
+  <!-- body -->
   <body>
+    <!-- CSS selector will use wallpaper to style background-->
+    <div class="wallpaper"></div>
+
     <header>
-      <h1>
-        <strong><font size="48"> Checkout </font></strong>
-      </h1>
+      <h1>Store Name</h1>
     </header>
+
+    <!-- outer most component for checkout, for general CSS styling -->
+    <div class="checkout-panel">
+      <div class="panel-body">
+        <h2 class="title">Checkout</h2>
+
+        <!-- class for total, shipping, tax, amount due-->
+        <div class="cost-fields">
+          <br />
+          <label for="total-price">Order: $</label>
+          <input id="total-price" type="hidden" />
+          <!--TODO: Replace &nbsp when stylesheets are added -->
+          <label for="total-tax">&nbsp;&nbsp;&nbsp;Tax: $</label>
+          <input id="total-tax" type="hidden" />
+
+          <label for="total-shipping-cost">&nbsp;&nbsp;&nbsp;Shipping Cost: $</label>
+          <input id="total-shipping-cost" type="hidden" /> <br />
+          <br />
+
+          <label for="total-amount-due">Amount Due: $</label>
+          <input id="total-amount-due" type="hidden" /> <br />
+          <br />
+        </div>
+
+        <!-- Form to collect user payment data -->
+        <form>
+          <!-- class for payment method -->
+          <div class="payment-method">
+            <label for="payment-method-types"></label>
+            <!-- selection options -->
+            <select
+              id="payment-method-types"
+              title="Payment Type"
+              name="payment-types"
+            >
+              <option value="" selected="selected">Card Type</option>
+              <option value="visa-card">VISA</option>
+              <option value="master-card">Master Card</option>
+              <option value="american-express-card">American Express</option>
+            </select>
+          </div> <br />
+          <!-- class for user input -->
+          <div class="input-fields">
+            <div class="column-1">
+              <div class="payment-card-number">
+                <label for="payment-card-number">Card Number: </label>
+                <input type="text" id="payment-card-number" required />
+              </div>
+            </div>
+            <div class="column-2">
+              <div class="card-valid-through">
+                <label for="expiration-date">Valid Through: </label>
+                <input type="text" id="expiration-date" placeholder="MM / YY" />
+              </div>
+              <div class="card-verification">
+                <label for="verification">CVV / CVC</label>
+                <input type="password" id="verification" />
+              </div>
+            </div>
+          </div>
+          <!-- class for user agreeing to pay -->
+          <div class="radio-input-agreement">
+            <label for="pay-agreement">Agree to pay $ (ex) dollars?</label>
+            <input id="pay-agreement" type="radio" name="payment" required />
+          </div>
+        </form>
+      </div>
+      <div class="panel-footer">
+        <br />
+        <button class="submit-order-button">Submit Order</button>
+        <button class="back-btn">Back to Cart</button>
+        <button class="cancel-order-button">Cancel Order</button>
+      </div>
+    </div>
   </body>
+  <!-- /body -->
 </html>
