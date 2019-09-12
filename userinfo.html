@@ -1,12 +1,18 @@
 <!DOCTYPE html>
-<html class="user_information" lang="en">
+<html class="user-information" lang="en">
+<!-- head  -->
   <head>
     <meta name="viewport" content="initial-scale=1, width=device-width" />
     <meta charset="UTF-8">
     <title>User Information</title>
   </head>
+<!-- /head -->
 
+<!-- body -->
   <body>
+  <!-- CSS selector will use wallpaper to style background-->
+  <div class="wallpaper"></div>
+  <!-- header -->
   <header>
     <h1>
         <span style="font-size:50px">
@@ -14,8 +20,9 @@
         </span>
     </h1>
   </header>
+  <!-- /header -->
 
-    <!-- action attribute defines action performed when the form is submitted -->
+  <!-- action attribute defines action performed when the form is submitted -->
     <!-- use HTTP post method for sensitive information-->
     <form action="/my-handling-form-page" method="POST">
       <!-- TODO: Combine First Name and Last Name into the "Full Name" Field-->
@@ -174,4 +181,5 @@
         </div>
     </form>
   </body>
+<!-- /body -->
 </html>
