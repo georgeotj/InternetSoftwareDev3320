@@ -8,8 +8,62 @@
   <body>
     <header>
       <h1>
-        <strong><font size="48">Shopping Cart</font></strong>
+        <strong>Products</strong>
       </h1>
     </header>
+    <form name="Shopping Cart" action="/my-handling-form-page" method="POST">
+      <div class="search-store">
+        <label for="products"></label>
+        <select id="products" title="Product Selection" name="products">
+          <option value="" selected="selected">Store Products</option>
+          <option value="product-1">(example) Product 1</option>
+          <option value="product-2">(example) Product 2</option>
+          <option value="product-3">(example) Product 3</option>
+          <option value="product-4">(example) Product 4</option>
+          <option value="product-5">(example) Product 5</option>
+          <option value="product-6">(example) Product 6</option>
+          <option value="product-x">(example) Product...</option>
+        </select>
+        <label for="item-units">Units:</label>
+        <input id="item-units" type="text" name="Item Units" />
+        <label for="unit-price">Price:</label>
+        <input id="unit-price" type="text" name="Item Units" />
+        <div> <br>
+          <label for="save-item"></label>
+          <input id="save-item" type="button" value="Add To Cart" />
+          <label for="update-items"></label>
+          <input id="update-items" type="button" value="Update Price" />
+          <label for="delete-item"></label>
+          <input id="delete-item" type="button" value="Delete" />
+        </div>
+      </div>
+      <div id="items-list">
+        <h2>Shopping Cart</h2>
+        <table id="list">
+          <caption>Saved Items</caption>
+          <thead>
+          <tr>
+            <th scope="col">Product</th>
+            <th scope="col">Units</th>
+            <th scope="col">Price</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>(example) Product 1</td>
+            <td>(example) x</td>
+            <td>(example) $</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div> <br/>
+        <label for="total-price">Total Price: $</label>
+        <input id="total-price" type="hidden"> <br /> <br/>
+        <label for="to-checkout"></label>
+        <input id="to-checkout" type="button" value="Checkout">
+        <label><input type="button" value="Clear" /> </label>
+      </div>
+    </form>
   </body>
 </html>
