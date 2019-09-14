@@ -83,14 +83,14 @@ after you pull the file layout structure you can delete them*
 ## Current Page Images (9-13-2019)
 ###### User Information:
 ------
-![User Information](https://github.com/TrevorMcDougald/InternetSoftwareDev3320/blob/Trevors-Branch/docs/page_images/checkout_page_9-13-2019.PNG) 
+![User Information](https://github.com/georgeotj/InternetSoftwareDev3320/blob/master/docs/page_images/user_information_page_9-13-2019.PNG) 
 ###### Shipping Information:
 ------
-![Shipping Information](https://github.com/TrevorMcDougald/InternetSoftwareDev3320/blob/Trevors-Branch/docs/page_images/shipping_information_page_9-13-2019.PNG) 
+![Shipping Information](https://github.com/georgeotj/InternetSoftwareDev3320/blob/master/docs/page_images/shipping_information_page_9-13-2019.PNG) 
 ###### Shopping Cart:
 ------
-![Shopping Cart](https://github.com/TrevorMcDougald/InternetSoftwareDev3320/blob/Trevors-Branch/docs/page_images/shopping_cart_page_9-13-2019.PNG) 
+![Shopping Cart](https://github.com/georgeotj/InternetSoftwareDev3320/blob/master/docs/page_images/shopping_cart_page_9-13-2019.PNG) 
 ###### Checkout:
 ------
-![Checkout](https://github.com/TrevorMcDougald/InternetSoftwareDev3320/blob/Trevors-Branch/docs/page_images/user_information_page_9-13-2019.PNG) 
+![Checkout](https://github.com/georgeotj/InternetSoftwareDev3320/blob/master/docs/page_images/checkout_page_9-13-2019.PNG) 
 
