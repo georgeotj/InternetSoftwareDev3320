@@ -75,23 +75,27 @@ after you pull the file layout structure you can delete them*
         │
         ├── .gitignore
         │
-        ├── _config.yml  ( Jekyll use )
+        ├── _config.yml  // Jekyll use 
         │
-        ├── index.html   ( website entry point )               
+        ├── index.html   // website entry point                
         │
         ├── LICENSE 
         │
-        ├── robots.txt ( talks to search engine crawlers )
+        ├── robots.txt    // talks to search engines and crawlers
         │
         └── README.md
          
 ## Current Page Images (9-13-2019)
-###### User Information
+###### User Information:
+------
 ![User Information](https://github.com/TrevorMcDougald/InternetSoftwareDev3320/blob/Trevors-Branch/docs/page_images/checkout_page_9-13-2019.PNG) 
-###### Shipping Information
+###### Shipping Information:
+------
 ![Shipping Information](https://github.com/TrevorMcDougald/InternetSoftwareDev3320/blob/Trevors-Branch/docs/page_images/shipping_information_page_9-13-2019.PNG) 
-###### Shopping Cart
+###### Shopping Cart:
+------
 ![Shopping Cart](https://github.com/TrevorMcDougald/InternetSoftwareDev3320/blob/Trevors-Branch/docs/page_images/shopping_cart_page_9-13-2019.PNG) 
-###### Checkout
+###### Checkout:
+------
 ![Checkout](https://github.com/TrevorMcDougald/InternetSoftwareDev3320/blob/Trevors-Branch/docs/page_images/user_information_page_9-13-2019.PNG) 
 
