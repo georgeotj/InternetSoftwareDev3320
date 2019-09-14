@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html class="user-information" lang="en">
+<html class="shipping-information" lang="en">
 <!-- head  -->
   <head>
     <meta name="viewport" content="initial-scale=1, width=device-width" />
-    <meta charset="UTF-8">
-    <title>User Information</title>
+    <title>Shipping Information</title>
   </head>
 <!-- /head -->
 
@@ -13,66 +12,23 @@
   <!-- CSS selector will use wallpaper to style background-->
   <div class="wallpaper"></div>
   <!-- header -->
-  <header>
-    <h1>
+    <header>
+      <h1>
         <span style="font-size:50px">
-          <strong> User Information </strong>
+          <strong> Shipping </strong>
         </span>
-    </h1>
-  </header>
+      </h1>
+    </header>
   <!-- /header -->
 
-  <!-- action attribute defines action performed when the form is submitted -->
-    <!-- use HTTP post method for sensitive information-->
-    <form action="/my-handling-form-page" method="POST">
-      <!-- TODO: Combine First Name and Last Name into the "Full Name" Field-->
-        <div class="First Name">
-          <label for="first_name">First Name:</label>
-          <input
-            title="First Name"
-            type="text"
-            id="first_name"
-            name="first_name"
-            maxlength="100"
-            placeholder="First Name"
-            required
-          />
-          <br />
-          <label for="last_name">Last Name:</label>
-          <input
-            title="Last Name"
-            type="text"
-            id="last_name"
-            name="last_name"
-            maxlength="100"
-            placeholder="Last Name"
-            required
-          />
-        </div>
-        <br />
-        <div class="Contact Information">
-          <label for="phone">Phone:</label>
-          <input
-            title="User Phone"
-            type="tel"
-            id="phone"
-            name="user_phone"
-            placeholder="Primary Phone"
-            required
-          />
-          <label for="email">Email:</label>
-          <input
-            title="User Email"
-            type="email"
-            id="email"
-            name="user_email"
-            placeholder="Email"
-            required
-          />
-        </div>
-        <br />
-        <div class="User Address">
-          <label for="address_1">Address Line 1:</label><br />
+    <form action="/my-handling-form-page" method="post">
+      <fieldset>
+        <legend>Shipping Information</legend>
+        <p>
+          <input type="checkbox" name="physical_address" />
+          Use Physical Address.
+        </p>
+        <div class="Shipping Address">
           <input
             title="Address 1"
             type="text"
@@ -81,9 +37,7 @@
             maxlength="100"
             placeholder="Street Address"
             required
-          />
-          <br />
-          <label for="address_2">Address Line 2:</label><br />
+          /><br />
           <input
             title="Address 2"
             type="text"
@@ -94,8 +48,7 @@
           />
         </div>
         <br />
-        <div class="User Location">
-          <label for="city">City:</label>
+        <div class="Shipping Location">
           <input
             title="City"
             type="text"
@@ -104,8 +57,6 @@
             placeholder="City"
             required
           />
-
-          <label for="user_state">State:</label>
           <!-- TODO: Move to a DB and load with AJAX -->
           <select title="Users State" name="state" id="user_state">
             <option value="" selected="selected">State</option>
@@ -162,15 +113,14 @@
             <option value="WY">Wyoming</option>
           </select>
           <br />
-          <br />
-
-          <label for="zipcode">Zip Code:</label>
           <input
             title="Zip Code"
             type="text"
             id="zipcode"
             name="user_zip"
             placeholder="Zip Code"
+            maxlength="9"
+            minlength="5"
             required
           />
         </div>
@@ -179,6 +129,8 @@
           <input type="submit" value="Save" />
           <input type="reset" value="Reset" />
         </div>
+      </fieldset>
+      <br />
     </form>
   </body>
 <!-- /body -->
