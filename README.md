@@ -13,11 +13,11 @@ after you pull the file layout structure you can delete them*
         │
         ├── node_modules
         │   │   // If we use NodeJS for the server side instead of XAMPP, This folder will contain all         
-        │   │   // the NodeJS dependencies required. When you type 'npm install' into the Webstorm   
-        │   │   // terminal on WebStorm, the node dependencies will get installed here. Don't commit it ti  
-        │   └── // The repo because they're generally heavy in terms of space.     
+        │   │      the NodeJS dependencies required. When you type 'npm install' into the Webstorm   
+        │   │      terminal on WebStorm, the node dependencies will get installed here. Don't commit it ti  
+        │   └──    The repo because they're generally heavy in terms of space.     
         │   
-        ├── www   ( might rename? a standard directory name I found )
+        ├── www   ( might rename? just one commonly used that I found )
         │   │
         │   ├── Assets
         │   │   │
@@ -26,7 +26,7 @@ after you pull the file layout structure you can delete them*
         │   │   ├── Fonts     
         │   │   │   └ // app fonts ( .ttf/ .woff files )
         │   │   └── Images
-        │   │       └ // app images ( reduced .jpg/ .png files )
+        │   │       └ // images used in app ( **reduced** .jpg/ .png files )
         │   │   
         │   ├── Data  
         │   │   └ // app information (.JSON Files) 
@@ -41,19 +41,14 @@ after you pull the file layout structure you can delete them*
         │   │
         │   ├── StyleSheets ( .css/ .scss files )
         │   │   │   
-        │   │   ├── Globals  
-        │   │   │   │    (all.css, colors.css, functions.css, fonts.css, grid.css, variables.css, etc...
-        │   │   │   ...
-        │   │   │   └ // general styles used across the whole web project      
+        │   │   ├── Base  
+        │   │   │   └ // .css files for resets, variables, mixin, and utility classes      
+        │   │   ├── Layout
+        │   │   │   └ // All CSS files that handle layout, such as container and grid system
+        │   │   ├── Components  
+        │   │   │   └ // .css for anything reusable, such as buttons, navbars, etc..  
         │   │   │        
-        │   │   ├── Modules
-        │   │   │   ├── // .css files for layout
-        │   │   │   │
-        │   │   │   ├── // .css files for presentation
-        │   │   │   │
-        │   │   │   └── ( Might make .css files by web page instead )
-        │   │   │
-        │   │   └── // main.css        ( primary .css file, -might name "styles.css" )
+        │   │   └── main.css        ( primary .css file, should import the CSS files above )
         │   │     
         │   └── Views       ( .html files )
         │       │
@@ -71,7 +66,7 @@ after you pull the file layout structure you can delete them*
         │
         ├── src
         │   │
-        │   └── // might need directory for back-end files? ( add way later )
+        │   └── // if we need directory for back-end files? ( will look into way later )
         │
         ├── .gitignore
         │
