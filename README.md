@@ -12,13 +12,13 @@ after you pull the file layout structure you can delete them*
         │   └── // Documentation files
         │
         ├── node_modules
-        │   │   // If we use NodeJS for the server side instead of XAMPP,          
-        │   │   // This folder will contain all the NodeJS dependencies required.  
-        │   │   // When you type 'npm install' into the terminal on WebStorm, the  
-        │   │   // node dependencies get installed inside here. Don't commit it to 
+        │   │   // If we use NodeJS for the server side instead of XAMPP, This folder will contain all         
+        │   │   // the NodeJS dependencies required. When you type 'npm install' into the Webstorm   
+        │   │   // terminal on WebStorm, the node dependencies will get installed here. Don't commit it ti  
         │   └── // The repo because they're generally heavy in terms of space.     
         │   
-        ├── www
+        ├── www   ( might rename? a standard directory name I found )
+        │   │
         │   ├── Assets
         │   │   │
         │   │   ├── Audio
@@ -85,4 +85,13 @@ after you pull the file layout structure you can delete them*
         │
         └── README.md
          
-## Current Page Images (9-13-2019)        
+## Current Page Images (9-13-2019)
+###### User Information
+![User Information](https://github.com/TrevorMcDougald/InternetSoftwareDev3320/blob/Trevors-Branch/docs/page_images/checkout_page_9-13-2019.PNG) 
+###### Shipping Information
+![Shipping Information](https://github.com/TrevorMcDougald/InternetSoftwareDev3320/blob/Trevors-Branch/docs/page_images/shipping_information_page_9-13-2019.PNG) 
+###### Shopping Cart
+![Shopping Cart](https://github.com/TrevorMcDougald/InternetSoftwareDev3320/blob/Trevors-Branch/docs/page_images/shopping_cart_page_9-13-2019.PNG) 
+###### Checkout
+![Checkout](https://github.com/TrevorMcDougald/InternetSoftwareDev3320/blob/Trevors-Branch/docs/page_images/user_information_page_9-13-2019.PNG) 
+
