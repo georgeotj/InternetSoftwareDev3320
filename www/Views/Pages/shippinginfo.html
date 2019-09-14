@@ -15,47 +15,48 @@
     <header>
       <h1>
         <span style="font-size:50px">
-          <strong> Shipping </strong>
+          <strong>Store Name</strong>
         </span>
       </h1>
     </header>
   <!-- /header -->
 
+  <div class="shipping-info-panel">
     <form action="/my-handling-form-page" method="post">
-      <fieldset>
-        <legend>Shipping Information</legend>
+        <h2>Choose Shipping Location: </h2>
+
         <p>
-          <input type="checkbox" name="physical_address" />
+          <input type="checkbox" name="physical_address"/>
           Use Physical Address.
         </p>
         <div class="Shipping Address">
           <input
-            title="Address 1"
-            type="text"
-            id="address_1"
-            name="street_address"
-            maxlength="100"
-            placeholder="Street Address"
-            required
-          /><br />
+                  title="Address 1"
+                  type="text"
+                  id="address_1"
+                  name="street_address"
+                  maxlength="100"
+                  placeholder="Street Address"
+                  required
+          /><br/>
           <input
-            title="Address 2"
-            type="text"
-            id="address_2"
-            name="street_address2"
-            maxlength="100"
-            placeholder="Apt, Suite, Bldg, (optional)"
+                  title="Address 2"
+                  type="text"
+                  id="address_2"
+                  name="street_address2"
+                  maxlength="100"
+                  placeholder="Apt, Suite, Bldg, (optional)"
           />
         </div>
-        <br />
+        <br/>
         <div class="Shipping Location">
           <input
-            title="City"
-            type="text"
-            id="city"
-            name="user_city"
-            placeholder="City"
-            required
+                  title="City"
+                  type="text"
+                  id="city"
+                  name="user_city"
+                  placeholder="City"
+                  required
           />
           <!-- TODO: Move to a DB and load with AJAX -->
           <select title="Users State" name="state" id="user_state">
@@ -112,26 +113,27 @@
             <option value="WI">Wisconsin</option>
             <option value="WY">Wyoming</option>
           </select>
-          <br />
+          <br/>
           <input
-            title="Zip Code"
-            type="text"
-            id="zipcode"
-            name="user_zip"
-            placeholder="Zip Code"
-            maxlength="9"
-            minlength="5"
-            required
+                  title="Zip Code"
+                  type="text"
+                  id="zipcode"
+                  name="user_zip"
+                  placeholder="Zip Code"
+                  maxlength="9"
+                  minlength="5"
+                  required
           />
         </div>
-        <br />
+        <br/>
         <div>
-          <input type="submit" value="Save" />
-          <input type="reset" value="Reset" />
+          <input type="submit" value="Save"/>
+          <input type="reset" value="Reset"/>
         </div>
-      </fieldset>
-      <br />
+
+      <br/>
     </form>
+  </div>
   </body>
 <!-- /body -->
 </html>
