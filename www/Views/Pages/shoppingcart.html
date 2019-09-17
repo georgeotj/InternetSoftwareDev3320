@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html class="shopping-cart" lang="en">
-<!-- head  -->
+  <!-- head  -->
   <head>
-    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <meta charset="UTF-8" />
     <title>Store Name</title>
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <meta name="author" content="mcdougald_huerta_khan" />
+    <meta
+      name="description"
+      content="HTML page for shopping cart information"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   </head>
-<!-- /head -->
+  <!-- /head -->
 
-<!-- body -->
+  <!-- body -->
   <body>
-  <!-- CSS selector will use wallpaper to style background-->
-  <div class="wallpaper"></div>
-  <!-- header -->
-  <header>
+    <!-- CSS selector will use wallpaper to style background-->
+    <div class="wallpaper"></div>
+    <!-- header -->
+    <header id="banner">
       <h1>
         <strong>Products</strong>
       </h1>
@@ -36,7 +43,8 @@
         <input id="item-units" type="text" name="Item Units" />
         <label for="unit-price">Price:</label>
         <input id="unit-price" type="text" name="Item Units" />
-        <div> <br>
+        <div>
+          <br />
           <label for="save-item"></label>
           <input id="save-item" type="button" value="Add To Cart" />
           <label for="update-items"></label>
@@ -48,31 +56,35 @@
       <div id="items-list">
         <h2>Shopping Cart</h2>
         <table id="cart-list">
-          <caption>Saved Items</caption>
+          <caption>
+            Saved Items
+          </caption>
           <thead>
-          <tr>
-            <th scope="col">Product</th>
-            <th scope="col">Units</th>
-            <th scope="col">Price</th>
-          </tr>
+            <tr>
+              <th scope="col">Product</th>
+              <th scope="col">Units</th>
+              <th scope="col">Price</th>
+            </tr>
           </thead>
           <tbody>
-          <tr>
-            <td>(example) Product 1</td>
-            <td>(example) x</td>
-            <td>(example) $</td>
-          </tr>
+            <tr>
+              <td>(example) Product 1</td>
+              <td>(example) x</td>
+              <td>(example) $</td>
+            </tr>
           </tbody>
         </table>
       </div>
-      <div> <br/>
+      <div>
+        <br />
         <label for="total-price">Total Price: $</label>
-        <input id="total-price" type="hidden"> <br /> <br/>
+        <input id="total-price" type="hidden" /> <br />
+        <br />
         <label for="to-checkout"></label>
-        <input id="to-checkout" type="button" value="Checkout">
+        <input id="to-checkout" type="button" value="Checkout" />
         <label><input type="button" value="Clear" /> </label>
       </div>
     </form>
   </body>
-<!-- /body -->
+  <!-- /body -->
 </html>

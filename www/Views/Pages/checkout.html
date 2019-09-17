@@ -2,8 +2,13 @@
 <html class="checkout" lang="en">
   <!-- head  -->
   <head>
-    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <meta charset="UTF-8" />
     <title>Checkout Page</title>
+
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <meta name="author" content="mcdougald_huerta_khan" />
+    <meta name="description" content="HTML page for checkout information" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   </head>
   <!-- /head -->
 
@@ -12,7 +17,7 @@
     <!-- CSS selector will use wallpaper to style background-->
     <div class="wallpaper"></div>
 
-    <header>
+    <header id="banner">
       <h1>Store Name</h1>
     </header>
 
@@ -30,7 +35,9 @@
           <label for="total-tax">&nbsp;&nbsp;&nbsp;Tax: $</label>
           <input id="total-tax" type="hidden" />
 
-          <label for="total-shipping-cost">&nbsp;&nbsp;&nbsp;Shipping Cost: $</label>
+          <label for="total-shipping-cost"
+            >&nbsp;&nbsp;&nbsp;Shipping Cost: $</label
+          >
           <input id="total-shipping-cost" type="hidden" /> <br />
           <br />
 
@@ -55,7 +62,8 @@
               <option value="master-card">Master Card</option>
               <option value="american-express-card">American Express</option>
             </select>
-          </div> <br />
+          </div>
+          <br />
           <!-- class for user input -->
           <div class="input-fields">
             <div class="column-1">
