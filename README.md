@@ -81,16 +81,16 @@ after you pull the file layout structure you can delete them*
         └── README.md
          
 ## Current Page Images (9-13-2019)
-###### User Information (90% scale):
+#### User Information (90% scale):
 ------
 ![User Information](https://github.com/georgeotj/InternetSoftwareDev3320/blob/master/docs/page_images/user_information_page.png) 
-###### Shipping Information:
+#### Shipping Information:
 ------
 ![Shipping Information](https://github.com/georgeotj/InternetSoftwareDev3320/blob/master/docs/page_images/shipping_information_page.png) 
-###### Shopping Cart:
+#### Shopping Cart:
 ------
 ![Shopping Cart](https://github.com/georgeotj/InternetSoftwareDev3320/blob/master/docs/page_images/shopping_cart_page.png) 
-###### Checkout:
+#### Checkout:
 ------
 ![Checkout](https://github.com/georgeotj/InternetSoftwareDev3320/blob/master/docs/page_images/checkout_page.png) 
 
