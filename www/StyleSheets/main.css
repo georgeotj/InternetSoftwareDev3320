@@ -22,62 +22,155 @@ html {
     text-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
 }
 
-.header {
-    overflow: hidden;
+.body {
+    /* To scroll, set body height to veiwport height*/
+    height: 125vh;
+    margin: 0;
+    padding: 0;
+    background: #ccc;
+}
+
+header .main-header{
     background-color: #f1f1f1;
-    padding: 20px 10px;
+    /* fixed position means that the element stays in same spot even
+        when scrolling*/
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
 }
-
-.header .nav-link {
-    float: left;
-    color: black;
-    text-align: center;
-    padding: 12px;
-    text-decoration: none;
-    font-size: 18px;
-    line-height: 25px;
-    border-radius: 4px;
-}
-
 
 .footer{
-    position: fixed;
-    right: 0;
+    position: absolute;
     bottom: 0;
-    left: 0;
-    padding: 1rem;
-    background-color: #333333;
-    text-align: center;
+    margin: 0;
 }
 
+.nav {
+    /* make the nav take up the whole viewport width */
+    width: 100vw;
+    margin: 20px 0;
+    background-color: dodgerblue;
+}
+.header-nav {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    left: 0;
+    background-color: #efefef;
+}
 .footer-nav {
-    position: fixed;
-    right: 0;
+    position: absolute;
     bottom: 0;
+    right: 0;
     left: 0;
-    display: inline-block;
-    color: white;
-    text-decoration: none;
-    text-align: end;
-    width: 100%;
-    float: left;
-}
-.footer-nav li.footer-nav-item{
-    display: inline;
+    background-color: #efefef;
+
 }
 
+.nav-list {
+    /* make the list of links take up the whole width of nav */
+    width: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    /* clip content or add scroll bars when element is too big*/
+    overflow: auto;
+    background-color: #c7c7c7;
+}
+
+
+.nav-item {
+    /* each navigation link is 1/5th of the page*/
+    width: 20%;
+    /* make the navigation links horizontal instead of vertical */
+    float: left;
+    /* multiple of viewport height, 3% height of viewport */
+    font-size: 3vh;
+}
 
 .nav-link {
-    display: inline-block;
-    padding: 1em;
-    color: white;
-    text-decoration: none;
+    /* make the text in the links centered */
     text-align: center;
-    float: left;
-    font-size: 18px;
-    line-height: 25px;
-    border-radius: 4px;
+    /* make the links clickable around their entire box */
+    display: block;
+    /* Get rid of the default link underline*/
+    text-decoration: none;
+    /* Change color from default blue */
+    color: white;
+
+    width: 100%;
+    padding: 3px 0;
+    background-color: #6e6e6e;
 }
-.nav-item {
-    display: inline;
+
+.nav-link:hover {
+    text-decoration: none;
+    background-color: #c7c7c7;
+    transition: .3s background-color;
 }
+
+.nav-link.active {
+    background-color: darkgray;
+}
+
+
+/*.main-nav {*/
+/*    float: left;*/
+/*    color: white;*/
+/*    text-align: center;*/
+/*    padding: 14px 16px;*/
+/*    text-decoration: none;*/
+/*}*/
+
+/*.nav-link {*/
+/*    float: left;*/
+/*    color: white;*/
+/*    text-align: center;*/
+/*    padding: 12px;*/
+/*    text-decoration: none;*/
+/*    font-size: 18px;*/
+/*    line-height: 25px;*/
+/*    border-radius: 4px;*/
+/*    display: block;*/
+/*}*/
+
+/*.header .nav-link{*/
+/*    display: inline-block;*/
+/*}*/
+
+
+
+/*.footer .nav-link{*/
+/*    display: inline-block;*/
+/*}*/
+
+/*.footer-nav {*/
+/*    color: white;*/
+/*    bottom: 0;*/
+/*    text-decoration: none;*/
+/*    text-align: center;*/
+/*    padding: 16px 14px;*/
+/*    width: 100%;*/
+/*    float: left;*/
+/*}*/
+/*.footer-nav .footer-nav-item{*/
+/*    display: inline;*/
+/*}*/
+
+
+/*!*.nav-link {*!*/
+/*!*    display: inline-block;*!*/
+/*!*    padding: 1em;*!*/
+/*!*    color: white;*!*/
+/*!*    text-decoration: none;*!*/
+/*!*    text-align: center;*!*/
+/*!*    float: left;*!*/
+/*!*    font-size: 18px;*!*/
+/*!*    line-height: 25px;*!*/
+/*!*    border-radius: 4px;*!*/
+/*!*}*!*/
+
+/*.nav-item {*/
+/*    display: inline;*/
+/*}*/
