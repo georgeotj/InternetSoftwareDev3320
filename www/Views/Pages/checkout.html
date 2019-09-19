@@ -17,86 +17,155 @@
     <!-- CSS selector will use wallpaper to style background-->
     <div class="wallpaper"></div>
 
-    <header id="banner">
+    <!-- header -->
+    <header class="main-header" role="banner">
       <h1>Store Name</h1>
-    </header>
-
-    <!-- outer most component for checkout, for general CSS styling -->
-    <div class="checkout-panel">
-      <div class="panel-body">
-        <h2 class="title">Checkout</h2>
-
-        <!-- class for total, shipping, tax, amount due-->
-        <div class="cost-fields">
-          <br />
-          <label for="total-price">Order: $</label>
-          <input id="total-price" type="hidden" />
-          <!--TODO: Replace &nbsp when stylesheets are added -->
-          <label for="total-tax">&nbsp;&nbsp;&nbsp;Tax: $</label>
-          <input id="total-tax" type="hidden" />
-
-          <label for="total-shipping-cost"
-            >&nbsp;&nbsp;&nbsp;Shipping Cost: $</label
-          >
-          <input id="total-shipping-cost" type="hidden" /> <br />
-          <br />
-
-          <label for="total-amount-due">Amount Due: $</label>
-          <input id="total-amount-due" type="hidden" /> <br />
-          <br />
-        </div>
-
-        <!-- Form to collect user payment data -->
-        <form>
-          <!-- class for payment method -->
-          <div class="payment-method">
-            <label for="payment-method-types"></label>
-            <!-- selection options -->
-            <select
-              id="payment-method-types"
-              title="Payment Type"
-              name="payment-types"
+      <nav class="header-nav nav" role="navigation">
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a class="active nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="www/Views/Pages/userinfo.html"
+              >Account Information</a
             >
-              <option value="" selected="selected">Card Type</option>
-              <option value="visa-card">VISA</option>
-              <option value="master-card">Master Card</option>
-              <option value="american-express-card">American Express</option>
-            </select>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="www/Views/Pages/shippinginfo.html"
+              >Shipping Information</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="www/Views/Pages/shoppingcart.html"
+              >Store</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="www/Views/Pages/checkout.html"
+              >Checkout</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <!-- /header -->
+
+    <!-- main -->
+    <main class="container">
+      <!-- outer most component for checkout, for general CSS styling -->
+      <div class="checkout-panel">
+        <div class="panel-body">
+          <h2 class="title">Checkout</h2>
+
+          <!-- class for total, shipping, tax, amount due-->
+          <div class="cost-fields">
+            <br />
+            <label for="total-price">Order: $</label>
+            <input id="total-price" type="hidden" />
+            <!--TODO: Replace &nbsp when stylesheets are added -->
+            <label for="total-tax">&nbsp;&nbsp;&nbsp;Tax: $</label>
+            <input id="total-tax" type="hidden" />
+
+            <label for="total-shipping-cost"
+              >&nbsp;&nbsp;&nbsp;Shipping Cost: $</label
+            >
+            <input id="total-shipping-cost" type="hidden" /> <br />
+            <br />
+
+            <label for="total-amount-due">Amount Due: $</label>
+            <input id="total-amount-due" type="hidden" /> <br />
+            <br />
           </div>
+
+          <!-- Form to collect user payment data -->
+          <form>
+            <!-- class for payment method -->
+            <div class="payment-method">
+              <label for="payment-method-types"></label>
+              <!-- selection options -->
+              <select
+                id="payment-method-types"
+                title="Payment Type"
+                name="payment-types"
+              >
+                <option value="" selected="selected">Card Type</option>
+                <option value="visa-card">VISA</option>
+                <option value="master-card">Master Card</option>
+                <option value="american-express-card">American Express</option>
+              </select>
+            </div>
+            <br />
+            <!-- class for user input -->
+            <div class="input-fields">
+              <div class="column-1">
+                <div class="payment-card-number">
+                  <label for="payment-card-number">Card Number: </label>
+                  <input type="text" id="payment-card-number" required />
+                </div>
+              </div>
+              <div class="column-2">
+                <div class="card-valid-through">
+                  <label for="expiration-date">Valid Through: </label>
+                  <input
+                    type="text"
+                    id="expiration-date"
+                    placeholder="MM / YY"
+                  />
+                </div>
+                <div class="card-verification">
+                  <label for="verification">CVV / CVC</label>
+                  <input type="password" id="verification" />
+                </div>
+              </div>
+            </div>
+            <!-- class for user agreeing to pay -->
+            <div class="radio-input-agreement">
+              <label for="pay-agreement">Agree to pay $ (ex) dollars?</label>
+              <input id="pay-agreement" type="radio" name="payment" required />
+            </div>
+          </form>
+        </div>
+        <div class="panel-footer">
           <br />
-          <!-- class for user input -->
-          <div class="input-fields">
-            <div class="column-1">
-              <div class="payment-card-number">
-                <label for="payment-card-number">Card Number: </label>
-                <input type="text" id="payment-card-number" required />
-              </div>
-            </div>
-            <div class="column-2">
-              <div class="card-valid-through">
-                <label for="expiration-date">Valid Through: </label>
-                <input type="text" id="expiration-date" placeholder="MM / YY" />
-              </div>
-              <div class="card-verification">
-                <label for="verification">CVV / CVC</label>
-                <input type="password" id="verification" />
-              </div>
-            </div>
-          </div>
-          <!-- class for user agreeing to pay -->
-          <div class="radio-input-agreement">
-            <label for="pay-agreement">Agree to pay $ (ex) dollars?</label>
-            <input id="pay-agreement" type="radio" name="payment" required />
-          </div>
-        </form>
+          <button class="submit-order-button">Submit Order</button>
+          <button class="back-btn">Back to Cart</button>
+          <button class="cancel-order-button">Cancel Order</button>
+        </div>
       </div>
-      <div class="panel-footer">
-        <br />
-        <button class="submit-order-button">Submit Order</button>
-        <button class="back-btn">Back to Cart</button>
-        <button class="cancel-order-button">Cancel Order</button>
-      </div>
-    </div>
+    </main>
+    <!-- /main -->
+
+    <!-- footer -->
+    <footer>
+      <nav class="footer-nav nav" role="navigation">
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a class="active nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="www/Views/Pages/userinfo.html"
+              >Account Information</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="www/Views/Pages/shippinginfo.html"
+              >Shipping Information</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="www/Views/Pages/shoppingcart.html"
+              >Store</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="www/Views/Pages/checkout.html"
+              >Checkout</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </footer>
+    <!-- /footer -->
   </body>
   <!-- /body -->
 </html>

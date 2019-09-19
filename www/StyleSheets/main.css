@@ -23,44 +23,71 @@ html {
 }
 
 .body {
-    /* To scroll, set body height to veiwport height*/
-    height: 125vh;
+    /* Make the height of the body 100% of page, and min height too.
+    That way the height of footer doesn't change. */
+    height: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
     margin: 0;
     padding: 0;
     background: #ccc;
+    position: relative;
+}
+
+.main {
+    min-height: 100vh;
+    overflow: hidden;
+    display: block;
+    position: relative;
+    padding-bottom: 2.5rem;
 }
 
 header .main-header{
     background-color: #f1f1f1;
     /* fixed position means that the element stays in same spot even
         when scrolling*/
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
 }
 
 .footer{
-    position: absolute;
+    /* ----positions---
+        fixed: positioned relative to the viewport, stays in same place
+               even if the page is scrolled.
+        static: not positioned in special way, goes by html flow
+        absolute: positioned relative to the nearest positioned ancestor
+        sticky: positioned based on user's scroll position*/
+    margin-top: auto;
+    position: fixed;
     bottom: 0;
-    margin: 0;
+    width: 100%;
+    height: 2.5rem;
 }
 
 .nav {
     /* make the nav take up the whole viewport width */
     width: 100vw;
-    margin: 20px 0;
     background-color: dodgerblue;
 }
+.container {
+    padding-bottom: 2.5rem;
+    position: relative;
+    min-height: 100vh;
+}
+
 .header-nav {
-    position: absolute;
-    top: 60px;
+    position: fixed;
+    top: 0;
     right: 0;
     left: 0;
     background-color: #efefef;
+    width: 100%
 }
 .footer-nav {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     right: 0;
     left: 0;
