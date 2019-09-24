@@ -5,199 +5,148 @@ FOR LEARNING PURPOSES.
  */
 
 /* 1. Base */
-
+* {
+    box-sizing: border-box;
+}
 html {
     /* Arrange CSS rules alphabetically*/
-    background-color: #333333;
     /*background-image: linear-gradient(to bottom right, #232526, #414345);*/
-    color: #fff;
     font-family: "Quicksand", sans-serif;
-    font-size: 16px;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    line-height: 1.5;
-    min-height: 100vh;
-    min-width: 300px;
-    overflow-x: hidden;
-    text-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    /*-moz-osx-font-smoothing: grayscale;*/
+    /*-webkit-font-smoothing: antialiased;*/
+    /*line-height: 1.5;*/
+    /*min-height: 100vh;*/
+    /*min-width: 300px;*/
+    /*overflow-x: hidden;*/
+    /*text-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);*/
 }
 
-.body {
+body {
     /* Make the height of the body 100% of page, and min height too.
     That way the height of footer doesn't change. */
+    background-color: #EBB3A9;
     height: 100%;
     min-height: 100%;
+    width: 100%;
+    font-size: 22px;
     display: flex;
     flex-direction: column;
     margin: 0;
     padding: 0;
-    background: #ccc;
     position: relative;
 }
 
-.main {
-    min-height: 100vh;
-    overflow: hidden;
-    display: block;
-    position: relative;
-    padding-bottom: 2.5rem;
-}
-
-header .main-header{
-    background-color: #f1f1f1;
-    /* fixed position means that the element stays in same spot even
-        when scrolling*/
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-}
-
-.footer{
-    /* ----positions---
-        fixed: positioned relative to the viewport, stays in same place
-               even if the page is scrolled.
-        static: not positioned in special way, goes by html flow
-        absolute: positioned relative to the nearest positioned ancestor
-        sticky: positioned based on user's scroll position*/
-    margin-top: auto;
-    position: fixed;
-    bottom: 0;
+header {
     width: 100%;
-    height: 2.5rem;
 }
 
-.nav {
-    /* make the nav take up the whole viewport width */
-    width: 100vw;
-    background-color: dodgerblue;
+header h1 {
+    text-align: center;
+    font-size: 48px;
+    color: #40798C;
 }
-.container {
-    padding-bottom: 2.5rem;
+
+.top-bar-header {
+    width: 100%;
+    overflow: hidden;
+    background-color: #F9F6E1;
+    height: 220px;
+}
+
+.top-bar {
+    display: inline;
+}
+
+.top-bar-left .nav-list {
+    display: inline;
     position: relative;
-    min-height: 100vh;
+    bottom: 150px;
 }
-
-.header-nav {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    background-color: #efefef;
-    width: 100%
-}
-.footer-nav {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    background-color: #efefef;
-
+.top-bar-right .nav-list {
+    display: inline;
+    position: relative;
+    left: 600px;
+    bottom: 150px;
 }
 
 .nav-list {
-    /* make the list of links take up the whole width of nav */
+    list-style-type: none;
     width: 100%;
-    list-style: none;
+    height: 40px;
     margin: 0;
     padding: 0;
-    /* clip content or add scroll bars when element is too big*/
-    overflow: auto;
-    background-color: #c7c7c7;
+    overflow: hidden;
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
 }
-
 
 .nav-item {
-    /* each navigation link is 1/5th of the page*/
-    width: 20%;
-    /* make the navigation links horizontal instead of vertical */
     float: left;
-    /* multiple of viewport height, 3% height of viewport */
-    font-size: 3vh;
+    width: 10%;
 }
 
-.nav-link {
-    /* make the text in the links centered */
-    text-align: center;
-    /* make the links clickable around their entire box */
+.nav-item .nav-link {
     display: block;
-    /* Get rid of the default link underline*/
+    color: #40798C;
+    text-align: center;
+    margin: 14px 16px;
+    text-transform: uppercase;
     text-decoration: none;
-    /* Change color from default blue */
-    color: white;
-
-    width: 100%;
-    padding: 3px 0;
-    background-color: #6e6e6e;
 }
 
-.nav-link:hover {
-    text-decoration: none;
-    background-color: #c7c7c7;
-    transition: .3s background-color;
+.nav-item .nav-link:hover {
+    background-color: lightsteelblue;
 }
 
-.nav-link.active {
-    background-color: darkgray;
+.nav-item a.active {
+    color: #AB837B;
 }
 
-
-/*.main-nav {*/
-/*    float: left;*/
-/*    color: white;*/
-/*    text-align: center;*/
-/*    padding: 14px 16px;*/
-/*    text-decoration: none;*/
-/*}*/
-
-/*.nav-link {*/
-/*    float: left;*/
-/*    color: white;*/
-/*    text-align: center;*/
-/*    padding: 12px;*/
-/*    text-decoration: none;*/
-/*    font-size: 18px;*/
-/*    line-height: 25px;*/
-/*    border-radius: 4px;*/
+/*.main {*/
+/*    min-height: 100vh;*/
+/*    overflow: hidden;*/
 /*    display: block;*/
+/*    position: relative;*/
+/*    padding-bottom: 2.5rem;*/
 /*}*/
 
-/*.header .nav-link{*/
-/*    display: inline-block;*/
+/*header .main-header{*/
+/*    background-color: #f1f1f1;*/
+/*    !* fixed position means that the element stays in same spot even*/
+/*        when scrolling*!*/
+/*    position: fixed;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    right: 0;*/
 /*}*/
 
-
-
-/*.footer .nav-link{*/
-/*    display: inline-block;*/
-/*}*/
-
-/*.footer-nav {*/
-/*    color: white;*/
-/*    bottom: 0;*/
-/*    text-decoration: none;*/
+/*h1.main-header {*/
 /*    text-align: center;*/
-/*    padding: 16px 14px;*/
+/*}*/
+
+/*.footer{*/
+/*    !* ----positions---*/
+/*        fixed: positioned relative to the viewport, stays in same place*/
+/*               even if the page is scrolled.*/
+/*        static: not positioned in special way, goes by html flow*/
+/*        absolute: positioned relative to the nearest positioned ancestor*/
+/*        sticky: positioned based on user's scroll position*!*/
+/*    margin-top: auto;*/
+/*    position: fixed;*/
+/*    bottom: 0;*/
 /*    width: 100%;*/
-/*    float: left;*/
-/*}*/
-/*.footer-nav .footer-nav-item{*/
-/*    display: inline;*/
+/*    height: 2.5rem;*/
 /*}*/
 
-
-/*!*.nav-link {*!*/
-/*!*    display: inline-block;*!*/
-/*!*    padding: 1em;*!*/
-/*!*    color: white;*!*/
-/*!*    text-decoration: none;*!*/
-/*!*    text-align: center;*!*/
-/*!*    float: left;*!*/
-/*!*    font-size: 18px;*!*/
-/*!*    line-height: 25px;*!*/
-/*!*    border-radius: 4px;*!*/
-/*!*}*!*/
-
-/*.nav-item {*/
-/*    display: inline;*/
+/*.nav {*/
+/*    !* make the nav take up the whole viewport width *!*/
+/*    width: 100vw;*/
+/*    background-color: dodgerblue;*/
+/*}*/
+/*.container {*/
+/*    padding-bottom: 2.5rem;*/
+/*    position: relative;*/
+/*    min-height: 100vh;*/
 /*}*/
