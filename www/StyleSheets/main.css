@@ -6,7 +6,9 @@ FOR LEARNING PURPOSES.
 
 /* 1. Base */
 * {
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
 }
 html {
     /* Arrange CSS rules alphabetically*/
@@ -37,42 +39,45 @@ body {
     position: relative;
 }
 
-header {
-    width: 100%;
-}
 
-header h1 {
+.top-bar-header h1 {
+    display: block;
     text-align: center;
     font-size: 48px;
-    color: #40798C;
+    color: #57adc9;
+    text-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+    font-weight: 800;
+    padding: -20px 0;
+    font-family: Arial, fantasy;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .top-bar-header {
     width: 100%;
     overflow: hidden;
     background-color: #F9F6E1;
-    height: 220px;
+    height: 120px;
 }
 
 .top-bar {
-    display: inline;
+    display: block;
 }
 
 .top-bar-left .nav-list {
-    display: inline;
+    display: inline-block;
     position: relative;
-    bottom: 150px;
 }
 .top-bar-right .nav-list {
-    display: inline;
+    display: inline-block;
     position: relative;
-    left: 600px;
-    bottom: 150px;
+    left: 1000px;
+    top: -50px;
 }
 
 .nav-list {
     list-style-type: none;
-    width: 100%;
+    width: 400px;
     height: 40px;
     margin: 0;
     padding: 0;
@@ -80,28 +85,30 @@ header h1 {
     position: -webkit-sticky; /* Safari */
     position: sticky;
     top: 0;
+    display: inline-block;
 }
 
 .nav-item {
     float: left;
-    width: 10%;
 }
 
 .nav-item .nav-link {
-    display: block;
-    color: #40798C;
+    color: #57adc9;
     text-align: center;
-    margin: 14px 16px;
+    margin: 10px 12px;
     text-transform: uppercase;
     text-decoration: none;
+    display:inline;
 }
 
 .nav-item .nav-link:hover {
-    background-color: lightsteelblue;
+    color: #40798C;
+    font-weight: 800;
 }
 
 .nav-item a.active {
-    color: #AB837B;
+    color: #40798C;
+    font-weight: 600;
 }
 
 /*.main {*/
