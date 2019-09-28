@@ -82,17 +82,43 @@ after you pull the file layout structure you can delete them*
         └── README.md
          
 ## Current Page Images (9-13-2019)
-#### User Information (90% scale):
+#### Top of Home Page:
 ------
-![User Information](https://github.com/georgeotj/InternetSoftwareDev3320/blob/master/docs/page_images/user_information_page.png) 
-#### Shipping Information:
+![User Information](https://github.com/georgeotj/InternetSoftwareDev3320/blob/master/docs/page_images/main-page-top.PNG) 
+#### Bottom of Home Page:
 ------
-![Shipping Information](https://github.com/georgeotj/InternetSoftwareDev3320/blob/master/docs/page_images/shipping_information_page.png) 
-#### Shopping Cart:
+![User Information](https://github.com/georgeotj/InternetSoftwareDev3320/blob/master/docs/page_images/main-page-bottom.PNG) 
+
+
+#### Top of User Information Page:
 ------
-![Shopping Cart](https://github.com/georgeotj/InternetSoftwareDev3320/blob/master/docs/page_images/shopping_cart_page.png) 
-#### Checkout:
+![User Information](https://github.com/georgeotj/InternetSoftwareDev3320/blob/master/docs/page_images/user-information-top.PNG) 
+#### Bottom of User Information Page:
 ------
-![Checkout](https://github.com/georgeotj/InternetSoftwareDev3320/blob/master/docs/page_images/checkout_page.png) 
+![User Information](https://github.com/georgeotj/InternetSoftwareDev3320/blob/master/docs/page_images/user-information-bottom.PNG) 
+
+
+#### Top of Shipping Information Page:
+------
+![Shipping Information](https://github.com/georgeotj/InternetSoftwareDev3320/blob/master/docs/page_images/shipping-information-top.PNG) 
+#### Bottom of Shipping Information Page:
+------
+![Shipping Information](https://github.com/georgeotj/InternetSoftwareDev3320/blob/master/docs/page_images/shipping-information-bottom.PNG) 
+
+#### Top of Shopping Cart Page:
+------
+![Shopping Cart](https://github.com/georgeotj/InternetSoftwareDev3320/blob/master/docs/page_images/shopping-cart-top.PNG) 
+
+#### Bottom of Shopping Cart Page:
+------
+![Shopping Cart](https://github.com/georgeotj/InternetSoftwareDev3320/blob/master/docs/page_images/shopping-cart-bottom.PNG) 
+
+
+#### Top of Checkout Page:
+------
+![Checkout](https://github.com/georgeotj/InternetSoftwareDev3320/blob/master/docs/page_images/checkout-top.PNG) 
+#### Bottom of Checkout Page:
+------
+![Checkout](https://github.com/georgeotj/InternetSoftwareDev3320/blob/master/docs/page_images/checkout-bottom.PNG) 
 
 
