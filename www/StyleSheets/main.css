@@ -28,14 +28,14 @@ html {
 body {
     /* Make the height of the body 100% of page, and min height too.
     That way the height of footer doesn't change. */
-    height: 100%;
-    min-height: 100%;
-    width: 100%;
-    font-size: 22px;
     display: block;
+    font-size: 22px;
+    height: 100%;
     margin: 0;
+    min-height: 100%;
     padding: 0;
     position: relative;
+    width: 100%;
 }
 
 ul {
@@ -48,12 +48,12 @@ h2 {
 }
 
 .container {
+    display: inline-block;
+    margin-left: 30%;
     margin-top: 100px;
     max-width: 70%;
-    margin-left: 30%;
     min-height: 100vh;
     overflow: hidden;
-    display: inline-block;
     padding-bottom: 100px;
 }
 
@@ -62,73 +62,67 @@ h2 {
 }
 
 .top-bar-header h1 {
-    display: block;
-    text-align: center;
-    font-size: 48px;
     color: #917A90;
-    text-shadow: 0 9px 16px rgba(51, 36, 99, 0.5);
-    font-weight: 800;
-    padding: -20px 0;
+    display: block;
     font-family: Arial, fantasy;
-    max-width: 600px;
+    font-size: 48px;
+    font-weight: 800;
     margin: 0 auto;
+    max-width: 600px;
+    padding: -20px 0;
+    text-align: center;
+    text-shadow: 0 9px 16px rgba(51, 36, 99, 0.5);
+    z-index: 10;
 }
 
 .bottom-bar-footer {
-    width: 100%;
-    overflow: hidden;
     background-color: #161024;
-    height: 80px;
-    position: relative;
     bottom: 0;
+    height: 80px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
 }
 
 
 .bottom-bar {
-    display: inline-block;
-    float: left;
+    align-items: stretch;
+    display: flex;
+    height: 100%;
+    justify-content: space-between;
     width: 100%;
-    height: 100%
 }
 
 
 .bottom-bar-column-1 {
-    font-size: 1.4vh;
-    width: 25%;
     color: #F2F3F4;
-    position: absolute;
-    float: left;
+    flex: 1;
+    font-size: 1.4vh;
+    position: relative;
     text-align: center;
-
 }
 
 .bottom-bar-column-2 {
-    font-size: 1.4vh;
-    width: 25%;
     color: #F2F3F4;
-    position: absolute;
-    left: 25%;
-    float: left;
+    flex: 1;
+    font-size: 1.4vh;
+    position: relative;
     text-align: center;
 }
 
 .bottom-bar-column-3 {
-    font-size: 1.4vh;
-    width: 25%;
     color: #F2F3F4;
-    position: absolute;
-    left: 50%;
-    float: left;
+    flex: 1;
+    font-size: 1.4vh;
+    position: relative;
     text-align: center;
 }
 
 .bottom-bar-column-4 {
-    font-size: 1.4vh;
-    width: 25%;
     color: #F2F3F4;
-    position: absolute;
-    left: 75%;
-    float: left;
+    flex: 1;
+    font-size: 1.4vh;
+    position: relative;
     text-align: center;
 }
 
@@ -139,39 +133,43 @@ h2 {
 }
 
 .footer-links-column-1 {
-    display: inline-block;
-    position: relative;
-    align-content: center;
+    align-content: stretch;
+    display: flex;
+    flex-direction: column;
     list-style-type: none;
-    width: 100%;
     margin: 3px auto auto auto;
+    position: relative;
+    width: 100%;
 }
 
 .footer-links-column-2 {
-    display: inline-block;
-    position: relative;
     align-content: center;
+    display: flex;
+    flex-direction: column;
     list-style-type: none;
-    width: 100%;
     margin: 3px auto auto auto;
+    position: relative;
+    width: 100%;
 }
 
 .footer-links-column-3 {
-    display: inline-block;
-    position: relative;
     align-content: center;
+    display: flex;
+    flex-direction: column;
     list-style-type: none;
-    width: 100%;
     margin: 3px auto auto auto;
+    position: relative;
+    width: 100%;
 }
 
 .footer-links-column-4 {
-    display: inline-block;
-    position: relative;
     align-content: center;
+    display: flex;
+    flex-direction: column;
     list-style-type: none;
-    width: 100%;
     margin: 3px auto auto auto;
+    position: relative;
+    width: 100%;
 }
 
 .footer-link {
@@ -186,74 +184,76 @@ h2 {
 }
 
 .contact-info {
-    text-align: center;
-    max-width: 100%;
     display: flex;
     margin-block-end: 2px;
+    max-width: 100%;
     place-content: center;
+    text-align: center;
 }
 
 .account-link {
-    text-align: center;
-    max-width: 100%;
     display: flex;
     margin-block-end: 2px;
+    max-width: 100%;
     place-content: center;
+    text-align: center;
 
 }
 
 .support-link {
-    text-align: center;
-    max-width: 100%;
     display: flex;
     margin-block-end: 1px;
+    max-width: 100%;
     place-content: center;
+    text-align: center;
 }
 
 .shopping-link {
-    text-align: center;
-    max-width: 100%;
     display: flex;
     margin-block-end: 2px;
+    max-width: 100%;
     place-content: center;
+    text-align: center;
 }
 
 .top-bar-header {
-    width: 100%;
-    overflow: hidden;
     background-color: #F2F3F4;
     height: 100px;
+    overflow: hidden;
     position: fixed;
+    width: 100%;
+    z-index: 10;
 }
 
 
 .top-bar {
     display: block;
+    z-index: 10;
 }
 
-.top-bar-left .nav-list {
+.top-bar-column-1 .nav-list {
     display: inline;
-    position: relative;
     max-width: 400px;
+    position: relative;
 }
-.top-bar-right .nav-list {
+.top-bar-column-2 .nav-list {
     display: inline;
+    left: 50%;
     position: relative;
     width: 400px;
-    left: 50%;
 }
 
 .nav-list {
-    list-style-type: none;
-    width: 400px;
+    display: inline-block;
     height: 40px;
+    list-style-type: none;
     margin: 0;
-    padding: 0;
     overflow: hidden;
+    padding: 0;
     position: -webkit-sticky; /* Safari */
     position: sticky;
     top: 0;
-    display: inline-block;
+    width: 400px;
 }
 
 .nav-item {
@@ -264,11 +264,11 @@ h2 {
 
 .nav-item .nav-link {
     color: #968E95;
-    text-align: center;
-    margin: 10px 12px;
-    text-transform: uppercase;
-    text-decoration: none;
     display:inline;
+    margin: 10px 12px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
 }
 
 .nav-item .nav-link:hover {
@@ -279,9 +279,72 @@ h2 {
 .nav-item a.active {
     color: #7D6D84;
     font-weight: 600;
+    text-shadow: 7px 4px 15px #332463;
 }
 
+.shipping-info-panel {
+    border-radius: 5px;
+    padding: 10px 50px 20px 50px;
+    background-color: #E1E1E1;
+    margin: 50px 0 0 0;
+    z-index: -1;
+}
 
+.shipping-info-panel h2 {
+    color: #151A2F;
+    text-align: left;
+    font-size: 40px;
+}
+
+.shipping-info-panel label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+    width: 20%;
+    position: relative;
+    font-size: 1.5vh;
+}
+
+.shipping-info-panel input[type=text] {
+    width: 100%;
+    /* change padding to make the input bar bigger*/
+    padding: 12px 20px;
+    /* add margin to put space between text inputs*/
+    margin: 8px 0;
+    /* change border to solid, set size and set the color */
+    border: 2px solid #151A2F;
+    /* border radius adds rounded corners */
+    border-radius: 8px;
+    background-color: #F2F3F4;
+    transition: 0.2s;
+    -webkit-transition: 0.2s;
+    outline: none;
+}
+
+.shipping-info-panel select {
+    width: 25%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 1px solid #151A2F;
+    border-radius: 4px;
+    background-color: #F2F3F4;
+}
+
+.shipping-info-panel input[type=text]:focus {
+    border: 2px solid #c1b5e4;
+    border-radius: 8px;
+    background-color: #F2F3F4;
+}
+
+.shipping-info-panel input[type=button], input[type=submit],
+input[type=reset] {
+    background-color: #151A2F;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    cursor: pointer;
+}
 
 
 

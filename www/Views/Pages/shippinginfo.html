@@ -24,7 +24,7 @@
         <h1>Store Name</h1>
 
         <div class="top-bar responsive-links">
-          <div class="top-bar-left">
+          <div class="top-bar-column-1">
             <ul class="nav-list">
               <li class="nav-item">
                 <a class="nav-link" href="index.html">Home</a>
@@ -41,7 +41,7 @@
               </li>
             </ul>
           </div>
-          <div class="top-bar-right">
+          <div class="top-bar-column-2">
             <ul class="nav-list">
               <li class="nav-item">
                 <a class="nav-link" href="www/Views/Pages/userinfo.html"
@@ -61,16 +61,23 @@
     <!-- /header -->
 
     <!-- main -->
-    <main class="container">
+    <main role="main" class="container">
       <div class="shipping-info-panel">
         <form action="/my-handling-form-page" method="post">
-          <h2>Choose Shipping Location:</h2>
+          <h2>Shipping Address:</h2>
+
+          <div>
+
+          </div>
 
           <p>
-            <input type="checkbox" name="physical_address" />
-            Use Physical Address.
+            <label for="physical_address">Use Physical Address?</label>
+              <input id="physical_address" type="checkbox" name="physical_address" />
           </p>
           <div class="Shipping Address">
+            <div class="shipping-panel-row-1">
+              <label for="address_1">Address Line 1</label>
+            </div>
             <input
               title="Address 1"
               type="text"
@@ -80,6 +87,7 @@
               placeholder="Street Address"
               required
             /><br />
+            <label for="address_2">Address Line 2</label>
             <input
               title="Address 2"
               type="text"
@@ -91,6 +99,7 @@
           </div>
           <br />
           <div class="Shipping Location">
+            <label for="city">City</label>
             <input
               title="City"
               type="text"
@@ -100,6 +109,7 @@
               required
             />
             <!-- TODO: Move to a DB and load with AJAX -->
+            <label for="user_state"></label>
             <select title="Users State" name="state" id="user_state">
               <option value="" selected="selected">State</option>
               <option value="AL">Alabama</option>
@@ -155,6 +165,7 @@
               <option value="WY">Wyoming</option>
             </select>
             <br />
+            <label for="zipcode">Zip Code</label>
             <input
               title="Zip Code"
               type="text"
@@ -182,7 +193,7 @@
     <footer class="bottom-bar-footer" role="contentinfo">
       <nav class="bottom-bar" role="navigation">
         <div class="bottom-bar-column-1">
-          <h2>Contact Us</h2>
+          <h2>Authors</h2>
           <ul class="footer-links-column-1">
             <li class="contact-info">
               <a class="footer-link" href="https://github.com/georgeotj">

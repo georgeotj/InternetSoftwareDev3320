@@ -1,4 +1,6 @@
-# Internet Software Development Group Project
+# CS 3320: Internet Software Development
+Objective: To create an e-commerce website that will allow a user to run
+through the process of creating an order.
 
 ## Project Structure: 
 *place_holder.txt was only added so the directory would push to github,
@@ -119,4 +121,5 @@ after you pull the file layout structure you can delete them*
 #### Bottom of Checkout Page:
 ------
 ![Checkout](https://github.com/georgeotj/InternetSoftwareDev3320/blob/master/docs/page_images/checkout-bottom.PNG) 
+
 
