@@ -12,7 +12,9 @@
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-    <link rel="stylesheet" type="text/css" href="../../StyleSheets/main.css" />
+    <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../public/stylesheets/main.css" />
   </head>
   <!-- /head -->
 
@@ -22,38 +24,36 @@
     <div class="wallpaper"></div>
     <!-- header -->
     <!-- header -->
-    <header class="top-bar-header" role="banner">
+    <header class="header-top-bar" role="banner">
+      <div class="header-text"><h1>Store Name</h1></div>
       <nav class="top-bar" role="navigation">
-
-        <h1>Store Name</h1>
-
         <div class="top-bar responsive-links">
-          <div class="top-bar-left">
+          <div class="top-bar-column-1">
             <ul class="nav-list">
               <li class="nav-item">
-                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="../index.html">Home</a>
               </li>
               <li class="nav-item">
-                <a class="active nav-link" href="www/Views/Pages/shoppingcart.html"
+                <a class="active nav-link" href="shoppingcart.html"
                 >Shop</a
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="www/Views/Pages/checkout.html"
+                <a class="nav-link" href="checkout.html"
                 >Checkout</a
                 >
               </li>
             </ul>
           </div>
-          <div class="top-bar-right">
+          <div class="top-bar-column-2">
             <ul class="nav-list">
               <li class="nav-item">
-                <a class="nav-link" href="www/Views/Pages/userinfo.html"
+                <a class="nav-link" href="userinfo.html"
                 >Account</a
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="www/Views/Pages/shippinginfo.html"
+                <a class="nav-link" href="shippinginfo.html"
                 >Shipping</a
                 >
               </li>
@@ -65,68 +65,75 @@
     <!-- /header -->
 
     <!-- main -->
-    <main class="container">
-      <div class="store-products"><h2>Products</h2>
-        <form name="Shopping Cart" action="/my-handling-form-page" method="POST">
-          <div class="search-store">
-            <label for="products"></label>
-            <select id="products" title="Product Selection" name="products">
-              <option value="" selected="selected">Store Products</option>
-              <option value="product-1">(example) Product 1</option>
-              <option value="product-2">(example) Product 2</option>
-              <option value="product-3">(example) Product 3</option>
-              <option value="product-4">(example) Product 4</option>
-              <option value="product-5">(example) Product 5</option>
-              <option value="product-6">(example) Product 6</option>
-              <option value="product-x">(example) Product...</option>
-            </select>
-            <label for="item-units">Units:</label>
-            <input id="item-units" type="text" name="Item Units"/>
-            <label for="unit-price">Price:</label>
-            <input id="unit-price" type="text" name="Item Units"/>
-            <div>
+    <main role="main" class="container">
+      <div class="products-cart-panel">
+        <div class="store-products-panel flex-column-1">
+          <div class="products-header"><h2>Browse our Products!</h2></div>
+          <div class="store-products">
+            <form class="store-products-list" name="Shopping-Cart" action="/my-handling-form-page" method="POST">
+              <div class="store-product-btns">
+                <br/>
+                <label for="save-item"></label>
+                <button id="save-item" type="button">Add To Cart</button>
+                <label for="update-items"></label>
+                <button id="update-items" type="button">Update Price</button>
+                <label for="delete-item"></label>
+                <button id="delete-item" type="button">Delete</button>
+              </div>
+              <div class="search-store">
+                <label for="products"></label>
+                <select id="products" title="Product Selection" name="products">
+                  <option value="" selected="selected">Product List</option>
+                  <option value="product-1">(example) Product 1</option>
+                  <option value="product-2">(example) Product 2</option>
+                  <option value="product-3">(example) Product 3</option>
+                  <option value="product-4">(example) Product 4</option>
+                  <option value="product-5">(example) Product 5</option>
+                  <option value="product-6">(example) Product 6</option>
+                  <option value="product-x">(example) Product...</option>
+                </select>
+                <label for="item-units">Units:</label>
+                <input id="item-units" type="text" name="Item Units"/>
+                <label for="unit-price">Price:</label>
+                <input id="unit-price" type="text" name="Item Units"/>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="shopping-cart-panel flex-column-2">
+          <h2>Cart</h2>
+          <div class="shopping-cart">
+            <div id="items-list">
+              <table id="cart-list">
+                <caption>
+                  Saved Items
+                </caption>
+                <thead>
+                <tr>
+                  <th scope="col">Product</th>
+                  <th scope="col">Units</th>
+                  <th scope="col">Price</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td>(example) Product 1</td>
+                  <td>(example) x</td>
+                  <td>(example) $</td>
+                </tr>
+                </tbody>
+              </table>
+              <label for="total-price">Total Price</label>
+              <output for="cart-list" id="total-price">$ {{{Subtotal}}}</output>
+            </div>
+            <div class="shopping-cart-footer">
               <br/>
-              <label for="save-item"></label>
-              <input id="save-item" type="button" value="Add To Cart"/>
-              <label for="update-items"></label>
-              <input id="update-items" type="button" value="Update Price"/>
-              <label for="delete-item"></label>
-              <input id="delete-item" type="button" value="Delete"/>
+              <label for="to-checkout"></label>
+              <button id="to-checkout" type="submit" >Checkout</button>
+              <label for=""></label>
+              <button id="reset-cart" type="reset">Clear</button>
             </div>
           </div>
-        </form>
-      </div>
-      <div class="shopping-cart">
-        <div id="items-list">
-          <h2>Shopping Cart</h2>
-          <table id="cart-list">
-            <caption>
-              Saved Items
-            </caption>
-            <thead>
-            <tr>
-              <th scope="col">Product</th>
-              <th scope="col">Units</th>
-              <th scope="col">Price</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td>(example) Product 1</td>
-              <td>(example) x</td>
-              <td>(example) $</td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-        <div>
-          <br/>
-          <label for="total-price">Total Price: $</label>
-          <input id="total-price" type="hidden"/> <br/>
-          <br/>
-          <label for="to-checkout"></label>
-          <input id="to-checkout" type="button" value="Checkout"/>
-          <label><input type="button" value="Clear"/> </label>
         </div>
       </div>
     </main>
@@ -136,7 +143,7 @@
     <footer class="bottom-bar-footer" role="contentinfo">
       <nav class="bottom-bar" role="navigation">
         <div class="bottom-bar-column-1">
-          <h2>Contact Us</h2>
+          <h2>Authors</h2>
           <ul class="footer-links-column-1">
             <li class="contact-info">
               <a class="footer-link" href="https://github.com/georgeotj">
@@ -159,17 +166,17 @@
           <h2>Account</h2>
           <ul class="footer-links-column-2">
             <li class="account-link">
-              <a class="footer-link" href="www/Views/Pages/userinfo.html">
+              <a class="footer-link" href="views/userinfo.html">
                 New User
               </a>
             </li>
             <li class="account-link">
-              <a class="footer-link" href="www/Views/Pages/userinfo.html">
+              <a class="footer-link" href="views/userinfo.html">
                 My Account
               </a>
             </li>
             <li class="account-link">
-              <a class="footer-link" href="www/Views/Pages/shippinginfo.html">
+              <a class="footer-link" href="views/shippinginfo.html">
                 My Shipping
               </a>
             </li>
