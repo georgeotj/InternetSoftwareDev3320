@@ -1,3 +1,4 @@
+@import url(checkout.css);
 /*
 THIS CSS FILE IS NEEDS TO ONLY IMPORT THE OTHER CSS SHEETS.
 CSS Selectors ARE TEMPORARILY INCLUDED IN THIS PAGE
@@ -34,9 +35,10 @@ body {
   /* Make the height of the body 100% of page, and min height too.
     That way the height of footer doesn't change. */
   background-color: #7d6d84;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
   font-size: 22px;
-  height: 100%;
+  height: auto;
   /* Set line-height to 1.7x bigger than it would be otherwise*/
   margin: 0;
   min-height: 100%;
@@ -55,12 +57,13 @@ h2 {
 }
 
 .container {
-  display: inline-block;
+  display: inline-flex;
+  flex-direction: column;
   margin-top: 15vh;
-  margin-bottom: 5vh;
+  margin-bottom: 13vh;
   width: 100%;
   height: auto;
-  padding-bottom: 100px;
+  padding-bottom: 13vh;
 }
 
 .container h2 {
@@ -92,9 +95,10 @@ h2 {
   bottom: 0;
   height: 13vh;
   overflow: hidden;
-  position: relative;
+  position: absolute;
   width: 100%;
   z-index: 15;
+  place-self: flex-end;
 }
 
 .bottom-bar {

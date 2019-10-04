@@ -1,0 +1,8 @@
+.checkout-panel {
+    border-radius: 5px;
+    background-color: #e1e1e1;
+    z-index: -1;
+    display: block;
+    width: 45%;
+    margin: 5% auto;
+}
