@@ -1,6 +1,8 @@
 # CS 3320: Internet Software Development
 Objective: To create an e-commerce website that will allow a user to run
 through the process of creating an order.
+x
+
 
 ## Project Structure: 
 *place_holder.txt was only added so the directory would push to github,
