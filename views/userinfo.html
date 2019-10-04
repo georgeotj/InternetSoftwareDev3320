@@ -6,7 +6,7 @@
     <title>User Information</title>
     <meta name="author" content="mcdougald_huerta_khan" />
     <meta name="description" content="HTML page for user information" />
-    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, width=device-width" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta name="theme-color" content="#ffffff" />
 
@@ -26,121 +26,103 @@
       </p>
     <![endif]-->
 
-    <!-- CSS selector will use wallpaper to style background-->
-    <div class="wallpaper"></div>
-    <!-- header -->
-    <header class="header-top-bar" role="banner">
-      <div class="header-text"><h1>Store Name</h1></div>
-      <nav class="top-bar" role="navigation">
-        <div class="top-bar responsive-links">
-          <div class="top-bar-column-1">
-            <ul class="nav-list">
-              <li class="nav-item">
-                <a class="nav-link" href="index.html">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="shoppingcart.html"
-                >Shop</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="checkout.html"
-                >Checkout</a
-                >
-              </li>
-            </ul>
+    <div class="header-container"><!-- header -->
+      <header class="header-top-bar" role="banner">
+        <div class="header-text"><h1>Store Name</h1></div>
+        <nav class="top-bar" role="navigation">
+          <div class="top-bar responsive-links">
+            <div class="top-bar-column-1">
+              <ul class="nav-list">
+                <li class="nav-item">
+                  <a class="nav-link" href="../index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="shoppingcart.html"
+                  >Shop</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="checkout.html"
+                  >Checkout</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="top-bar-column-2">
+              <ul class="nav-list">
+                <li class="nav-item">
+                  <a class="active nav-link" href="userinfo.html"
+                  >Account</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="shippinginfo.html"
+                  >Shipping</a
+                  >
+                </li>
+              </ul>
+            </div>
           </div>
-          <div class="top-bar-column-2">
-            <ul class="nav-list">
-              <li class="nav-item">
-                <a class="active nav-link" href="userinfo.html"
-                >Account</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="shippinginfo.html"
-                >Shipping</a
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </header>
-    <!-- /header -->
+        </nav>
+      </header>
+      <!-- /header --></div>
 
     <!-- main -->
     <main role="main" class="container">
       <!-- Section for if user is registered -->
-      <section>
+      <section class="account-information">
         <div class="account-information-panel">
-          <h2>Registered Account:</h2>
+          <h2>Account Overview</h2>
           <div class="user-information-table">
-            <table id="user-info">
-              <caption>
-                Account Overview
-              </caption>
-              <thead>
-                <tr class="user-info-columns" id="user-info-row1">
-                  <th scope="rowgroup">Name</th>
-                  <td class="user-account-info">Example Name</td>
-                </tr>
-                <tr class="user-info-row" id="user-info-row2">
-                  <th scope="row">Address 1</th>
-                  <td class="user-account-info">Example Address1</td>
-                </tr>
-                <tr class="user-info-row" id="user-info-row3">
-                  <th scope="row">Address 2</th>
-                  <td class="user-account-info">Example Address2</td>
-                </tr>
-                <tr class="user-info-row" id="user-info-row4">
-                  <th scope="row">City</th>
-                  <td class="user-account-info">Example City</td>
-                </tr>
-                <tr class="user-info-row" id="user-info-row5">
-                  <th scope="row">State</th>
-                  <td class="user-account-info">Example ST</td>
-                </tr>
-                <tr class="user-info-row" id="user-info-row6">
-                  <th scope="row">Zip Code</th>
-                  <td class="user-account-info">Example Zip</td>
-                </tr>
-                <tr class="user-info-row" id="user-info-row7">
-                  <th scope="row">Phone</th>
-                  <td class="user-account-info">Example Phone</td>
-                </tr>
-                <tr class="user-info-row" id="user-info-row8">
-                  <th scope="row">Email</th>
-                  <td class="user-account-info">Example Email</td>
-                </tr>
-
-                <tr>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- TODO: Fix registered account header properly
-
-                        -->
-              </tbody>
-            </table>
+            <div class="user-information-block ">
+              <span class="name-label user-info-label">Name</span>
+              <span class="name-value user-info-value">{{{user-full-name}}}</span>
+            </div>
+            <div class="user-information-block">
+              <span class="address-1-label user-info-label">Address 1</span>
+              <span class="address-1-value user-info-value">{{{user-address-1}}}</span>
+            </div>
+            <div class="user-information-block">
+              <span class="address-2-label user-info-label">Address 2</span>
+              <span class="address-2-value user-info-value">{{{user-address-2}}}</span>
+            </div> 
+            <div class="user-information-block">
+              <span class="city-label user-info-label">City</span>
+              <span class="city-value user-info-value">{{{user-city}}}</span>
+            </div>
+            <div class="user-information-block">
+              <span class="state-label user-info-label">state</span>
+              <span class="state-value user-info-value">{{{user-state}}}</span>
+            </div>
+            <div class="user-information-block">
+              <span class="zip-code-label user-info-label">Zip Code</span>
+              <span class="zip-code-value user-info-value">{{{user-zip-code}}}</span>
+            </div>
+            <div class="user-information-block">
+              <span class="phone-label user-info-label">phone</span>
+              <span class="phone-value user-info-value">{{{user-phone}}}</span>
+            </div>
+            <div class="user-information-block">
+              <span class="email-label user-info-label">email</span>
+              <span class="email-value user-info-value">{{{user-email}}}</span>
+            </div>
           </div>
           <div class="edit-user-buttons">
-            <button class="edit-user-button">Edit</button>
-            <button class="sign-out-button">Sign Out</button>
+            <button class="edit-user-button" type="button">Edit</button>
+            <button class="sign-out-button" type="button">Sign Out</button>
           </div>
         </div>
       </section>
 
       <!-- Section for if User is not registered -->
-      <section>
+      <section class="register-account">
         <div class="register-user-panel">
           <h2>Register New Account:</h2>
           <!-- action attribute defines action performed when the form is submitted -->
           <!-- use HTTP post method for sensitive information-->
-          <form action="/my-handling-form-page" method="POST">
+          <form class="register-user-form" action="/my-handling-form-page" method="POST">
             <!-- TODO: Combine First Name and Last Name into the "Full Name" Field-->
-            <div class="First Name">
+            <div class="register-full-name">
               <label for="first_name">First Name:</label>
               <input
                 title="First Name"
@@ -164,7 +146,7 @@
               />
             </div>
             <br />
-            <div class="Contact Information">
+            <div class="register-contact-information">
               <label for="phone">Phone:</label>
               <input
                 title="User Phone"
@@ -184,8 +166,8 @@
                 required
               />
             </div>
-            <br />
-            <div class="User Address">
+
+            <div class="register-user-address">
               <label for="address_1">Address Line 1:</label><br />
               <input
                 title="Address 1"
@@ -196,7 +178,7 @@
                 placeholder="Street Address"
                 required
               />
-              <br />
+
               <label for="address_2">Address Line 2:</label><br />
               <input
                 title="Address 2"
@@ -207,8 +189,8 @@
                 placeholder="Apt, Suite, Bldg, (optional)"
               />
             </div>
-            <br />
-            <div class="User Location">
+
+            <div class="register-user-location">
               <label for="city">City:</label>
               <input
                 title="City"
@@ -275,8 +257,6 @@
                 <option value="WI">Wisconsin</option>
                 <option value="WY">Wyoming</option>
               </select>
-              <br />
-              <br />
 
               <label for="zipcode">Zip Code:</label>
               <input

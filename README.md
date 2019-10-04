@@ -90,6 +90,9 @@ after you pull the file layout structure you can delete them*
 ------
 ![User Information](https://github.com/georgeotj/InternetSoftwareDev3320/blob/master/docs/page_images/main-page-bottom.PNG) 
 
+#### Scroll User Information Page:
+![UserInformation](https://github.com/georgeotj/InternetSoftwareDev3320/blob/master/docs/page_images/user_information_page.png)
+
 
 #### Top of User Information Page:
 ------

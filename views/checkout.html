@@ -10,9 +10,16 @@
     <meta name="description" content="HTML page for checkout information" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-    <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css?family=Oswald&display=swap"
+      rel="stylesheet"
+    />
 
-    <link rel="stylesheet" type="text/css" href="../public/stylesheets/main.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../public/stylesheets/main.css"
+    />
   </head>
   <!-- /head -->
 
@@ -30,31 +37,23 @@
           <div class="top-bar-column-1">
             <ul class="nav-list">
               <li class="nav-item">
-                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="../index.html">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="shoppingcart.html"
-                >Shop</a
-                >
+                <a class="nav-link" href="shoppingcart.html">Shop</a>
               </li>
               <li class="nav-item">
-                <a class="active nav-link" href="checkout.html"
-                >Checkout</a
-                >
+                <a class="active nav-link" href="checkout.html">Checkout</a>
               </li>
             </ul>
           </div>
           <div class="top-bar-column-2">
             <ul class="nav-list">
               <li class="nav-item">
-                <a class="nav-link" href="userinfo.html"
-                >Account</a
-                >
+                <a class="nav-link" href="userinfo.html">Account</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="shippinginfo.html"
-                >Shipping</a
-                >
+                <a class="nav-link" href="shippinginfo.html">Shipping</a>
               </li>
             </ul>
           </div>
@@ -67,31 +66,30 @@
     <main role="main" class="container">
       <!-- outer most component for checkout, for general CSS styling -->
       <div class="checkout-panel">
-        <div class="panel-body">
-          <h2 class="title">Checkout</h2>
-
+        <h2 class="title">Checkout</h2>
+        <div class="checkout-panel-body">
           <!-- class for total, shipping, tax, amount due-->
           <div class="cost-fields">
-            <br />
-            <label for="total-price">Order: $</label>
-            <input id="total-price" type="hidden" />
-            <!--TODO: Replace &nbsp when stylesheets are added -->
-            <label for="total-tax">&nbsp;&nbsp;&nbsp;Tax: $</label>
-            <input id="total-tax" type="hidden" />
-
-            <label for="total-shipping-cost"
-              >&nbsp;&nbsp;&nbsp;Shipping Cost: $</label
-            >
-            <input id="total-shipping-cost" type="hidden" /> <br />
-            <br />
-
-            <label for="total-amount-due">Amount Due: $</label>
-            <input id="total-amount-due" type="hidden" /> <br />
-            <br />
+            <div class="checkout-subtotal checkout-cost-output">
+              <span class="subtotal-label cost-label">Subtotal</span>
+              <span class="subtotal-value cost-value">$ {{{subtotal}}}</span>
+            </div>
+            <div class="checkout-taxes checkout-cost-output">
+              <span class="taxes-label cost-label">Taxes</span>
+              <span class="taxes-value cost-value">$ {{{taxes}}}</span>
+            </div>
+            <div class="checkout-shipping checkout-cost-output">
+              <span class="shipping-label cost-label">Shipping</span>
+              <span class="shipping-value cost-value">$ {{{shipping}}}</span>
+            </div> <hr class="checkout-line" />
+            <div class="checkout-total checkout-cost-output">
+              <span class="total-label cost-label">Total</span>
+              <span class="total-value cost-value">$ {{{total}}}</span>
+            </div>
           </div>
 
           <!-- Form to collect user payment data -->
-          <form>
+          <form class="checkout-payment-form">
             <!-- class for payment method -->
             <div class="payment-method">
               <label for="payment-method-types"></label>
@@ -107,22 +105,26 @@
                 <option value="american-express-card">American Express</option>
               </select>
             </div>
-            <br />
+
             <!-- class for user input -->
             <div class="input-fields">
               <div class="column-1">
+                <div class="payment-card-name">
+                  <label for="payment-card-name">Name on Card </label>
+                  <input type="text" id="payment-card-name" placeholder="Full Name" required />
+                </div>
                 <div class="payment-card-number">
-                  <label for="payment-card-number">Card Number: </label>
+                  <label for="payment-card-number">Card Number </label>
                   <input type="text" id="payment-card-number" required />
                 </div>
               </div>
               <div class="column-2">
                 <div class="card-valid-through">
-                  <label for="expiration-date">Valid Through: </label>
+                  <label for="expiration-date">Valid Through </label>
                   <input
                     type="text"
                     id="expiration-date"
-                    placeholder="MM / YY"
+                    placeholder="MM / YYYY"
                   />
                 </div>
                 <div class="card-verification">
@@ -132,17 +134,17 @@
               </div>
             </div>
             <!-- class for user agreeing to pay -->
-            <div class="radio-input-agreement">
-              <label for="pay-agreement">Agree to pay $ (ex) dollars?</label>
-              <input id="pay-agreement" type="radio" name="payment" required />
+            <div class="purchase-terms-of-service">
+              <label for="pay-agreement">Agree to Terms of Service</label>
+              <input id="pay-agreement" type="checkbox" name="terms-of-service" required />
             </div>
           </form>
         </div>
-        <div class="panel-footer">
+        <div class="checkout-panel-footer">
           <br />
-          <button class="submit-order-button">Submit Order</button>
-          <button class="back-btn">Back to Cart</button>
-          <button class="cancel-order-button">Cancel Order</button>
+          <button type="submit" class="submit-btn checkout-btn">Submit Order</button>
+          <button type="button" class="back-btn checkout-btn">Back to Cart</button>
+          <button type="button" class="cancel-btn checkout-btn">Cancel Order</button>
         </div>
       </div>
     </main>

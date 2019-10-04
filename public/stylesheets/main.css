@@ -1,4 +1,6 @@
 @import url(checkout.css);
+@import url(shopping_cart.css);
+@import url(user_information.css);
 /*
 THIS CSS FILE IS NEEDS TO ONLY IMPORT THE OTHER CSS SHEETS.
 CSS Selectors ARE TEMPORARILY INCLUDED IN THIS PAGE
@@ -240,6 +242,8 @@ h2 {
   z-index: 10;
   height: 15vh;
   background-position: top;
+  top: 0;
+  left: 0;
 }
 
 .top-bar {
@@ -306,7 +310,6 @@ h2 {
 .shipping-info-panel {
   border-radius: 5px;
   background-color: #e1e1e1;
-  z-index: -1;
   display: block;
   width: 45%;
   margin: 5% auto;
