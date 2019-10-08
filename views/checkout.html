@@ -81,7 +81,8 @@
             <div class="checkout-shipping checkout-cost-output">
               <span class="shipping-label cost-label">Shipping</span>
               <span class="shipping-value cost-value">$ {{{shipping}}}</span>
-            </div> <hr class="checkout-line" />
+            </div>
+            <hr class="checkout-line" />
             <div class="checkout-total checkout-cost-output">
               <span class="total-label cost-label">Total</span>
               <span class="total-value cost-value">$ {{{total}}}</span>
@@ -111,7 +112,12 @@
               <div class="column-1">
                 <div class="payment-card-name">
                   <label for="payment-card-name">Name on Card </label>
-                  <input type="text" id="payment-card-name" placeholder="Full Name" required />
+                  <input
+                    type="text"
+                    id="payment-card-name"
+                    placeholder="Full Name"
+                    required
+                  />
                 </div>
                 <div class="payment-card-number">
                   <label for="payment-card-number">Card Number </label>
@@ -136,15 +142,26 @@
             <!-- class for user agreeing to pay -->
             <div class="purchase-terms-of-service">
               <label for="pay-agreement">Agree to Terms of Service</label>
-              <input id="pay-agreement" type="checkbox" name="terms-of-service" required />
+              <input
+                id="pay-agreement"
+                type="checkbox"
+                name="terms-of-service"
+                required
+              />
             </div>
           </form>
         </div>
         <div class="checkout-panel-footer">
           <br />
-          <button type="submit" class="submit-btn checkout-btn">Submit Order</button>
-          <button type="button" class="back-btn checkout-btn">Back to Cart</button>
-          <button type="button" class="cancel-btn checkout-btn">Cancel Order</button>
+          <button type="submit" class="submit-btn checkout-btn">
+            Submit Order
+          </button>
+          <button type="button" class="back-btn checkout-btn">
+            Back to Cart
+          </button>
+          <button type="button" class="cancel-btn checkout-btn">
+            Cancel Order
+          </button>
         </div>
       </div>
     </main>
@@ -167,7 +184,7 @@
               </a>
             </li>
             <li class="contact-info">
-              <a class="footer-link" href="#">
+              <a class="footer-link" href="https://github.com/hasankhan93">
                 Hasan Khan
               </a>
             </li>

@@ -12,9 +12,16 @@
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-    <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css?family=Oswald&display=swap"
+      rel="stylesheet"
+    />
 
-    <link rel="stylesheet" type="text/css" href="../public/stylesheets/main.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../public/stylesheets/main.css"
+    />
   </head>
   <!-- /head -->
 
@@ -34,28 +41,20 @@
                 <a class="nav-link" href="../index.html">Home</a>
               </li>
               <li class="nav-item">
-                <a class="active nav-link" href="shoppingcart.html"
-                >Shop</a
-                >
+                <a class="active nav-link" href="shoppingcart.html">Shop</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="checkout.html"
-                >Checkout</a
-                >
+                <a class="nav-link" href="checkout.html">Checkout</a>
               </li>
             </ul>
           </div>
           <div class="top-bar-column-2">
             <ul class="nav-list">
               <li class="nav-item">
-                <a class="nav-link" href="userinfo.html"
-                >Account</a
-                >
+                <a class="nav-link" href="userinfo.html">Account</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="shippinginfo.html"
-                >Shipping</a
-                >
+                <a class="nav-link" href="shippinginfo.html">Shipping</a>
               </li>
             </ul>
           </div>
@@ -70,9 +69,14 @@
         <div class="store-products-panel flex-column-1">
           <div class="products-header"><h2>Browse our Products!</h2></div>
           <div class="store-products">
-            <form class="store-products-list" name="Shopping-Cart" action="/my-handling-form-page" method="POST">
+            <form
+              class="store-products-list"
+              name="Shopping-Cart"
+              action="/my-handling-form-page"
+              method="POST"
+            >
               <div class="store-product-btns">
-                <br/>
+                <br />
                 <label for="save-item"></label>
                 <button id="save-item" type="button">Add To Cart</button>
                 <label for="update-items"></label>
@@ -93,9 +97,9 @@
                   <option value="product-x">(example) Product...</option>
                 </select>
                 <label for="item-units">Units:</label>
-                <input id="item-units" type="text" name="Item Units"/>
+                <input id="item-units" type="text" name="Item Units" />
                 <label for="unit-price">Price:</label>
-                <input id="unit-price" type="text" name="Item Units"/>
+                <input id="unit-price" type="text" name="Item Units" />
               </div>
             </form>
           </div>
@@ -109,27 +113,27 @@
                   Saved Items
                 </caption>
                 <thead>
-                <tr>
-                  <th scope="col">Product</th>
-                  <th scope="col">Units</th>
-                  <th scope="col">Price</th>
-                </tr>
+                  <tr>
+                    <th scope="col">Product</th>
+                    <th scope="col">Units</th>
+                    <th scope="col">Price</th>
+                  </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>(example) Product 1</td>
-                  <td>(example) x</td>
-                  <td>(example) $</td>
-                </tr>
+                  <tr>
+                    <td>(example) Product 1</td>
+                    <td>(example) x</td>
+                    <td>(example) $</td>
+                  </tr>
                 </tbody>
               </table>
               <label for="total-price">Total Price</label>
               <output for="cart-list" id="total-price">$ {{{Subtotal}}}</output>
             </div>
             <div class="shopping-cart-footer">
-              <br/>
+              <br />
               <label for="to-checkout"></label>
-              <button id="to-checkout" type="submit" >Checkout</button>
+              <button id="to-checkout" type="submit">Checkout</button>
               <label for=""></label>
               <button id="reset-cart" type="reset">Clear</button>
             </div>
@@ -156,7 +160,7 @@
               </a>
             </li>
             <li class="contact-info">
-              <a class="footer-link" href="#">
+              <a class="footer-link" href="https://github.com/hasankhan93">
                 Hasan Khan
               </a>
             </li>
