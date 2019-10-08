@@ -1,3 +1,4 @@
+
 .checkout-panel {
     border-radius: 5px;
     background-color: #e1e1e1;
@@ -17,17 +18,26 @@
 }
 
 .checkout-panel-body {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     padding: 5% 5% 2% 5%;
 }
 
 .checkout-panel-body .cost-fields {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     background-color: #c1b5e4;
     width: 35%;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     font-size: 2vh;
     padding: 4% 4% 1% 4%;
+    -ms-grid-row-align: self-end;
+    -ms-grid-column-align: self-end;
     place-self: self-end;
     border: solid #7d6d84;
 }
@@ -41,7 +51,11 @@
 }
 
 .cost-fields .checkout-cost-output {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
 
 }
@@ -58,6 +72,7 @@
     margin-right: -18%;
     border: none;
     /* border: 0; */
+    -webkit-box-shadow: inset 0px 11px 12px -12px #161024;
     box-shadow: inset 0px 11px 12px -12px #161024;
 }
 
@@ -93,11 +108,18 @@ button[type="reset"] {
 }
 
 .checkout-panel-footer {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
     flex-direction: row;
     margin-bottom: 5%;
     margin-right: 10%;
     place-items: flex-start;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
     justify-content: flex-end;
 }
 
@@ -113,6 +135,7 @@ button[type="reset"] {
     /* border radius adds rounded corners */
     border-radius: 8px;
     background-color: #f2f3f4;
+    -o-transition: 0.2s;
     transition: 0.2s;
     -webkit-transition: 0.2s;
     outline: none;
