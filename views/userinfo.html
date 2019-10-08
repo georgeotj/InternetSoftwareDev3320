@@ -6,13 +6,23 @@
     <title>User Information</title>
     <meta name="author" content="mcdougald_huerta_khan" />
     <meta name="description" content="HTML page for user information" />
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, width=device-width" />
+    <meta
+      name="viewport"
+      content="user-scalable=no, initial-scale=1, width=device-width"
+    />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta name="theme-color" content="#ffffff" />
 
-    <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css?family=Oswald&display=swap"
+      rel="stylesheet"
+    />
 
-    <link rel="stylesheet" type="text/css" href="../public/stylesheets/main.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../public/stylesheets/main.css"
+    />
   </head>
   <!-- /head -->
 
@@ -26,7 +36,8 @@
       </p>
     <![endif]-->
 
-    <div class="header-container"><!-- header -->
+    <div class="header-container">
+      <!-- header -->
       <header class="header-top-bar" role="banner">
         <div class="header-text"><h1>Store Name</h1></div>
         <nav class="top-bar" role="navigation">
@@ -37,35 +48,28 @@
                   <a class="nav-link" href="../index.html">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="shoppingcart.html"
-                  >Shop</a
-                  >
+                  <a class="nav-link" href="shoppingcart.html">Shop</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="checkout.html"
-                  >Checkout</a
-                  >
+                  <a class="nav-link" href="checkout.html">Checkout</a>
                 </li>
               </ul>
             </div>
             <div class="top-bar-column-2">
               <ul class="nav-list">
                 <li class="nav-item">
-                  <a class="active nav-link" href="userinfo.html"
-                  >Account</a
-                  >
+                  <a class="active nav-link" href="userinfo.html">Account</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="shippinginfo.html"
-                  >Shipping</a
-                  >
+                  <a class="nav-link" href="shippinginfo.html">Shipping</a>
                 </li>
               </ul>
             </div>
           </div>
         </nav>
       </header>
-      <!-- /header --></div>
+      <!-- /header -->
+    </div>
 
     <!-- main -->
     <main role="main" class="container">
@@ -76,16 +80,22 @@
           <div class="user-information-table">
             <div class="user-information-block ">
               <span class="name-label user-info-label">Name</span>
-              <span class="name-value user-info-value">{{{user-full-name}}}</span>
+              <span class="name-value user-info-value"
+                >{{{user-full-name}}}</span
+              >
             </div>
             <div class="user-information-block">
               <span class="address-1-label user-info-label">Address 1</span>
-              <span class="address-1-value user-info-value">{{{user-address-1}}}</span>
+              <span class="address-1-value user-info-value"
+                >{{{user-address-1}}}</span
+              >
             </div>
             <div class="user-information-block">
               <span class="address-2-label user-info-label">Address 2</span>
-              <span class="address-2-value user-info-value">{{{user-address-2}}}</span>
-            </div> 
+              <span class="address-2-value user-info-value"
+                >{{{user-address-2}}}</span
+              >
+            </div>
             <div class="user-information-block">
               <span class="city-label user-info-label">City</span>
               <span class="city-value user-info-value">{{{user-city}}}</span>
@@ -96,7 +106,9 @@
             </div>
             <div class="user-information-block">
               <span class="zip-code-label user-info-label">Zip Code</span>
-              <span class="zip-code-value user-info-value">{{{user-zip-code}}}</span>
+              <span class="zip-code-value user-info-value"
+                >{{{user-zip-code}}}</span
+              >
             </div>
             <div class="user-information-block">
               <span class="phone-label user-info-label">phone</span>
@@ -120,7 +132,11 @@
           <h2>Register New Account:</h2>
           <!-- action attribute defines action performed when the form is submitted -->
           <!-- use HTTP post method for sensitive information-->
-          <form class="register-user-form" action="/my-handling-form-page" method="POST">
+          <form
+            class="register-user-form"
+            action="/my-handling-form-page"
+            method="POST"
+          >
             <!-- TODO: Combine First Name and Last Name into the "Full Name" Field-->
             <div class="register-full-name">
               <label for="first_name">First Name:</label>
@@ -296,7 +312,7 @@
               </a>
             </li>
             <li class="contact-info">
-              <a class="footer-link" href="#">
+              <a class="footer-link" href="https://github.com/hasankhan93">
                 Hasan Khan
               </a>
             </li>
