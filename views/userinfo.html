@@ -21,8 +21,9 @@
     <link
       rel="stylesheet"
       type="text/css"
-      href="../public/stylesheets/main.css"
+      href="../public/stylesheets/style.css"
     />
+
   </head>
   <!-- /head -->
 
@@ -195,19 +196,20 @@
                 required
               />
 
-              <label for="address_2">Address Line 2:</label><br />
+              <label for="address_2">Address Line 2:</label>
+              <span class="register-optional">Optional</span>
               <input
                 title="Address 2"
                 type="text"
                 id="address_2"
                 name="street_address2"
                 maxlength="100"
-                placeholder="Apt, Suite, Bldg, (optional)"
+                placeholder="Apt, Suite, Bldg"
               />
             </div>
 
             <div class="register-user-location">
-              <label for="city">City:</label>
+              <label class="register-city-label" for="city">City:</label>
               <input
                 title="City"
                 type="text"
@@ -217,7 +219,7 @@
                 required
               />
 
-              <label for="user_state">State:</label>
+              <label class="register-state-label" for="user_state">State:</label>
               <!-- TODO: Move to a DB and load with AJAX -->
               <select title="Users State" name="state" id="user_state">
                 <option value="" selected="selected">State</option>
@@ -274,7 +276,7 @@
                 <option value="WY">Wyoming</option>
               </select>
 
-              <label for="zipcode">Zip Code:</label>
+              <label class="register-zip-label for="zipcode">Zip Code:</label>
               <input
                 title="Zip Code"
                 type="text"
