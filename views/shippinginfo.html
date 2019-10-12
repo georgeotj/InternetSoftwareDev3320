@@ -17,8 +17,13 @@
     <link
       rel="stylesheet"
       type="text/css"
-      href="../public/stylesheets/main.css"
+      href="../public/stylesheets/style.css"
     />
+
+    <script type="module" src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="module" src="../node_modules/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="../public/javascripts/form-validation.js"></script>
+
   </head>
   <!-- /head -->
 
@@ -27,7 +32,7 @@
     <!-- CSS selector will use wallpaper to style background-->
     <div class="wallpaper"></div>
     <!-- header -->
-    <header class="header-top-bar" role="banner">
+    <header id="header" class="header-top-bar" role="banner">
       <div class="header-text"><h1>Store Name</h1></div>
       <nav class="top-bar" role="navigation">
         <div class="top-bar responsive-links">
@@ -65,8 +70,10 @@
         <h2>Shipping Address</h2>
         <form
           class="shipping-info-form"
-          action="/my-handling-form-page"
+          action=""
           method="post"
+          name="shipping-info-form"
+          id="shipping-info-form"
         >
           <p>
             <input

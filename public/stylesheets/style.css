@@ -143,9 +143,9 @@ h2 {
 }
 
 .nav-item a.active {
-  color: #7d6d84;
+  color: #8b81ae;
   font-weight: 600;
-  text-shadow: 7px 4px 15px #332463;
+  text-shadow: 0 0 8px rgba(179, 165, 244, 1);
 }
 
 .bottom-bar {
@@ -343,6 +343,12 @@ h2 {
   width: 40%;
 }
 
+.register-user-panel input[type="text"]:focus {
+  background-color: #f2f3f4;
+  border: 2px solid #c1b5e4;
+  border-radius: 8px;
+}
+
 .register-user-panel h2 {
   text-align: center;
 }
@@ -382,10 +388,10 @@ h2 {
 
 .register-user-form label {
   display: inline-block;
-  font-size: 3vh;
-  padding: 12px 12px 12px 0;
+  font-size: 2vh;
+  padding: 5px 10px 0 0;
   position: relative;
-  width: 30%;
+  width: 20%;
 }
 
 .register-user-form input[type="text"] {
@@ -402,6 +408,26 @@ h2 {
   width: 60%;
 }
 
+span.register-optional {
+  font-size: 1.1vh;
+  display: inline-block;
+  background-color: #6670e4;
+  color: white;
+  padding: 0.7%;
+  border-radius: 3px;
+  border: none;
+  margin: 0 10% 0 -15%;
+  letter-spacing: 0.1vh;
+  font-weight: 100;
+  font-family: cursive;
+  vertical-align: middle;
+}
+
+.register-user-address label {
+  padding: 0;
+  width: 30%;
+}
+
 .register-user-form .create-user-buttons button {
   background-color: #151a2f;
   border: none;
@@ -415,12 +441,31 @@ h2 {
   text-decoration: none;
 }
 
+.register-user-form .create-user-buttons button:hover {
+  background-color: #917a90;
+}
+
+.register-user-location input[type="text"] {
+  margin: 0;
+}
+
 .register-user-form .register-user-location label {
-  display: contents;
+  display: inline-flex;
+  padding: 0;
+  width: 10%;
+}
+
+.register-user-location label.register-state-label {
+  width: min-content;
 }
 
 .register-user-form .register-user-address input[type="text"] {
   width: 70%;
+  margin: 0;
+}
+
+.register-user-address {
+  margin-bottom: 2%;
 }
 
 .register-user-form select {
@@ -459,7 +504,8 @@ h2 {
   width: 60%;
 }
 
-.store-products-list input[type="text"] {
+.store-products-list input[type="text"],
+input[type="number"] {
   background-color: #f2f3f4;
   border: 2px solid #151a2f;
   border-radius: 8px;
@@ -471,6 +517,7 @@ h2 {
   -webkit-transition: 0.2s;
   transition: 0.2s;
   width: 4%;
+  text-align: center;
 }
 
 .store-products-list label {
@@ -506,6 +553,42 @@ h2 {
   text-decoration: none;
 }
 
+@-webkit-keyframes hvr-ripple-out {
+  100% {
+    top: -12px;
+    right: -12px;
+    bottom: -12px;
+    left: -12px;
+    opacity: 0;
+  }
+}
+
+@keyframes hvr-ripple-out {
+  100% {
+    top: -12px;
+    right: -12px;
+    bottom: -12px;
+    left: -12px;
+    opacity: 0;
+  }
+}
+
+.store-product-btns button:hover,
+button:focus,
+button:active {
+  background-color: #332463;
+
+  /* display: inline-block; */
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(5px) translateZ(0);
+  box-shadow: 3px 3px 10px 3px #161024;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: box-shadow, transform;
+  transition-property: box-shadow, transform;
+  display: inline-flex;
+}
+
 .edit-user-buttons {
   -webkit-box-flex: 1;
   -webkit-box-pack: end;
@@ -531,6 +614,10 @@ h2 {
   text-decoration: none;
 }
 
+.edit-user-buttons button:hover {
+  background-color: #917a90;
+}
+
 .shopping-cart-footer {
   padding-bottom: 5%;
   padding-left: 5%;
@@ -549,6 +636,18 @@ h2 {
   text-decoration: none;
 }
 
+.shopping-cart-footer button:hover {
+  background-color: #332463;
+}
+
+button#to-checkout:hover {
+  box-shadow: 0 0 8px 2px rgba(12, 120, 25, 0.75);
+}
+
+button#reset-cart:hover {
+  box-shadow: 0 0 8px 2px rgba(150, 0, 0, 0.75);
+}
+
 .checkout-panel-footer {
   -webkit-box-direction: normal;
   -webkit-box-orient: horizontal;
@@ -561,6 +660,10 @@ h2 {
   margin-bottom: 5%;
   margin-right: 10%;
   place-items: flex-start;
+}
+
+button.submit-btn.checkout-btn {
+  font-size: 1.5vh;
 }
 
 .checkout-panel-footer button {
@@ -672,12 +775,18 @@ input[type=checkbox] + label {
   width: 100%;
 }
 
+.checkout-payment-form input[type="text"]:focus {
+  background-color: #f2f3f4;
+  border: 2px solid #c1b5e4;
+  border-radius: 8px;
+}
+
 .checkout-payment-form .purchase-terms-of-service {
   margin-left: 50%;
 }
 
 .checkout-payment-form .purchase-terms-of-service label {
-  font-size: 1.5vh;
+  font-size: 1.7vh;
 }
 
 .card-valid-through input[type="text"] {
