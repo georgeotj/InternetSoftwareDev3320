@@ -1,12 +1,13 @@
-window.onscroll = function () { myFunction(); };
+$('a.back-to-top').click(() => {
+  $(document.body).animate({ scrollTop: 0 }, 800);
+  return false;
+});
 
-const header = document.getElementsByClassName('top-bar');
-const sticky = header.offsetTop;
-
-function myFunction() {
-  if (window.pageYOffset > sticky) {
-    header.classList.add('sticky');
+$(document).ready(() => {
+  const windowHeight = $(window).height();
+  if (windowHeight >= 0.15) {
+    $('div.top-btn').css({ display: 'flex' });
   } else {
-    header.classList.remove('sticky');
+    $('div.top-btn').css({ display: 'none' });
   }
-}
+});

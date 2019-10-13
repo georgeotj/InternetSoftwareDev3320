@@ -55,6 +55,10 @@ h2 {
   color: #151a2f;
 }
 
+.home-page-title {
+  text-align: center;
+}
+
 .header-text {
   color: #917a90;
   display: block;
@@ -146,6 +150,26 @@ h2 {
   color: #8b81ae;
   font-weight: 600;
   text-shadow: 0 0 8px rgba(179, 165, 244, 1);
+}
+
+.top-btn {
+  display: flex;
+  text-decoration: none;
+  background-color: #f2f3f4;
+  width: 15vh;
+  position: fixed;
+  top: 18vh;
+  left: 2%;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+a.back-to-top {
+  text-decoration: none;
+  font-size: 2.5vh;
+  margin: auto;
+  color: #161024;
 }
 
 .bottom-bar {

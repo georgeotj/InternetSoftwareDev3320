@@ -1,9 +1,5 @@
-import jQuery from 'jquery';
-
 // eslint-disable-next-line no-multi-assign
 window.$ = window.jQuery = jQuery;
-
-$('.shipping-info-form')[0].checkValidity();
 
 $(document).ready(() => {
   $('.shipping-info-form').validate({
