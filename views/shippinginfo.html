@@ -97,7 +97,9 @@
               maxlength="100"
               placeholder="Street Address"
               required
-            /><br />
+            />
+              <span class="error-form" id="address-1-error-message"></span>
+              <br />
             <label for="address_2"></label>
             <input
               title="Address 2"
@@ -107,6 +109,7 @@
               maxlength="100"
               placeholder="Apt, Suite, Bldg, (optional)"
             />
+              <span class="error-form" id="address-2-error-message"></span>
           </div>
           <br />
           <div class="Shipping Location">
@@ -119,7 +122,8 @@
               placeholder="City"
               required
             />
-            <!-- TODO: Move to a DB and load with AJAX -->
+              <span class="error-form" id="city-shipping-error-message"></span>
+              <!-- TODO: Move to a DB and load with AJAX -->
             <label for="user_state"></label>
             <select title="Users State" name="state" id="user_state">
               <option value="" selected="selected">State</option>
@@ -175,7 +179,8 @@
               <option value="WI">Wisconsin</option>
               <option value="WY">Wyoming</option>
             </select>
-            <br />
+              <span class="error-form" id="shipping-state-error-message"></span>
+              <br />
             <label for="zipcode"></label>
             <input
               title="Zip Code"
@@ -187,6 +192,7 @@
               minlength="5"
               required
             />
+              <span class="error-form" id="shipping-zip-error-message"></span>
           </div>
           <br />
           <div class="shipping-info-buttons">
