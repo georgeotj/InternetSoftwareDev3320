@@ -1,0 +1,77 @@
+/*
+THIS CSS FILE IS NEEDS TO ONLY IMPORT THE OTHER CSS SHEETS.
+CSS Selectors ARE TEMPORARILY INCLUDED IN THIS PAGE
+FOR LEARNING PURPOSES.
+ */
+
+/* Universal Selector Applies these Rules to All Elements*/
+* {
+    /* Change the Box Model so that borders and padding's
+         are no longer added to total width or height     */
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+
+    /* Browsers by default add a certain margin or padding*/
+    margin: 0;
+    padding: 0;
+}
+html {
+    /* Arrange CSS rules alphabetically*/
+    /*background-image: linear-gradient(to bottom right, #232526, #414345);*/
+    font-family: "Oswald", sans-serif;
+    height: 100%;
+
+}
+
+body {
+    /* Make the height of the body 100% of page, and min height too.
+      That way the height of footer doesn't change. */
+    background-color: #7d6d84;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    font-size: 22px;
+    height: auto;
+    /* Set line-height to 1.7x bigger than it would be otherwise*/
+    margin: 0;
+    min-height: 100%;
+    padding: 0;
+    position: absolute;
+    width: 100%;
+}
+
+ul {
+    -webkit-padding-start: 0;
+    padding-inline-start: 0;
+}
+
+h2 {
+    -webkit-margin-after: 0;
+    margin-block-end: 0;
+    -webkit-margin-before: 0.22em;
+    margin-block-start: 0.22em;
+}
+
+.container {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin-top: 15vh;
+    margin-bottom: 13vh;
+    width: 100%;
+    height: auto;
+    padding-bottom: 13vh;
+}
+
+.container h2 {
+    color: #151a2f;
+}
+
