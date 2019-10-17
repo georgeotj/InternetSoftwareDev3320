@@ -20,10 +20,18 @@
       href="../public/stylesheets/style.css"
     />
 
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="module" src="../node_modules/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="../public/javascripts/header.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script
+      src="../node_modules/jquery-validation/dist/jquery.validate.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../public/javascripts/header.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../public/javascripts/form-validation.js"
+    ></script>
   </head>
   <!-- /head -->
 
@@ -68,6 +76,7 @@
     <main role="main" class="container">
       <div class="shipping-info-panel">
         <h2>Shipping Address</h2>
+        <!-- Action will go to our web server (node) -->
         <form
           class="shipping-info-form"
           action=""
@@ -92,40 +101,43 @@
             <input
               title="Address 1"
               type="text"
-              id="address_1"
+              id="shipping_address_1"
               name="street_address"
               maxlength="100"
               placeholder="Street Address"
+              pattern="^\s*\S+(?:\s+\S+){2}"
               required
             />
-              <span class="error-form" id="address-1-error-message"></span>
-              <br />
-            <label for="address_2"></label>
+            <span class="error-form" id="address-1-error-message"></span>
+            <br />
+            <label for="shipping_address_2"></label>
             <input
               title="Address 2"
               type="text"
-              id="address_2"
+              id="shipping_address_2"
               name="street_address2"
               maxlength="100"
+              pattern="^[a-zA-Z0-9\s,.'-]{3,}$"
               placeholder="Apt, Suite, Bldg, (optional)"
             />
-              <span class="error-form" id="address-2-error-message"></span>
+            <span class="error-form" id="address-2-error-message"></span>
           </div>
           <br />
           <div class="Shipping Location">
-            <label for="city"></label>
+            <label for="shipping_city"></label>
             <input
               title="City"
               type="text"
-              id="city"
+              id="shipping_city"
               name="user_city"
               placeholder="City"
+              pattern="^([a-zA-Z\u0080-\u024F]+(?:. |-| |'))*[a-zA-Z\u0080-\u024F]*$"
               required
             />
-              <span class="error-form" id="city-shipping-error-message"></span>
-              <!-- TODO: Move to a DB and load with AJAX -->
-            <label for="user_state"></label>
-            <select title="Users State" name="state" id="user_state">
+            <span class="error-form" id="city-shipping-error-message"></span>
+            <!-- TODO: Move to a DB and load with AJAX -->
+            <label for="shipping_user_state"></label>
+            <select title="Users State" name="state" id="shipping_user_state">
               <option value="" selected="selected">State</option>
               <option value="AL">Alabama</option>
               <option value="AK">Alaska</option>
@@ -179,28 +191,29 @@
               <option value="WI">Wisconsin</option>
               <option value="WY">Wyoming</option>
             </select>
-              <span class="error-form" id="shipping-state-error-message"></span>
-              <br />
-            <label for="zipcode"></label>
+            <span class="error-form" id="shipping-state-error-message"></span>
+            <br />
+            <label for="shipping_zipcode"></label>
             <input
               title="Zip Code"
               type="text"
-              id="zipcode"
+              id="shipping_zipcode"
               name="user_zip"
               placeholder="Zip Code"
               maxlength="9"
               minlength="5"
+              pattern="(^\d{5}$)|(^\d{5}-\d{4}$)"
               required
             />
-              <span class="error-form" id="shipping-zip-error-message"></span>
+            <span class="error-form" id="shipping-zip-error-message"></span>
           </div>
           <br />
           <div class="shipping-info-buttons">
-            <input
+            <button
               class="shipping-info-submit-btn"
+              id="shipping-info-submit-btn"
               type="submit"
-              value="Save"
-            />
+              >Save</button>
             <input class="shipping-info-rest-btn" type="reset" value="Reset" />
           </div>
 

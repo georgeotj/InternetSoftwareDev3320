@@ -93,6 +93,14 @@ h2 {
   z-index: 10;
 }
 
+.form-success {
+  color: #34f458;
+}
+
+.form-failure {
+  color: #f90a0a;
+}
+
 .top-bar {
   display: block;
   margin-top: 10vh;
@@ -746,10 +754,48 @@ button.submit-btn.checkout-btn {
   text-align: center;
 }
 
-.shipping-info-panel input[type="text"]:focus {
-  background-color: #f2f3f4;
-  border: 2px solid #c1b5e4;
+.shipping-info-panel input:invalid:focus,
+textarea:invalid {
+  border-bottom: 2px solid salmon;
   border-radius: 8px;
+}
+
+.shipping-info-panel input:valid:focus,
+textarea:valid {
+  border-bottom: 2px solid palegreen;
+  border-radius: 8px;
+}
+
+/* .shipping-info-panel input[type="text"]:focus { */
+
+/*  background-color: #f2f3f4; */
+
+/*  border: 2px solid #c1b5e4; */
+
+/*  border-radius: 8px; */
+
+/* } */
+
+.shipping-info-panel input[type="text"]:valid:-webkit-autofill {
+  -webkit-animation-name: autofill-accepted;
+  -webkit-animation-fill-mode: both;
+}
+
+.shipping-info-panel input[type="text"]:invalid:-webkit-autofill {
+  -webkit-animation-name: autofill-rejected;
+  -webkit-animation-fill-mode: both;
+}
+
+@-webkit-keyframes autofill-accepted {
+  to {
+    background: url("../assets/Images/accepted-img.jpg");
+  }
+}
+
+@-webkit-keyframes autofill-rejected {
+  to {
+    background: url("../assets/Images/rejected-img.jpg");
+  }
 }
 
 .shipping-info-panel select {
@@ -761,7 +807,9 @@ button.submit-btn.checkout-btn {
   width: 25%;
 }
 
-.shipping-info-panel input[type="button"] {
+.shipping-info-panel input[type="button"],
+button[type="submit"],
+#shipping-info-submit-btn {
   background-color: #151a2f;
   border: none;
   border-radius: 8px;
@@ -771,7 +819,9 @@ button.submit-btn.checkout-btn {
   text-decoration: none;
 }
 
-.shipping-info-panel input[type="button"]:hover {
+.shipping-info-panel input[type="button"]:hover,
+button[type="submit"]:hover,
+#shipping-info-submit-btn:hover {
   background-color: #917a90;
 }
 

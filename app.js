@@ -9,6 +9,7 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+
 // Require static assets from public folder
 app.use(express.static(path.join(__dirname, 'public')));
 
