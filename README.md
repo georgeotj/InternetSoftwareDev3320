@@ -4,10 +4,11 @@ through the process of creating an order.
 x
 
 
+
 ## Project Structure: 
 *place_holder.txt was only added so the directory would push to github,
 after you pull the file layout structure you can delete them*
-    
+     
         .
         ├── docs 
         │   ├── page_images 
