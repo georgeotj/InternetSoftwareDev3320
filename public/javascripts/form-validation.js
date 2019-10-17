@@ -1,4 +1,4 @@
-// const state = $('#shipping_user_state'); c
+// const state = $('#shipping_user_state'); ca
 
 const address1ErrorMessage = $('#address-1-error-message');
 const address2ErrorMessage = $('#address-2-error-message');
