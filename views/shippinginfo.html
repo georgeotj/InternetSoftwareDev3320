@@ -97,6 +97,7 @@
               >Use Billing Address?</label
             >
           </p>
+            <span class="error-form" id="address-1-error-message"></span>
           <div class="Shipping Address">
             <input
               title="Address 1"
@@ -108,7 +109,6 @@
               pattern="^\s*\S+(?:\s+\S+){2}"
               required
             />
-            <span class="error-form" id="address-1-error-message"></span>
             <br />
             <label for="shipping_address_2"></label>
             <input
@@ -124,6 +124,7 @@
           </div>
           <br />
           <div class="Shipping Location">
+            <span class="error-form" id="city-shipping-error-message"></span>
             <label for="shipping_city"></label>
             <input
               title="City"
@@ -134,7 +135,6 @@
               pattern="^([a-zA-Z\u0080-\u024F]+(?:. |-| |'))*[a-zA-Z\u0080-\u024F]*$"
               required
             />
-            <span class="error-form" id="city-shipping-error-message"></span>
             <!-- TODO: Move to a DB and load with AJAX -->
             <label for="shipping_user_state"></label>
             <select title="Users State" name="state" id="shipping_user_state">
@@ -194,6 +194,7 @@
             <span class="error-form" id="shipping-state-error-message"></span>
             <br />
             <label for="shipping_zipcode"></label>
+            <span class="error-form" id="shipping-zip-error-message"></span>
             <input
               title="Zip Code"
               type="text"
@@ -205,7 +206,6 @@
               pattern="(^\d{5}$)|(^\d{5}-\d{4}$)"
               required
             />
-            <span class="error-form" id="shipping-zip-error-message"></span>
           </div>
           <br />
           <div class="shipping-info-buttons">
