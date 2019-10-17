@@ -27,10 +27,12 @@ function checkShippingAddress1() {
   if (pattern.test(formName) && formName !== '') {
     address1ErrorMessage.hide();
     address1.css('border', '2px solid lightgreen');
+    address1.css('background', 'url("../assets/Images/accepted-img.jpg")');
   } else {
     address1ErrorMessage.html('Please enter a correct input for address line 1');
     address1ErrorMessage.show();
     address1.css('border-bottom', '2px solid salmon');
+    address1.css('background', 'url("../assets/Images/rejected-img.jpg")');
     isAddress1Valid = false;
   }
 }
@@ -71,10 +73,12 @@ function checkShippingCity() {
   if (pattern.test(formName) && formName !== '') {
     cityErrorMessage.hide();
     city.css('border', '2px solid lightgreen');
+    city.css('background', 'url("../assets/Images/accepted-img.jpg")');
   } else {
     cityErrorMessage.html('Please enter a correct input for address line 1');
     cityErrorMessage.show();
     city.css('border-bottom', '2px solid #151a2f');
+    city.css('background', 'url("../assets/Images/rejected-img.jpg")');
     isCityValid = false;
   }
 }
@@ -86,15 +90,17 @@ function checkShippingZip() {
   if (pattern.test(formName) && formName !== '') {
     zipErrorMessage.hide();
     zipCode.css('border', '2px solid lightgreen');
+    zipCode.css('background', 'url("../assets/Images/accepted-img.jpg")');
   } else {
     zipErrorMessage.html('Please enter a correct input for address line 1');
     zipErrorMessage.show();
     zipCode.css('border-bottom', '2px solid #151a2f');
+    zipCode.css('background', 'url("../assets/Images/rejected-img.jpg")');
     isZipValid = false;
   }
 }
 
-/*eslint no-multiple-empty-lines:0*/
+/* eslint no-multiple-empty-lines:0 */
 $(document).ready(() => {
   const address1 = $('#shipping_address_1');
   const address2 = $('#shipping_address_2');
@@ -102,21 +108,37 @@ $(document).ready(() => {
   const city = $('#shipping_city');
   const zipCode = $('#shipping_zipcode');
 
-//   address1.focusout(() => {
-//     checkShippingAddress1();
-//   });
-//   address2.focusout(() => {
-//     checkShippingAddress2();
-//   });
-// // state.focusout(() => {
-// //   checkShippingState();
-// // });
-//   city.focusout(() => {
-//     checkShippingCity();
-//   });
-//   zipCode.focusout(() => {
-//     checkShippingZip();
-//   });
+  address1.focusout(() => {
+    checkShippingAddress1();
+  });
+  address2.focusout(() => {
+    checkShippingAddress2();
+  });
+  // state.focusout(() => {
+  //   checkShippingState();
+  // });
+  city.focusout(() => {
+    checkShippingCity();
+  });
+  zipCode.focusout(() => {
+    checkShippingZip();
+  });
+
+  address1.focusin(() => {
+    checkShippingAddress1();
+  });
+  address2.focusin(() => {
+    checkShippingAddress2();
+  });
+  // state.focusin(() => {
+  //   checkShippingState();
+  // });
+  city.focusin(() => {
+    checkShippingCity();
+  });
+  zipCode.focusin(() => {
+    checkShippingZip();
+  });
 
   $('.shipping-info-form').submit(() => {
     isAddress1Valid = true;
@@ -132,9 +154,9 @@ $(document).ready(() => {
     if (isAddress1Valid === true && isCityValid === true && isZipValid === true) {
       alert('Shipping Address Saved');
       return true;
-    } else {
-      alert('Please Fill Out a Shipping Address');
-      return false; }
+    }
+    alert('Please Fill Out a Shipping Address');
+    return false;
   });
 
 
