@@ -95,6 +95,16 @@
                 <button id="update-items" type="button">Update Price</button>
                 <label for="delete-item"></label>
                 <button id="delete-item" type="button">Delete</button>
+                <div class="product-price-quantity"><label for="item-units">Units:</label>
+                  <input
+                          id="item-units"
+                          type="number"
+                          name="Item Units"
+                          min="1"
+                  />
+                  <label for="unit-price">Price:</label>
+                  <input id="unit-price" type="text" name="Item Price"/>
+                </div>
               </div>
               <div class="search-store">
                 <label for="list-products"></label>
@@ -103,15 +113,7 @@
                   <option value="" selected="selected">Products &nbsp;&nbsp;&nbsp;&nbsp; Prices</option>
 
                 </select>
-                <label for="item-units">Units:</label>
-                <input
-                  id="item-units"
-                  type="number"
-                  name="Item Units"
-                  min="1"
-                />
-                <label for="unit-price">Price:</label>
-                <input id="unit-price" type="text" name="Item Price" />
+
               </div>
             </form>
           </div>
