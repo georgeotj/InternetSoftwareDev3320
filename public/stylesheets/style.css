@@ -591,6 +591,11 @@ input[type="number"] {
   width: 60%;
 }
 
+.product-price-quantity {
+  display: inline;
+  padding-left: 4%;
+}
+
 .store-product-btns button {
   background-color: #151a2f;
   border: none;
@@ -1024,6 +1029,10 @@ input[type="password"] {
 
 .shipping-info-form {
   margin: 0 5%;
+}
+
+.checkout-payment-form .error-field {
+  display: inline;
 }
 
 input[type="submit"] {
