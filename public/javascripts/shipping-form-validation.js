@@ -17,7 +17,13 @@ function checkShippingAddress1() {
     address1.css('border', '2px solid lightgreen');
     address1.css('box-shadow', '0 0 8px 2px rgba(152, 251, 152, 0.75)');
   } else {
-    address1ErrorMessage.html('Address Line 1 Not Valid');
+    address1ErrorMessage.html('Invalid Address');
+    address1ErrorMessage.css('color', '#b00808');
+    // address1ErrorMessage.css('background-color', '#b00808');
+    // address1ErrorMessage.css('clip-path', 'polygon(40% 10%, 40% 37%, 100% 37%, 100% 63%, 40% 63%, 40% 90%, 0% 50%)');
+    // address1ErrorMessage.css('padding', '.7%');
+    // address1ErrorMessage.css('display', 'inline-block');
+    // address1ErrorMessage.css('position', 'absolute');
     address1ErrorMessage.show();
     address1.css('border', '2px solid salmon');
     address1.css('box-shadow', '0 0 8px 2px rgba(250, 128, 114, 0.75)');
@@ -37,7 +43,13 @@ function checkShippingAddress2() {
     address2.css('border', '2px solid #151a2f');
     address2.css('box-shadow', '0 0 8px 2px rgba(63, 63, 63, 0.75)');
   } else {
-    address2ErrorMessage.html('Address Line 2 Not Valid');
+    address2ErrorMessage.html('Invalid Address');
+    address2ErrorMessage.css('color', '#b00808');
+    // address2ErrorMessage.css('background-color', '#b00808');
+    // address2ErrorMessage.css('clip-path', 'polygon(40% 10%, 40% 37%, 100% 37%, 100% 63%, 40% 63%, 40% 90%, 0% 50%)');
+    // address2ErrorMessage.css('padding', '.7%');
+    // address2ErrorMessage.css('display', 'inline-block');
+    // address2ErrorMessage.css('position', 'absolute');
     address2ErrorMessage.show();
     address2.css('border-bottom', '2px solid #151a2f');
     address2.css('box-shadow', '0 0 8px 2px rgba(250, 128, 114, 0.75)');
@@ -55,6 +67,12 @@ function checkShippingState() {
     state.css('box-shadow', '0 0 8px 2px rgba(152, 251, 152, 0.75)');
   } else {
     stateErrorMessage.html('Select a State');
+    stateErrorMessage.css('color', '#b00808');
+    // stateErrorMessage.css('background-color', '#b00808');
+    // stateErrorMessage.css('clip-path', 'polygon(40% 10%, 40% 37%, 100% 37%, 100% 63%, 40% 63%, 40% 90%, 0% 50%)');
+    // stateErrorMessage.css('padding', '.7%');
+    // stateErrorMessage.css('display', 'inline-block');
+    // stateErrorMessage.css('position', 'absolute');
     stateErrorMessage.show();
     state.css('border', '1px solid #F90A0A');
     state.css('box-shadow', '0 0 8px 2px rgba(250, 128, 114, 0.75)');
@@ -74,7 +92,13 @@ function checkShippingCity() {
     city.css('border', '2px solid lightgreen');
     city.css('box-shadow', '0 0 8px 2px rgba(152, 251, 152, 0.75)');
   } else {
-    cityErrorMessage.html('City Not Valid');
+    cityErrorMessage.html('Invalid City');
+    cityErrorMessage.css('color', '#b00808');
+    // cityErrorMessage.css('background-color', '#b00808');
+    // cityErrorMessage.css('clip-path', 'polygon(40% 10%, 40% 37%, 100% 37%, 100% 63%, 40% 63%, 40% 90%, 0% 50%)');
+    // cityErrorMessage.css('padding', '.7%');
+    // cityErrorMessage.css('display', 'inline-block');
+    // cityErrorMessage.css('position', 'absolute');
     cityErrorMessage.show();
     city.css('border', '2px solid salmon');
     city.css('box-shadow', '0 0 8px 2px rgba(250, 128, 114, 0.75)');
@@ -93,7 +117,8 @@ function checkShippingZip() {
     zipCode.css('border', '2px solid lightgreen');
     zipCode.css('box-shadow', '0 0 8px 2px rgba(152, 251, 152, 0.75)');
   } else {
-    zipErrorMessage.html('Zip Code Not Valid');
+    zipErrorMessage.html('Invalid Zip Code');
+    zipErrorMessage.css('color', '#b00808');
     zipErrorMessage.show();
     zipCode.css('border', '2px solid salmon');
     zipCode.css('box-shadow', '0 0 8px 2px rgba(250, 128, 114, 0.75)');
@@ -198,13 +223,16 @@ $(document).ready(() => {
 // window.$ = window.jQuery = jQuery;
 //
 // $(document).ready(() => {
-//   $('.shipping-info-form').validate({
+//   $('#shipping-info-form').validate({
 //     rules: {
 //       address_1: 'required',
 //       address_2: 'optional',
 //       city: 'required',
 //       user_state: 'required',
-//       zipcode: 'required',
+//       zipcode: {
+//          required: true,
+//          minlength: 5,
+//          maxlength: 9,
 //     },
 //     messages: {
 //       address_1: 'Address is required',

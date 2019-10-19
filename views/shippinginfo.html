@@ -30,7 +30,7 @@
     ></script>
     <script
       type="text/javascript"
-      src="../public/javascripts/form-validation.js"
+      src="../public/javascripts/shipping-form-validation.js"
     ></script>
   </head>
   <!-- /head -->
@@ -97,7 +97,6 @@
               >Use Billing Address?</label
             >
           </p>
-            <span class="error-form" id="address-1-error-message"></span>
           <div class="Shipping Address">
             <input
               title="Address 1"
@@ -109,6 +108,7 @@
               pattern="^\s*\S+(?:\s+\S+){2}"
               required
             />
+            <span class="error-field" id="address-1-error-message"></span>
             <br />
             <label for="shipping_address_2"></label>
             <input
@@ -120,11 +120,11 @@
               pattern="^[a-zA-Z0-9\s,.'-]{3,}$"
               placeholder="Apt, Suite, Bldg, (optional)"
             />
-            <span class="error-form" id="address-2-error-message"></span>
+            <span class="error-field" id="address-2-error-message"></span>
           </div>
           <br />
           <div class="Shipping Location">
-            <span class="error-form" id="city-shipping-error-message"></span>
+            <span class="error-field" id="city-shipping-error-message"></span>
             <label for="shipping_city"></label>
             <input
               title="City"
@@ -191,10 +191,10 @@
               <option value="WI">Wisconsin</option>
               <option value="WY">Wyoming</option>
             </select>
-            <span class="error-form" id="shipping-state-error-message"></span>
+            <span class="error-field" id="shipping-state-error-message"></span>
             <br />
             <label for="shipping_zipcode"></label>
-            <span class="error-form" id="shipping-zip-error-message"></span>
+            <span class="error-field" id="shipping-zip-error-message"></span>
             <input
               title="Zip Code"
               type="text"

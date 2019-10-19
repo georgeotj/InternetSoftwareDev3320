@@ -38,6 +38,10 @@ h2 {
   margin-block-start: 0.22em;
 }
 
+option {
+  white-space: pre;
+}
+
 .container {
   -webkit-box-direction: normal;
   -webkit-box-orient: vertical;
@@ -473,6 +477,22 @@ span.register-optional {
   text-decoration: none;
 }
 
+input#user_city {
+  /* width: fit-content; */
+  width: 90%;
+}
+
+.register-user-location {
+  display: inline-flex;
+  flex-direction: row;
+  margin-bottom: 5%;
+}
+
+.flex-user-location {
+  display: flex;
+  flex-direction: column;
+}
+
 .register-user-form .create-user-buttons button:hover {
   background-color: #917a90;
 }
@@ -484,7 +504,7 @@ span.register-optional {
 .register-user-form .register-user-location label {
   display: inline-flex;
   padding: 0;
-  width: 10%;
+  width: fit-content;
 }
 
 .register-user-location label.register-state-label {
@@ -504,9 +524,8 @@ span.register-optional {
   background-color: #f2f3f4;
   border: 1px solid #151a2f;
   border-radius: 4px;
-  margin: 8px 0;
   padding: 8px 16px;
-  width: 18%;
+  width: 80%;
 }
 
 .checkout-panel {
@@ -565,7 +584,7 @@ input[type="number"] {
   width: 25%;
 }
 
-.store-products-list select#products {
+.store-products-list select#list-products {
   font-size: 80%;
   -moz-text-align-last: center;
   text-align-last: center;
@@ -672,6 +691,10 @@ button:active {
   background-color: #332463;
 }
 
+.shopping-cart-footer button[type="submit"]:hover {
+  background-color: #332463;
+}
+
 button#to-checkout:hover {
   box-shadow: 0 0 8px 2px rgba(12, 120, 25, 0.75);
 }
@@ -768,24 +791,12 @@ textarea:valid {
   box-shadow: 0 0 8px 2px rgba(152, 251, 152, 0.75);
 }
 
-.error-form {
-  font-size: 2vh;
+.error-field {
+  font-size: 1.3vh;
   display: block;
-  color: #4c0606;
-}
 
-.shipping-info-panel input:invalid:blur,
-textarea:invalid {
-  /* border-bottom: 2px solid salmon; */
-  border-radius: 8px;
-  box-shadow: 0 0 8px 2px rgba(250, 128, 114, 0.75);
-}
-
-.shipping-info-panel input:valid:blur,
-textarea:valid {
-  /* border-bottom: 2px solid palegreen; */
-  border-radius: 8px;
-  box-shadow: 0 0 8px 2px rgba(152, 251, 152, 0.75);
+  /* display: inline-block; */
+  color: rgba(255, 240, 239, 0.75);
 }
 
 .shipping-info-panel input[type="text"]:focus {
@@ -952,6 +963,16 @@ button[type="reset"] {
   margin: 3% 2% auto 3%;
   position: fixed;
   width: 20%;
+}
+
+table#cart-list {
+  margin: auto;
+}
+
+.cart-list-total {
+  /* margin: auto; */
+  margin-top: 10%;
+  text-align: center;
 }
 
 .shopping-cart-panel h2 {

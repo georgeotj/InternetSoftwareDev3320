@@ -24,6 +24,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="module" src="../node_modules/jquery-validation/dist/jquery.validate.min.js"></script>
     <script type="text/javascript" src="../public/javascripts/header.js"></script>
+    <script type="text/javascript" src="../public/javascripts/checkout-form-validation.js"></script>
+
   </head>
   <!-- /head -->
 
@@ -98,6 +100,7 @@
             <!-- class for payment method -->
             <div class="payment-method">
               <label for="payment-method-types"></label>
+              <span class="error-field" id="checkout-pay-method-error-message"></span>
               <!-- selection options -->
               <select
                 id="payment-method-types"
@@ -115,6 +118,7 @@
             <div class="input-fields">
               <div class="column-1">
                 <div class="payment-card-name">
+                  <span class="error-field" id="checkout-card-name-error-message"></span>
                   <label for="payment-card-name">Name on Card </label>
                   <input
                     type="text"
@@ -125,11 +129,13 @@
                 </div>
                 <div class="payment-card-number">
                   <label for="payment-card-number">Card Number </label>
+                  <span class="error-field" id="checkout-card-number-error-message"></span>
                   <input type="text" id="payment-card-number" required />
                 </div>
               </div>
               <div class="column-2">
                 <div class="card-valid-through">
+                  <span class="error-field" id="checkout-card-expire-error-message"></span>
                   <label for="expiration-date">Valid Through </label>
                   <input
                     type="text"
@@ -138,6 +144,7 @@
                   />
                 </div>
                 <div class="card-verification">
+                  <span class="error-field" id="checkout-card-cvv-error-message"></span>
                   <label for="verification">CVV / CVC</label>
                   <input type="password" id="verification" />
                 </div>
