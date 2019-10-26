@@ -26,7 +26,7 @@
     ></script>
     <script
       type="text/javascript"
-      src="public/javascripts/header.js"
+      src="public/javascripts/back-to-top-button.js"
     ></script>
     <script
       type="text/javascript"
@@ -305,20 +305,20 @@
             <div class="cost-fields">
               <div class="checkout-subtotal checkout-cost-output">
                 <span class="subtotal-label cost-label">Subtotal</span>
-                <span class="subtotal-value cost-value">$ {{{subtotal}}}</span>
+                <span class="subtotal-value cost-value" id="checkout-subtotal-value"></span>
               </div>
               <div class="checkout-taxes checkout-cost-output">
                 <span class="taxes-label cost-label">Taxes</span>
-                <span class="taxes-value cost-value">$ {{{taxes}}}</span>
+                <span class="taxes-value cost-value" id="checkout-taxes-value"></span>
               </div>
               <div class="checkout-shipping checkout-cost-output">
                 <span class="shipping-label cost-label">Shipping</span>
-                <span class="shipping-value cost-value">$ {{{shipping}}}</span>
+                <span class="shipping-value cost-value" id="checkout-shipping-value"></span>
               </div>
               <hr class="checkout-line" />
               <div class="checkout-total checkout-cost-output">
                 <span class="total-label cost-label">Total</span>
-                <span class="total-value cost-value">$ {{{total}}}</span>
+                <span class="total-value cost-value" id="checkout-total-value"></span>
               </div>
             </div>
 
@@ -780,8 +780,8 @@
               </div>
               <div class="shopping-cart-footer">
                 <br />
-                <label for="to-checkout"></label>
-                <button id="to-checkout" type="submit">Checkout</button>
+                <label for="send-cart-to-checkout-button"></label>
+                <button id="send-cart-to-checkout-button" type="submit" onclick="openTab('Checkout')">Checkout</button>
                 <label for="clear-cart-button"></label>
                 <button id="clear-cart-button" type="reset">Clear</button>
               </div>

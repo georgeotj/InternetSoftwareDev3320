@@ -751,7 +751,7 @@ span#cart-subtotal-number {
   background-color: #332463;
 }
 
-button#to-checkout:hover {
+button#send-cart-to-checkout-button:hover {
   box-shadow: 0 0 8px 2px rgba(12, 120, 25, 0.75);
 }
 
@@ -777,6 +777,10 @@ button.submit-btn.checkout-btn {
   font-size: 1.5vh;
 }
 
+button.submit-btn.checkout-btn:hover {
+  background-color: #332463;
+}
+
 .checkout-panel-footer button {
   background-color: #151a2f;
   border: none;
@@ -791,7 +795,7 @@ button.submit-btn.checkout-btn {
 }
 
 .checkout-panel-footer button:hover {
-  background-color: #917a90;
+  background-color: #332463;
 }
 
 .shipping-info-panel {

@@ -4,17 +4,17 @@ $('a.back-to-top').click(() => {
 });
 
 function openTab(tabName) {
-  let i;
+  let tab;
   const activeTab = document.getElementById(tabName);
-  const x = document.getElementsByClassName('container tab');
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = 'none';
+  const viewTabs = document.getElementsByClassName('container tab');
+  for (tab = 0; tab < viewTabs.length; tab += 1) {
+    viewTabs[tab].style.display = 'none';
   }
   activeTab.style.display = 'inline-flex';
   const tabLinks = document.getElementsByClassName('nav-link');
   const activeLink = document.getElementById(`${tabName}-link`);
-  for (i = 0; i < tabLinks.length; i++) {
-    tabLinks[i].className = tabLinks[i].className.replace(' active', '');
+  for (tab = 0; tab < tabLinks.length; tab += 1) {
+    tabLinks[tab].className = tabLinks[tab].className.replace(' active', '');
   }
   activeLink.className += ' active';
 }
