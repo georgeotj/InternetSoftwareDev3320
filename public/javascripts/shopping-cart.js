@@ -114,7 +114,7 @@ $(document).ready(() => {
   }
 
   $('#add-item-to-cart-button').on('click', () => {
-    if (getSelectedOrderPrice() !== 0) {
+    if (getSelectedOrderPrice() !== 0 && !Number.isNaN(getSelectedProductPrice())) {
       const productName = getProductName();
       const productValue = getSelectedOrderPrice();
       const productUnits = getItemQuantity('#item-units');
@@ -133,5 +133,29 @@ $(document).ready(() => {
     productOrders.splice(0, productOrders.length);
     subtotal = 0;
     displaySubtotal();
+  });
+
+  const checkoutCalculations = {
+
+    calculateTaxes(orderSubtotal) {
+      return orderSubtotal * 0.08;
+    },
+    calculateShipping(orderSubtotal) {
+      return orderSubtotal * 0.03;
+    },
+    calculateTotalCost(orderSubtotal, taxes, shipping) {
+      return Number(orderSubtotal) + Number(taxes) + Number(shipping);
+    },
+  };
+
+  $('#send-cart-to-checkout-button').on('click', () => {
+    const orderTaxes = checkoutCalculations.calculateTaxes(subtotal);
+    const orderShipping = checkoutCalculations.calculateShipping(subtotal);
+    const orderTotal = checkoutCalculations.calculateTotalCost(subtotal, orderTaxes, orderShipping);
+
+    $('#checkout-subtotal-value').text(`$${Number(subtotal).toFixed(2)}`);
+    $('#checkout-taxes-value').text(`$${Number(orderTaxes).toFixed(2)}`);
+    $('#checkout-shipping-value').text(`$${Number(orderShipping).toFixed(2)}`);
+    $('#checkout-total-value').text(`$${Number(orderTotal).toFixed(2)}`);
   });
 });
