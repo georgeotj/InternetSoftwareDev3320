@@ -13,11 +13,37 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" type="text/css" href="public/stylesheets/style.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="public/stylesheets/style.css"
+    />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="module" src="../node_modules/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="../public/javascripts/header.js"></script>
+    <script
+      type="module"
+      src="node_modules/jquery-validation/dist/jquery.validate.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="public/javascripts/back-to-top-button.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="public/javascripts/shopping-cart.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="public/javascripts/shipping-form-validation.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="public/javascripts/account-form-validation.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="public/javascripts/checkout-form-validation.js"
+    ></script>
   </head>
 
   <body>
@@ -29,23 +55,53 @@
           <div class="top-bar-column-1">
             <ul class="nav-list">
               <li class="nav-item">
-                <a class="active nav-link" href="index.html">Home</a>
+                <a
+                  class="nav-link active"
+                  href="#"
+                  id="Home-link"
+                  onclick="openTab('Home')"
+                  >Home</a
+                >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="views/shoppingcart.html">Shop</a>
+                <a
+                  class="nav-link"
+                  href="#"
+                  id="Shop-link"
+                  onclick="openTab('Shop')"
+                  >Shop</a
+                >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="views/checkout.html">Checkout</a>
+                <a
+                  class="nav-link"
+                  href="#"
+                  id="Checkout-link"
+                  onclick="openTab('Checkout')"
+                  >Checkout</a
+                >
               </li>
             </ul>
           </div>
           <div class="top-bar-column-2">
             <ul class="nav-list">
               <li class="nav-item">
-                <a class="nav-link" href="views/userinfo.html">Account</a>
+                <a
+                  class="nav-link"
+                  href="#"
+                  id="Account-link"
+                  onclick="openTab('Account')"
+                  >Account</a
+                >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="views/shippinginfo.html">Shipping</a>
+                <a
+                  class="nav-link"
+                  href="#"
+                  id="Shipping-link"
+                  onclick="openTab('Shipping')"
+                  >Shipping</a
+                >
               </li>
             </ul>
           </div>
@@ -54,16 +110,690 @@
     </header>
     <!-- /header -->
 
-    <!-- main -->
-    <main role="main" class="container">
-      <div class="home-page-title">
-        <h2>Home Page</h2>
+    <main>
+      <!-- HOME tab -->
+      <div role="main" class="container tab" id="Home">
+        <div class="home-page-title">
+          <h2>Home Page</h2>
+        </div>
+        <div class="top-btn">
+          <a class="back-to-top" href="#">Back to Top</a>
+        </div>
       </div>
-      <div class="top-btn">
-        <a class="back-to-top" href="#">Back to Top</a>
+      <!-- end HOME tab -->
+
+      <!-- SHIPPING INFO tab -->
+      <div
+        role="main"
+        class="container tab"
+        id="Shipping"
+        style="display: none;"
+      >
+        <div class="shipping-info-panel">
+          <h2>Shipping Address</h2>
+          <!-- Action will go to our web server (node) -->
+          <form
+            class="shipping-info-form"
+            action=""
+            method="post"
+            name="shipping-info-form"
+            id="shipping-info-form"
+          >
+            <p>
+              <input
+                id="physical_address"
+                class="checkbox-custom physical-address"
+                type="checkbox"
+                name="physical_address"
+              />
+              <label
+                class="checkbox-label physical-address"
+                for="physical_address"
+                >Use Billing Address?</label
+              >
+            </p>
+            <div class="Shipping Address">
+              <input
+                title="Address 1"
+                type="text"
+                id="shipping_address_1"
+                name="street_address"
+                maxlength="100"
+                placeholder="Street Address"
+                pattern="^\s*\S+(?:\s+\S+){2}"
+                required
+              />
+              <span class="error-field" id="address-1-error-message"></span>
+              <br />
+              <label for="shipping_address_2"></label>
+              <input
+                title="Address 2"
+                type="text"
+                id="shipping_address_2"
+                name="street_address2"
+                maxlength="100"
+                pattern="^[a-zA-Z0-9\s,.'-]{3,}$"
+                placeholder="Apt, Suite, Bldg, (optional)"
+              />
+              <span class="error-field" id="address-2-error-message"></span>
+            </div>
+            <br />
+            <div class="Shipping Location">
+              <span class="error-field" id="city-shipping-error-message"></span>
+              <label for="shipping_city"></label>
+              <input
+                title="City"
+                type="text"
+                id="shipping_city"
+                name="user_city"
+                placeholder="City"
+                pattern="^([a-zA-Z\u0080-\u024F]+(?:. |-| |'))*[a-zA-Z\u0080-\u024F]*$"
+                required
+              />
+              <!-- TODO: Move to a DB and load with AJAX -->
+              <label for="shipping_user_state"></label>
+              <select title="Users State" name="state" id="shipping_user_state">
+                <option value="" selected="selected">State</option>
+                <option value="AL">Alabama</option>
+                <option value="AK">Alaska</option>
+                <option value="AZ">Arizona</option>
+                <option value="AR">Arkansas</option>
+                <option value="CA">California</option>
+                <option value="CO">Colorado</option>
+                <option value="CT">Connecticut</option>
+                <option value="DE">Delaware</option>
+                <option value="DC">District Of Columbia</option>
+                <option value="FL">Florida</option>
+                <option value="GA">Georgia</option>
+                <option value="HI">Hawaii</option>
+                <option value="ID">Idaho</option>
+                <option value="IL">Illinois</option>
+                <option value="IN">Indiana</option>
+                <option value="IA">Iowa</option>
+                <option value="KS">Kansas</option>
+                <option value="KY">Kentucky</option>
+                <option value="LA">Louisiana</option>
+                <option value="ME">Maine</option>
+                <option value="MD">Maryland</option>
+                <option value="MA">Massachusetts</option>
+                <option value="MI">Michigan</option>
+                <option value="MN">Minnesota</option>
+                <option value="MS">Mississippi</option>
+                <option value="MO">Missouri</option>
+                <option value="MT">Montana</option>
+                <option value="NE">Nebraska</option>
+                <option value="NV">Nevada</option>
+                <option value="NH">New Hampshire</option>
+                <option value="NJ">New Jersey</option>
+                <option value="NM">New Mexico</option>
+                <option value="NY">New York</option>
+                <option value="NC">North Carolina</option>
+                <option value="ND">North Dakota</option>
+                <option value="OH">Ohio</option>
+                <option value="OK">Oklahoma</option>
+                <option value="OR">Oregon</option>
+                <option value="PA">Pennsylvania</option>
+                <option value="RI">Rhode Island</option>
+                <option value="SC">South Carolina</option>
+                <option value="SD">South Dakota</option>
+                <option value="TN">Tennessee</option>
+                <option value="TX">Texas</option>
+                <option value="UT">Utah</option>
+                <option value="VT">Vermont</option>
+                <option value="VA">Virginia</option>
+                <option value="WA">Washington</option>
+                <option value="WV">West Virginia</option>
+                <option value="WI">Wisconsin</option>
+                <option value="WY">Wyoming</option>
+              </select>
+              <span
+                class="error-field"
+                id="shipping-state-error-message"
+              ></span>
+              <br />
+              <label for="shipping_zipcode"></label>
+              <span class="error-field" id="shipping-zip-error-message"></span>
+              <input
+                title="Zip Code"
+                type="text"
+                id="shipping_zipcode"
+                name="user_zip"
+                placeholder="Zip Code"
+                maxlength="9"
+                minlength="5"
+                pattern="(^\d{5}$)|(^\d{5}-\d{4}$)"
+                required
+              />
+            </div>
+            <br />
+            <div class="shipping-info-buttons">
+              <button
+                class="shipping-info-submit-btn"
+                id="shipping-info-submit-btn"
+                type="submit"
+              >
+                Save
+              </button>
+              <input
+                class="shipping-info-rest-btn"
+                type="reset"
+                value="Reset"
+              />
+            </div>
+
+            <br />
+          </form>
+        </div>
+        <div class="top-btn">
+          <a class="back-to-top" href="#">Back to Top</a>
+        </div>
       </div>
+      <!-- end SHIPPING INFO tab -->
+
+      <!-- CHECKOUT tab -->
+      <div
+        role="main"
+        class="container tab"
+        id="Checkout"
+        style="display: none;"
+      >
+        <!-- outer most component for checkout, for general CSS styling -->
+        <div class="checkout-panel">
+          <h2 class="title">Checkout</h2>
+          <div class="checkout-panel-body">
+            <!-- class for total, shipping, tax, amount due-->
+            <div class="cost-fields">
+              <div class="checkout-subtotal checkout-cost-output">
+                <span class="subtotal-label cost-label">Subtotal</span>
+                <span class="subtotal-value cost-value" id="checkout-subtotal-value"></span>
+              </div>
+              <div class="checkout-taxes checkout-cost-output">
+                <span class="taxes-label cost-label">Taxes</span>
+                <span class="taxes-value cost-value" id="checkout-taxes-value"></span>
+              </div>
+              <div class="checkout-shipping checkout-cost-output">
+                <span class="shipping-label cost-label">Shipping</span>
+                <span class="shipping-value cost-value" id="checkout-shipping-value"></span>
+              </div>
+              <hr class="checkout-line" />
+              <div class="checkout-total checkout-cost-output">
+                <span class="total-label cost-label">Total</span>
+                <span class="total-value cost-value" id="checkout-total-value"></span>
+              </div>
+            </div>
+
+            <!-- Form to collect user payment data -->
+            <form class="checkout-payment-form">
+              <!-- class for payment method -->
+              <div class="payment-method">
+                <label for="payment-method-types"></label>
+                <span
+                  class="error-field"
+                  id="checkout-pay-method-error-message"
+                ></span>
+                <!-- selection options -->
+                <select
+                  id="payment-method-types"
+                  title="Payment Type"
+                  name="payment-types"
+                >
+                  <option value="" selected="selected">Card Type</option>
+                  <option value="visa-card">VISA</option>
+                  <option value="master-card">Master Card</option>
+                  <option value="american-express-card"
+                    >American Express</option
+                  >
+                </select>
+              </div>
+
+              <!-- class for user input -->
+              <div class="input-fields">
+                <div class="column-1">
+                  <div class="payment-card-name">
+                    <label for="payment-card-name">Name on Card </label>
+                    <span
+                      class="error-field"
+                      id="checkout-card-name-error-message"
+                    ></span>
+                    <input
+                      type="text"
+                      id="payment-card-name"
+                      placeholder="Full Name"
+                      required
+                    />
+                  </div>
+                  <div class="payment-card-number">
+                    <label for="payment-card-number">Card Number </label>
+                    <span
+                      class="error-field"
+                      id="checkout-card-number-error-message"
+                    ></span>
+                    <input type="text" id="payment-card-number" required />
+                  </div>
+                </div>
+                <div class="column-2">
+                  <div class="card-valid-through">
+                    <label for="expiration-date">Valid Through </label>
+                    <span
+                      class="error-field"
+                      id="checkout-card-expire-error-message"
+                    ></span>
+                    <input
+                      type="text"
+                      id="expiration-date"
+                      placeholder="MM / YYYY"
+                    />
+                  </div>
+                  <div class="card-verification">
+                    <label for="verification">CVV / CVC</label>
+                    <span
+                      class="error-field"
+                      id="checkout-card-cvv-error-message"
+                    ></span>
+                    <input type="password" id="verification" />
+                  </div>
+                </div>
+              </div>
+              <!-- class for user agreeing to pay -->
+              <div class="purchase-terms-of-service">
+                <label for="pay-agreement">Agree to Terms of Service</label>
+                <input
+                  id="pay-agreement"
+                  type="checkbox"
+                  name="terms-of-service"
+                  required
+                />
+              </div>
+            </form>
+          </div>
+          <div class="checkout-panel-footer">
+            <br />
+            <button type="submit" class="submit-btn checkout-btn">
+              Submit Order
+            </button>
+            <button type="button" class="back-btn checkout-btn">
+              Back to Cart
+            </button>
+            <button type="button" class="cancel-btn checkout-btn">
+              Cancel Order
+            </button>
+          </div>
+        </div>
+        <div class="top-btn">
+          <a class="back-to-top" href="#">Back to Top</a>
+        </div>
+      </div>
+      <!-- end CHECKOUT tab -->
+
+      <!-- USER INFORMATION tab -->
+      <div
+        role="main"
+        class="container tab"
+        id="Account"
+        style="display: none;"
+      >
+        <!-- Section for if user is registered -->
+        <section class="account-information">
+          <div class="account-information-panel">
+            <h2>Account Overview</h2>
+            <div class="user-information-table">
+              <div class="user-information-block ">
+                <span class="name-label user-info-label">Name</span>
+                <span class="name-value user-info-value"
+                  >{{{user-full-name}}}</span
+                >
+              </div>
+              <div class="user-information-block">
+                <span class="address-1-label user-info-label">Address 1</span>
+                <span class="address-1-value user-info-value"
+                  >{{{user-address-1}}}</span
+                >
+              </div>
+              <div class="user-information-block">
+                <span class="address-2-label user-info-label">Address 2</span>
+                <span class="address-2-value user-info-value"
+                  >{{{user-address-2}}}</span
+                >
+              </div>
+              <div class="user-information-block">
+                <span class="city-label user-info-label">City</span>
+                <span class="city-value user-info-value">{{{user-city}}}</span>
+              </div>
+              <div class="user-information-block">
+                <span class="state-label user-info-label">state</span>
+                <span class="state-value user-info-value"
+                  >{{{user-state}}}</span
+                >
+              </div>
+              <div class="user-information-block">
+                <span class="zip-code-label user-info-label">Zip Code</span>
+                <span class="zip-code-value user-info-value"
+                  >{{{user-zip-code}}}</span
+                >
+              </div>
+              <div class="user-information-block">
+                <span class="phone-label user-info-label">phone</span>
+                <span class="phone-value user-info-value"
+                  >{{{user-phone}}}</span
+                >
+              </div>
+              <div class="user-information-block">
+                <span class="email-label user-info-label">email</span>
+                <span class="email-value user-info-value"
+                  >{{{user-email}}}</span
+                >
+              </div>
+            </div>
+            <div class="edit-user-buttons">
+              <button class="edit-user-button" type="button">Edit</button>
+              <button class="sign-out-button" type="button">Sign Out</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section for if User is not registered -->
+        <section class="register-account">
+          <div class="register-user-panel">
+            <h2>Register New Account:</h2>
+            <!-- action attribute defines action performed when the form is submitted -->
+            <!-- use HTTP post method for sensitive information-->
+            <form
+              class="register-user-form"
+              action="/my-handling-form-page"
+              method="POST"
+            >
+              <!-- TODO: Combine First Name and Last Name into the "Full Name" Field-->
+              <div class="register-full-name">
+                <label for="user_first_name">First Name:</label>
+                <span
+                  class="error-field"
+                  id="user-first-name-error-message"
+                ></span>
+                <input
+                  title="First Name"
+                  type="text"
+                  id="user_first_name"
+                  name="first_name"
+                  maxlength="100"
+                  placeholder="First Name"
+                  required
+                />
+                <br />
+                <label for="user_last_name">Last Name:</label>
+                <span
+                  class="error-field"
+                  id="user-last-name-error-message"
+                ></span>
+                <input
+                  title="Last Name"
+                  type="text"
+                  id="user_last_name"
+                  name="last_name"
+                  maxlength="100"
+                  placeholder="Last Name"
+                  required
+                />
+              </div>
+              <br />
+              <div class="register-contact-information">
+                <label for="user_phone">Phone:</label>
+                <span class="error-field" id="user-phone-error-message"></span>
+                <input
+                  title="User Phone"
+                  type="tel"
+                  id="user_phone"
+                  name="user_phone"
+                  placeholder="Primary Phone"
+                  required
+                /><br />
+                <label for="user_email">Email:</label>
+                <span class="error-field" id="user-email-error-message"></span>
+                <input
+                  title="User Email"
+                  type="email"
+                  id="user_email"
+                  name="user_email"
+                  placeholder="Email"
+                  required
+                />
+              </div>
+
+              <div class="register-user-address">
+                <label for="user_address_1">Address Line 1:</label><br />
+                <span
+                  class="error-field"
+                  id="user-address-1-error-message"
+                ></span>
+                <input
+                  title="Address 1"
+                  type="text"
+                  id="user_address_1"
+                  name="street_address"
+                  maxlength="100"
+                  placeholder="Street Address"
+                  required
+                />
+
+                <label for="user_address_2">Address Line 2:</label>
+                <span
+                  class="error-field"
+                  id="user-address-2-error-message"
+                ></span>
+                <!--              <span class="register-optional">Optional</span>-->
+                <input
+                  title="Address 2"
+                  type="text"
+                  id="user_address_2"
+                  name="street_address2"
+                  maxlength="100"
+                  placeholder="Apt, Suite, Bldg"
+                />
+              </div>
+
+              <div class="register-user-location">
+                <div class="flex-user-location register-flex-row-1">
+                  <label class="register-city-label" for="user_city"
+                    >City:</label
+                  >
+                  <span class="error-field" id="user-city-error-message"></span>
+                  <input
+                    title="City"
+                    type="text"
+                    id="user_city"
+                    name="user_city"
+                    placeholder="City"
+                    required
+                  />
+                </div>
+
+                <div class="flex-user-location register-flex-row-2">
+                  <span
+                    class="error-field"
+                    id="user-state-error-message"
+                  ></span>
+                  <label class="register-state-label" for="user_state"
+                    >State:</label
+                  >
+                  <!-- TODO: Move to a DB and load with AJAX -->
+                  <select title="Users State" name="state" id="user_state">
+                    <option value="" selected="selected">State</option>
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="AZ">Arizona</option>
+                    <option value="AR">Arkansas</option>
+                    <option value="CA">California</option>
+                    <option value="CO">Colorado</option>
+                    <option value="CT">Connecticut</option>
+                    <option value="DE">Delaware</option>
+                    <option value="DC">District Of Columbia</option>
+                    <option value="FL">Florida</option>
+                    <option value="GA">Georgia</option>
+                    <option value="HI">Hawaii</option>
+                    <option value="ID">Idaho</option>
+                    <option value="IL">Illinois</option>
+                    <option value="IN">Indiana</option>
+                    <option value="IA">Iowa</option>
+                    <option value="KS">Kansas</option>
+                    <option value="KY">Kentucky</option>
+                    <option value="LA">Louisiana</option>
+                    <option value="ME">Maine</option>
+                    <option value="MD">Maryland</option>
+                    <option value="MA">Massachusetts</option>
+                    <option value="MI">Michigan</option>
+                    <option value="MN">Minnesota</option>
+                    <option value="MS">Mississippi</option>
+                    <option value="MO">Missouri</option>
+                    <option value="MT">Montana</option>
+                    <option value="NE">Nebraska</option>
+                    <option value="NV">Nevada</option>
+                    <option value="NH">New Hampshire</option>
+                    <option value="NJ">New Jersey</option>
+                    <option value="NM">New Mexico</option>
+                    <option value="NY">New York</option>
+                    <option value="NC">North Carolina</option>
+                    <option value="ND">North Dakota</option>
+                    <option value="OH">Ohio</option>
+                    <option value="OK">Oklahoma</option>
+                    <option value="OR">Oregon</option>
+                    <option value="PA">Pennsylvania</option>
+                    <option value="RI">Rhode Island</option>
+                    <option value="SC">South Carolina</option>
+                    <option value="SD">South Dakota</option>
+                    <option value="TN">Tennessee</option>
+                    <option value="TX">Texas</option>
+                    <option value="UT">Utah</option>
+                    <option value="VT">Vermont</option>
+                    <option value="VA">Virginia</option>
+                    <option value="WA">Washington</option>
+                    <option value="WV">West Virginia</option>
+                    <option value="WI">Wisconsin</option>
+                    <option value="WY">Wyoming</option>
+                  </select>
+                </div>
+
+                <div class="flex-user-location register-flex-row-3">
+                  <label for="user_zipcode" class="register-zip-label">
+                    Zip Code:</label
+                  >
+                  <span class="error-field" id="user-zip-error-message"></span>
+                  <input
+                    title="Zip-Code"
+                    type="text"
+                    id="user_zipcode"
+                    name="user_zip"
+                    placeholder="Zip Code"
+                    required
+                  />
+                </div>
+              </div>
+              <br />
+              <div class="create-user-buttons">
+                <button class="create-user-button">Create</button>
+                <button class="reset-user-fields-button">Reset</button>
+              </div>
+            </form>
+          </div>
+        </section>
+        <div class="top-btn">
+          <a class="back-to-top" href="#">Back to Top</a>
+        </div>
+      </div>
+      <!-- end USER INFORMATION tab -->
+
+      <!-- SHOPPING CART tab -->
+      <div role="main" class="container tab" id="Shop" style="display: none;">
+        <div class="products-cart-panel">
+          <div class="store-products-panel flex-column-1">
+            <div class="products-header"><h2>Browse our Products!</h2></div>
+            <div class="store-products">
+              <form
+                class="store-products-list"
+                id="store-products"
+                name="Shopping-Cart"
+                action="/my-handling-form-page"
+                method="POST"
+              >
+                <div class="store-product-btns">
+                  <br />
+                  <label for="add-item-to-cart-button"></label>
+                  <button id="add-item-to-cart-button" type="button">Add To Cart</button>
+<!--                  <label for="update-items"></label>-->
+<!--                  <button id="update-items" type="button">Update Price</button>-->
+<!--                  <label for="delete-item"></label>-->
+                  <button id="delete-item" type="button">Delete</button>
+                  <div class="product-price-quantity">
+                    <label for="item-units">Units:</label>
+                    <input
+                      id="item-units"
+                      type="number"
+                      name="Item Units"
+                      min="1"
+                    />
+                    <label for="unit-price">Price:</label>
+                    <input id="unit-price" type="text" name="Item Price" />
+                  </div>
+                </div>
+                <div class="search-store">
+                  <label for="list-products"></label>
+                  <select
+                    class="list-products"
+                    id="list-products"
+                    title="Product Selection"
+                    name="products"
+                  >
+                    <!-- Dropdown List Options -->
+                    <option value="" selected="selected"
+                      >Products &nbsp;&nbsp;&nbsp;&nbsp; Prices</option
+                    >
+                  </select>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="shopping-cart-panel flex-column-2">
+            <h2>Cart</h2>
+            <div class="shopping-cart">
+              <div id="items-list">
+                <table id="cart-list">
+                  <caption>
+                    Saved Items
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Product</th>
+                      <th scope="col">Units</th>
+                      <th scope="col">Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+<!--                    <tr>-->
+<!--                      <td>{{name}}</td>-->
+<!--                      <td>{{units}}</td>-->
+<!--                      <td>{{price}}</td>-->
+<!--                    </tr>-->
+                  </tbody>
+                </table>
+                <div class="cart-list-total">
+                  <span id="cart-subtotal-label">Subtotal:</span>
+                  <span id="cart-subtotal-number"></span>
+                </div>
+              </div>
+              <div class="shopping-cart-footer">
+                <br />
+                <label for="send-cart-to-checkout-button"></label>
+                <button id="send-cart-to-checkout-button" type="submit" onclick="openTab('Checkout')">Checkout</button>
+                <label for="clear-cart-button"></label>
+                <button id="clear-cart-button" type="reset">Clear</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="top-btn">
+          <a class="back-to-top" href="#">Back to Top</a>
+        </div>
+      </div>
+      <!-- end SHOPPING CART tab -->
     </main>
-    <!-- /main -->
 
     <!-- footer -->
     <footer class="bottom-bar-footer" role="contentinfo">

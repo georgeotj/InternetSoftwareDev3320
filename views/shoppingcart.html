@@ -23,10 +23,17 @@
       href="../public/stylesheets/style.css"
     />
 
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" type="text/javascript"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="module" src="../node_modules/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="../public/javascripts/header.js"></script>
-  </head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.js" defer></script>
+    <script type="text/javascript"
+      src="../public/javascripts/back-to-top-button.js"
+    ></script>
+    <script type="text/javascript"
+            src="../public/javascripts/shopping-cart.js"
+    ></script>
+    </head>
   <!-- /head -->
 
   <!-- body -->
@@ -42,7 +49,7 @@
           <div class="top-bar-column-1">
             <ul class="nav-list">
               <li class="nav-item">
-                <a class="nav-link" href="../index.html">Home</a>
+                <a class="nav-link" href="../index-2.html">Home</a>
               </li>
               <li class="nav-item">
                 <a class="active nav-link" href="shoppingcart.html">Shop</a>
@@ -68,42 +75,45 @@
     <!-- /header -->
 
     <!-- main -->
-    <main role="main" class="container">
+    <main role="main" class="container" id="shopping-cart-container">
       <div class="products-cart-panel">
         <div class="store-products-panel flex-column-1">
           <div class="products-header"><h2>Browse our Products!</h2></div>
           <div class="store-products">
             <form
               class="store-products-list"
+              id="store-products"
               name="Shopping-Cart"
               action="/my-handling-form-page"
               method="POST"
             >
               <div class="store-product-btns">
                 <br />
-                <label for="save-item"></label>
-                <button id="save-item" type="button">Add To Cart</button>
+                <label for="add-item-to-cart-button"></label>
+                <button id="add-item-to-cart-button" type="button">Add To Cart</button>
                 <label for="update-items"></label>
                 <button id="update-items" type="button">Update Price</button>
                 <label for="delete-item"></label>
                 <button id="delete-item" type="button">Delete</button>
+                <div class="product-price-quantity"><label for="item-units">Units:</label>
+                  <input
+                          id="item-units"
+                          type="number"
+                          name="Item Units"
+                          min="1"
+                  />
+                  <label for="unit-price">Price:</label>
+                  <input id="unit-price" type="text" name="Item Price"/>
+                </div>
               </div>
               <div class="search-store">
-                <label for="products"></label>
-                <select id="products" title="Product Selection" name="products">
-                  <option value="" selected="selected">Product List</option>
-                  <option value="product-1">(example) Product 1</option>
-                  <option value="product-2">(example) Product 2</option>
-                  <option value="product-3">(example) Product 3</option>
-                  <option value="product-4">(example) Product 4</option>
-                  <option value="product-5">(example) Product 5</option>
-                  <option value="product-6">(example) Product 6</option>
-                  <option value="product-x">(example) Product...</option>
+                <label for="list-products"></label>
+                <select class="list-products" id="list-products" title="Product Selection" name="products">
+                <!-- Dropdown List Options -->
+                  <option value="" selected="selected">Products &nbsp;&nbsp;&nbsp;&nbsp; Prices</option>
+
                 </select>
-                <label for="item-units">Units:</label>
-                <input id="item-units" type="number" name="Item Units" min="1" />
-                <label for="unit-price">Price:</label>
-                <input id="unit-price" type="text" name="Item Price" />
+
               </div>
             </form>
           </div>
@@ -125,21 +135,23 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td>(example) Product 1</td>
-                    <td>(example) x</td>
-                    <td>(example) $</td>
+                    <td>{{name}}</td>
+                    <td>{{units}}</td>
+                    <td>{{price}}</td>
                   </tr>
                 </tbody>
               </table>
+              <div class="cart-list-total">
               <label for="total-price">Total Price</label>
               <output for="cart-list" id="total-price">$ {{{Subtotal}}}</output>
+              </div>
             </div>
             <div class="shopping-cart-footer">
               <br />
-              <label for="to-checkout"></label>
-              <button id="to-checkout" type="submit">Checkout</button>
-              <label for=""></label>
-              <button id="reset-cart" type="reset">Clear</button>
+              <label for="send-cart-to-checkout-button"></label>
+              <button id="send-cart-to-checkout-button" type="submit">Checkout</button>
+              <label for="clear-cart-button"></label>
+              <button id="clear-cart-button" type="reset">Clear</button>
             </div>
           </div>
         </div>

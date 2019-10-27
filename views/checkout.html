@@ -23,7 +23,9 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="module" src="../node_modules/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="../public/javascripts/header.js"></script>
+    <script type="text/javascript" src="../public/javascripts/back-to-top-button.js"></script>
+    <script type="text/javascript" src="../public/javascripts/checkout-form-validation.js"></script>
+
   </head>
   <!-- /head -->
 
@@ -41,7 +43,7 @@
           <div class="top-bar-column-1">
             <ul class="nav-list">
               <li class="nav-item">
-                <a class="nav-link" href="../index.html">Home</a>
+                <a class="nav-link" href="../index-2.html">Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="shoppingcart.html">Shop</a>
@@ -67,7 +69,7 @@
     <!-- /header -->
 
     <!-- main -->
-    <main role="main" class="container">
+    <main role="main" class="container" id="checkout-container">
       <!-- outer most component for checkout, for general CSS styling -->
       <div class="checkout-panel">
         <h2 class="title">Checkout</h2>
@@ -98,6 +100,7 @@
             <!-- class for payment method -->
             <div class="payment-method">
               <label for="payment-method-types"></label>
+              <span class="error-field" id="checkout-pay-method-error-message"></span>
               <!-- selection options -->
               <select
                 id="payment-method-types"
@@ -116,6 +119,7 @@
               <div class="column-1">
                 <div class="payment-card-name">
                   <label for="payment-card-name">Name on Card </label>
+                  <span class="error-field" id="checkout-card-name-error-message"></span>
                   <input
                     type="text"
                     id="payment-card-name"
@@ -125,12 +129,14 @@
                 </div>
                 <div class="payment-card-number">
                   <label for="payment-card-number">Card Number </label>
+                  <span class="error-field" id="checkout-card-number-error-message"></span>
                   <input type="text" id="payment-card-number" required />
                 </div>
               </div>
               <div class="column-2">
                 <div class="card-valid-through">
                   <label for="expiration-date">Valid Through </label>
+                  <span class="error-field" id="checkout-card-expire-error-message"></span>
                   <input
                     type="text"
                     id="expiration-date"
@@ -139,6 +145,7 @@
                 </div>
                 <div class="card-verification">
                   <label for="verification">CVV / CVC</label>
+                  <span class="error-field" id="checkout-card-cvv-error-message"></span>
                   <input type="password" id="verification" />
                 </div>
               </div>

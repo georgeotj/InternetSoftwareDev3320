@@ -25,8 +25,10 @@
     />
 
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-      <script type="module" src="../node_modules/jquery-validation/dist/jquery.validate.min.js"></script>
-      <script type="text/javascript" src="../public/javascripts/header.js"></script>
+      <script src="../node_modules/jquery-validation/dist/jquery.validate.min.js"></script>
+      <script type="text/javascript" src="../public/javascripts/back-to-top-button.js"></script>
+     <script type="text/javascript" src="../public/javascripts/account-form-validation.js"></script>
+
   </head>
   <!-- /head -->
 
@@ -49,7 +51,7 @@
             <div class="top-bar-column-1">
               <ul class="nav-list">
                 <li class="nav-item">
-                  <a class="nav-link" href="../index.html">Home</a>
+                  <a class="nav-link" href="../index-2.html">Home</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="shoppingcart.html">Shop</a>
@@ -76,7 +78,7 @@
     </div>
 
     <!-- main -->
-    <main role="main" class="container">
+    <main role="main" class="container" id="user-info-container">
       <!-- Section for if user is registered -->
       <section class="account-information">
         <div class="account-information-panel">
@@ -143,22 +145,24 @@
           >
             <!-- TODO: Combine First Name and Last Name into the "Full Name" Field-->
             <div class="register-full-name">
-              <label for="first_name">First Name:</label>
+              <label for="user_first_name">First Name:</label>
+              <span class="error-field" id="user-first-name-error-message"></span>
               <input
                 title="First Name"
                 type="text"
-                id="first_name"
+                id="user_first_name"
                 name="first_name"
                 maxlength="100"
                 placeholder="First Name"
                 required
               />
               <br />
-              <label for="last_name">Last Name:</label>
+              <label for="user_last_name">Last Name:</label>
+              <span class="error-field" id="user-last-name-error-message"></span>
               <input
                 title="Last Name"
                 type="text"
-                id="last_name"
+                id="user_last_name"
                 name="last_name"
                 maxlength="100"
                 placeholder="Last Name"
@@ -167,20 +171,22 @@
             </div>
             <br />
             <div class="register-contact-information">
-              <label for="phone">Phone:</label>
+              <label for="user_phone">Phone:</label>
+              <span class="error-field" id="user-phone-error-message"></span>
               <input
                 title="User Phone"
                 type="tel"
-                id="phone"
+                id="user_phone"
                 name="user_phone"
                 placeholder="Primary Phone"
                 required
-              />
-              <label for="email">Email:</label>
+              /><br/>
+              <label for="user_email">Email:</label>
+              <span class="error-field" id="user-email-error-message"></span>
               <input
                 title="User Email"
                 type="email"
-                id="email"
+                id="user_email"
                 name="user_email"
                 placeholder="Email"
                 required
@@ -188,23 +194,25 @@
             </div>
 
             <div class="register-user-address">
-              <label for="address_1">Address Line 1:</label><br />
+              <label for="user_address_1">Address Line 1:</label><br />
+              <span class="error-field" id="user-address-1-error-message"></span>
               <input
                 title="Address 1"
                 type="text"
-                id="address_1"
+                id="user_address_1"
                 name="street_address"
                 maxlength="100"
                 placeholder="Street Address"
                 required
               />
 
-              <label for="address_2">Address Line 2:</label>
-              <span class="register-optional">Optional</span>
+              <label for="user_address_2">Address Line 2:</label>
+              <span class="error-field" id="user-address-2-error-message"></span>
+<!--              <span class="register-optional">Optional</span>-->
               <input
                 title="Address 2"
                 type="text"
-                id="address_2"
+                id="user_address_2"
                 name="street_address2"
                 maxlength="100"
                 placeholder="Apt, Suite, Bldg"
@@ -212,17 +220,19 @@
             </div>
 
             <div class="register-user-location">
-              <label class="register-city-label" for="city">City:</label>
+              <div class="flex-user-location register-flex-row-1"><label class="register-city-label" for="user_city">City:</label>
+                <span class="error-field" id="user-city-error-message"></span>
               <input
                 title="City"
                 type="text"
-                id="city"
+                id="user_city"
                 name="user_city"
                 placeholder="City"
                 required
-              />
+              /></div>
 
-              <label class="register-state-label" for="user_state">State:</label>
+              <div class="flex-user-location register-flex-row-2"><span class="error-field" id="user-state-error-message"></span>
+                <label class="register-state-label" for="user_state">State:</label>
               <!-- TODO: Move to a DB and load with AJAX -->
               <select title="Users State" name="state" id="user_state">
                 <option value="" selected="selected">State</option>
@@ -277,18 +287,19 @@
                 <option value="WV">West Virginia</option>
                 <option value="WI">Wisconsin</option>
                 <option value="WY">Wyoming</option>
-              </select>
+              </select></div>
 
-              <label class="register-zip-label for="zipcode">Zip Code:</label>
+              <div class="flex-user-location register-flex-row-3"><label for="user_zipcode" class="register-zip-label"> Zip Code:</label>
+                <span class="error-field" id="user-zip-error-message"></span>
               <input
-                title="Zip Code"
+                title="Zip-Code"
                 type="text"
-                id="zipcode"
+                id="user_zipcode"
                 name="user_zip"
                 placeholder="Zip Code"
                 required
-              />
-            </div>
+              /></div>
+              </div>
             <br />
             <div class="create-user-buttons">
               <button class="create-user-button">Create</button>
