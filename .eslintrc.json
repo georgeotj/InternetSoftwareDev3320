@@ -14,8 +14,7 @@
     ],
     "extends": [
         "airbnb-base",
-        "jquery",
-        "plugin:jsdoc/recommended"
+        "jquery"
     ],
     "globals": {
         "Atomics": "readonly",
@@ -42,14 +41,16 @@
         "no-unused-vars": 1,
         "keyword-spacing": [
             "error", {
-                "before": false, "after": false, "overrides": {
+                "before": false, "after": true, "overrides": {
                     "const": { "after": true }
                 }
             }],
         "space-before-function-paren": 0,
-        "space-before-blocks": ["error", "never"],
+        "space-before-blocks": ["error", "always"],
         "camelcase": 0,
         "handle-callback-err": ["error", "none"],
-        "object-curly-spacing": ["error", "always"]
+        "object-curly-spacing": ["error", "always"],
+        "space-in-parens": ["error", "always", { "exceptions":  ["{}", "[]"] }],
+        "no-param-reassign": 0
     }
 }

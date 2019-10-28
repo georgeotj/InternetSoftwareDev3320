@@ -1,4 +1,4 @@
-$( document ).ready( () => {
+$( () => {
   const products = [
     {
       name: 'Product-1: ',
@@ -41,56 +41,46 @@ $( document ).ready( () => {
   $.each( products, ( value, product ) => {
     productDropDown.append( $( '<option></option>' ).val( value ).html( `${product.name} 
     &nbsp;&nbsp;&nbsp;&nbsp; ${product.price}` ) );
-  } );
+  });
 
-  /**
-   *
-   */
-function getSelectedProductPrice(){
+
+function getSelectedProductPrice() {
     const $selectedItem = productDropDown.find( 'option:selected' );
     const textOfItem = $selectedItem.text();
     const getProductPrice = textOfItem.substr( textOfItem.indexOf( '$' ) + 1 );
     return Number( getProductPrice );
   }
 
-  /**
-   * @param produceValue
-   */
-function displayProductPrice( produceValue ){
-    document.getElementById('unit-price').value = Number.isNaN( produceValue) ? 0 : produceValue;
+
+function displayProductPrice( produceValue ) {
+    document.getElementById( 'unit-price' ).value = Number.isNaN( produceValue ) ? 0 : produceValue;
   }
 
-  /**
-   * @param units
-   */
-function getItemQuantity( units ){
+
+function getItemQuantity( units ) {
     return $( units ).val();
   }
 
-  /**
-   *
-   */
-function getSelectedOrderPrice(){
+
+function getSelectedOrderPrice() {
     const quantity = getItemQuantity( '#item-units' );
     return quantity * getSelectedProductPrice();
   }
 
-  $( '#item-units' ).change( () => {
+  $( '#item-units' ).on( 'change', () => {
     // Const quantity = getItemQuantity('#item-units');
     // const totalPrice = quantity * getSelectedProductPrice();
     const totalPrice = getSelectedOrderPrice();
     displayProductPrice( totalPrice );
-  } );
+  });
 
-  productDropDown.change( () => {
+  productDropDown.on( 'change', () => {
     const selectedItemPrice = getSelectedOrderPrice();
     displayProductPrice( selectedItemPrice );
-  } );
+  });
 
-  /**
-   *
-   */
-function getProductName(){
+
+function getProductName() {
     const $selectedItem = productDropDown.find( 'option:selected' );
     const textOfProduct = $selectedItem.text();
     const productDetails = textOfProduct.split( ' ' );
@@ -98,12 +88,8 @@ function getProductName(){
       productDetails[ 0 ].length - 1 );
   }
 
-  /**
-   * @param productName
-   * @param productUnits
-   * @param productValue
-   */
-function appendOrderToCart( productName, productUnits, productValue ){
+
+function appendOrderToCart( productName, productUnits, productValue ) {
     $( '#cart-list > tbody' ).append( `<tr>
                                     <td>${productName}</td>
                                     <td>${productUnits}</td>
@@ -111,35 +97,24 @@ function appendOrderToCart( productName, productUnits, productValue ){
                                     </tr>` );
   }
 
-  /**
-   *
-   */
-function calculateSubtotal(){
-    if( productOrders.length > 1 ){
-      subtotal = productOrders.reduce( ( prev, next ) => prev + next, 0 );
-    }else{
-      subtotal = productOrders;
-    }
+
+function calculateSubtotal() {
+    subtotal = productOrders.length > 1 ?
+      productOrders.reduce( ( prev, next ) => prev + next, 0 ) : productOrders;
   }
 
-  /**
-   *
-   */
-function displaySubtotal(){
+function displaySubtotal() {
     const cartSubtotal = $( '#cart-subtotal-number' );
     cartSubtotal.text( `$${subtotal}` );
   }
 
-  /**
-   * @param orderTotal
-   */
-function addOrderTotalToSubtotal( orderTotal ){
+function addOrderTotalToSubtotal( orderTotal ) {
     productOrders.push( orderTotal );
     calculateSubtotal();
   }
 
   $( '#add-item-to-cart-button' ).on( 'click', () => {
-    if( getSelectedOrderPrice() !== 0 && !Number.isNaN( getSelectedProductPrice() ) ){
+    if ( getSelectedOrderPrice() !== 0 && !Number.isNaN( getSelectedProductPrice() ) ) {
       const productName = getProductName();
       const productValue = getSelectedOrderPrice();
       const productUnits = getItemQuantity( '#item-units' );
@@ -148,38 +123,56 @@ function addOrderTotalToSubtotal( orderTotal ){
       addOrderTotalToSubtotal( productValue );
       displaySubtotal();
     }
-  } );
+  });
 
   $( '#clear-cart-button' ).on( 'click', () => {
-    for( let i = 1; i < productOrders.length + 1; i += 1 ){
+    for ( let i = 1; i < productOrders.length + 1; i += 1 ) {
       document.getElementById( 'cart-list' ).deleteRow( -1 );
     }
     productOrders.splice( 0, productOrders.length );
     subtotal = 0;
     displaySubtotal();
-  } );
+  });
 
   const checkoutCalculations = {
+    getOrderTaxes() {
+      return this.orderSubtotal * 0.08;
+    },
+    getOrderShipping() {
+      return this.orderSubtotal * 0.03;
+    },
+    getOrderTotalCost() {
+      return +this.orderSubtotal + +this.orderTaxes + +this.orderShipping;
+    },
 
-    calculateTaxes( orderSubtotal ){
-      return orderSubtotal * 0.08;
+    setOrderValues( newSubtotal ) {
+      this.orderSubtotal = newSubtotal;
+      this.orderTaxes = this.getOrderTaxes();
+      this.orderShipping = this.getOrderShipping();
+      this.orderTotalCost = this.getOrderTotalCost();
     },
-    calculateShipping( orderSubtotal ){
-      return orderSubtotal * 0.03;
-    },
-    calculateTotalCost( orderSubtotal, taxes, shipping ){
-      return Number( orderSubtotal ) + Number( taxes ) + Number( shipping );
+    getOrderValues() {
+      return [
+        +this.orderSubtotal,
+        +this.orderTaxes,
+        +this.orderShipping,
+        +this.orderTotalCost
+      ];
     }
   };
 
   $( '#send-cart-to-checkout-button' ).on( 'click', () => {
-    const orderTaxes = checkoutCalculations.calculateTaxes( subtotal );
-    const orderShipping = checkoutCalculations.calculateShipping( subtotal );
-    const orderTotal = checkoutCalculations.calculateTotalCost( subtotal, orderTaxes, orderShipping );
+    checkoutCalculations.setOrderValues( subtotal );
+    const [
+      initialCost,
+      taxes,
+      shipping,
+      totalCost
+    ] = checkoutCalculations.getOrderValues();
 
-    $( '#checkout-subtotal-value' ).text( `$${Number( subtotal ).toFixed( 2 )}` );
-    $( '#checkout-taxes-value' ).text( `$${Number( orderTaxes ).toFixed( 2 )}` );
-    $( '#checkout-shipping-value' ).text( `$${Number( orderShipping ).toFixed( 2 )}` );
-    $( '#checkout-total-value' ).text( `$${Number( orderTotal ).toFixed( 2 )}` );
-  } );
-} );
+    $( '#checkout-subtotal-value' ).text( `$${Number( initialCost ).toFixed( 2 )}` );
+    $( '#checkout-taxes-value' ).text( `$${Number( taxes ).toFixed( 2 )}` );
+    $( '#checkout-shipping-value' ).text( `$${Number( shipping ).toFixed( 2 )}` );
+    $( '#checkout-total-value' ).text( `$${Number( totalCost ).toFixed( 2 )}` );
+  });
+});
