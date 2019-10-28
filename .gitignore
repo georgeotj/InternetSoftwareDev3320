@@ -1,8 +1,7 @@
 # Created by .ignore support plugin (hsz.mobi)
 .gitignore
-.idea/.gitignore
 .idea/.name
-.idea/InternetSoftwareDev3320-2.iml
+.idea/InternetSoftwareDev3320.iml
 .idea/codeStyles/
 .idea/dbnavigator.xml
 .idea/dictionaries/

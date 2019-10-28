@@ -108,7 +108,7 @@ function checkShippingCity() {
 
 function checkShippingZip() {
   const zipCode = $('#shipping_zipcode');
-  const zipErrorMessage = $('#shipping-zip-error-message');
+  const zipErrorMessage = $( '#shipping-zip-error-message');
   zipErrorMessage.hide();
   const pattern = /(^\d{5}$)|(^\d{5}-\d{4}$)/;
   const formName = zipCode.val();
