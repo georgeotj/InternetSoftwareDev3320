@@ -865,41 +865,41 @@ textarea:valid {
   border-radius: 8px;
 }
 
-/* .shipping-info-panel input[type="text"]:valid:-webkit-autofill { */
+.shipping-info-panel input[type="text"]:valid:-webkit-autofill {
 
-/*  -webkit-animation-name: autofill-accepted; */
+  -webkit-animation-name: autofill-accepted;
 
-/*  -webkit-animation-fill-mode: both; */
+  -webkit-animation-fill-mode: both;
 
-/* } */
+ }
 
-/* .shipping-info-panel input[type="text"]:invalid:-webkit-autofill { */
+ .shipping-info-panel input[type="text"]:invalid:-webkit-autofill {
 
-/*  -webkit-animation-name: autofill-rejected; */
+  -webkit-animation-name: autofill-rejected;
 
-/*  -webkit-animation-fill-mode: both; */
+  -webkit-animation-fill-mode: both;
 
-/* } */
+ }
 
-/* @-webkit-keyframes autofill-accepted { */
+ @-webkit-keyframes autofill-accepted {
 
-/*  to { */
+  to {
 
-/*    background: url("../assets/Images/accepted-img.jpg"); */
+    background: url("../assets/Images/accepted-img.jpg");
 
-/*  } */
+  }
 
-/* } */
+ }
 
-/* @-webkit-keyframes autofill-rejected { */
+ @-webkit-keyframes autofill-rejected {
 
-/*  to { */
+  to {
 
-/*    background: url("../assets/Images/rejected-img.jpg"); */
+    background: url("../assets/Images/rejected-img.jpg");
 
-/*  } */
+  }
 
-/* } */
+ }
 
 .shipping-info-panel select {
   background-color: #f2f3f4;
@@ -1202,4 +1202,14 @@ span.total-value.cost-value {
 
 .card-verification input[type="password"] {
   width: 20%;
+}
+
+.form-is-valid {
+  border: 2px solid lightgreen !important;
+  box-shadow: 0 0 8px 2px rgba(152, 251, 152, 0.75);
+}
+
+.form-is-invalid {
+  border: 2px solid salmon !important;
+  box-shadow: 0 0 8px 2px rgba(250, 128, 114, 0.75);
 }
