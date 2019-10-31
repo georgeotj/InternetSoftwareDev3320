@@ -1,0 +1,134 @@
+<!-- CHECKOUT tab -->
+<div
+        role="main"
+        class="container tab"
+        id="Checkout"
+        style="display: none;"
+>
+    <!-- outer most component for checkout, for general CSS styling -->
+    <div class="checkout-panel">
+        <h2 class="title">Checkout</h2>
+        <div class="checkout-panel-body">
+            <!-- class for total, shipping, tax, amount due-->
+            <div class="cost-fields">
+                <div class="checkout-subtotal checkout-cost-output">
+                    <span class="subtotal-label cost-label">Subtotal</span>
+                    <span class="subtotal-value cost-value" id="checkout-subtotal-value"></span>
+                </div>
+                <div class="checkout-taxes checkout-cost-output">
+                    <span class="taxes-label cost-label">Taxes</span>
+                    <span class="taxes-value cost-value" id="checkout-taxes-value"></span>
+                </div>
+                <div class="checkout-shipping checkout-cost-output">
+                    <span class="shipping-label cost-label">Shipping</span>
+                    <span class="shipping-value cost-value" id="checkout-shipping-value"></span>
+                </div>
+                <hr class="checkout-line" />
+                <div class="checkout-total checkout-cost-output">
+                    <span class="total-label cost-label">Total</span>
+                    <span class="total-value cost-value" id="checkout-total-value"></span>
+                </div>
+            </div>
+
+            <!-- Form to collect user payment data -->
+            <form class="checkout-payment-form">
+                <!-- class for payment method -->
+                <div class="payment-method">
+                    <label for="payment-method-types"></label>
+                    <span
+                            class="error-field"
+                            id="checkout-pay-method-error-message"
+                    ></span>
+                    <!-- selection options -->
+                    <select
+                            id="payment-method-types"
+                            title="Payment Type"
+                            name="payment-types"
+                    >
+                        <option value="" selected="selected">Card Type</option>
+                        <option value="visa-card">VISA</option>
+                        <option value="master-card">Master Card</option>
+                        <option value="american-express-card"
+                        >American Express</option
+                        >
+                    </select>
+                </div>
+
+                <!-- class for user input -->
+                <div class="input-fields">
+                    <div class="column-1">
+                        <div class="payment-card-name">
+                            <label for="payment-card-name">Name on Card </label>
+                            <span
+                                    class="error-field"
+                                    id="checkout-card-name-error-message"
+                            ></span>
+                            <input
+                                    type="text"
+                                    id="payment-card-name"
+                                    placeholder="Full Name"
+                                    required
+                            />
+                        </div>
+                        <div class="payment-card-number">
+                            <label for="payment-card-number">Card Number </label>
+                            <span
+                                    class="error-field"
+                                    id="checkout-card-number-error-message"
+                            ></span>
+                            <input type="text" id="payment-card-number" required />
+                        </div>
+                    </div>
+                    <div class="column-2">
+                        <div class="card-valid-through">
+                            <label for="expiration-date">Valid Through </label>
+                            <span
+                                    class="error-field"
+                                    id="checkout-card-expire-error-message"
+                            ></span>
+                            <input
+                                    type="text"
+                                    id="expiration-date"
+                                    placeholder="MM / YYYY"
+                            />
+                        </div>
+                        <div class="card-verification">
+                            <label for="verification">CVV / CVC</label>
+                            <span
+                                    class="error-field"
+                                    id="checkout-card-cvv-error-message"
+                            ></span>
+                            <input type="password" id="verification" />
+                        </div>
+                    </div>
+                </div>
+                <!-- class for user agreeing to pay -->
+                <div class="purchase-terms-of-service">
+                    <label for="pay-agreement">Agree to Terms of Service</label>
+                    <input
+                            id="pay-agreement"
+                            type="checkbox"
+                            name="terms-of-service"
+                            required
+                    />
+                </div>
+            </form>
+        </div>
+        <div class="checkout-panel-footer">
+            <br />
+            <button type="submit" class="submit-btn checkout-btn">
+                Submit Order
+            </button>
+            <button type="button" class="back-btn checkout-btn">
+                Back to Cart
+            </button>
+            <button type="button" class="cancel-btn checkout-btn">
+                Cancel Order
+            </button>
+        </div>
+    </div>
+    <div class="top-btn">
+        <a class="back-to-top" href="#">Back to Top</a>
+    </div>
+</div>
+<!-- end CHECKOUT tab -->

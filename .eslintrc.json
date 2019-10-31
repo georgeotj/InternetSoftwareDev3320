@@ -53,6 +53,7 @@
         "space-in-parens": ["error", "always", { "exceptions":  ["{}", "[]"] }],
         "no-param-reassign": 0,
         "no-console": 0,
-        "padded-blocks": 0
+        "padded-blocks": 0,
+        "no-use-before-define": 0
     }
 }

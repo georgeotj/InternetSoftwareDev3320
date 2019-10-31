@@ -10,6 +10,7 @@
   "dependencies": {
     "@types/jquery": "^3.3.31",
     "compression": "^1.7.4",
+    "connect-assets": "^6.0.1",
     "cookie-parser": "~1.4.4",
     "core-js": "^3.3.5",
     "cors": "^2.8.5",
