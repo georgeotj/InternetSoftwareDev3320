@@ -60,141 +60,176 @@ $( () => {
   // $.each( storeProducts.products, add);
 
   function selectedProduct() {
-    this.selectedProduct = $( selectedProduct.thisProduct().findSelectionInfo() );
-    this.selectedProductStr = $( selectedProduct.thisProduct.findSelectionStr(
-      this.selectedProduct
-    ) );
-    // this.selectedProductName = selectedProduct.thisProduct.getSelectionName(
-    //   this.selectedProductStr
-    //   );
-    // const selectedProductPrice = selectedProduct.thisProduct.getSelectionPrice(
-    //   this.selectedProductStr
-    //   );
 
-    const thisProduct = {
-      selectedProductName: this.getSelectionName( this.selectedProductStr ),
-      selectedProductPrice: this.getSelectionPrice( this.selectedProductStr ),
+    const [ productName, productPrice ] = thisProduct();
+    const [ productUnits, productTotalPrice ] = thisProductOrder();
 
-      findSelectionInfo() {
+    function thisProduct() {
+      const $userSelectedProduct = findSelectionInfo();
+      const selectedProductStr = findSelectionStr(
+        $userSelectedProduct
+      );
+      const selectedProductName = getSelectionName( selectedProductStr );
+      const selectedProductPrice = getSelectionPrice( selectedProductStr );
+
+      function findSelectionInfo() {
         return productDropDown.find( 'option:selected' );
-      },
+      }
 
-      findSelectionStr( cssSelector ) {
+      function findSelectionStr( cssSelector ) {
         return cssSelector.text();
-      },
+      }
 
-      getSelectionName( selectedProductStr ) {
-        const productDetailsArray = selectedProductStr.split( ' ' );
+      function getSelectionName( productStr ) {
+        const productDetailsArray = productStr.split( ' ' );
         return productDetailsArray[ 0 ].substr( 0,
           productDetailsArray[ 0 ].length - 1 )
           .toString();
-      },
-
-      getSelectionPrice( selectedProductStr ) {
-        return +selectedProductStr.substr( selectedProductStr.indexOf( '$' ) + 1 );
       }
-    };
 
-    this.productUnits = selectedProduct.selectedProductOrder.unitsForOrder();
-    this.productPrice = selectedProduct.selectedProductOrder.orderPrice();
-    const displayOrderPrice = selectedProduct.selectedProductOrder.displayProductOrderPrice();
-
-    const selectedProductOrder = {
-
-      unitsForOrder( numberInput = '#item-units' ) {
-        return this.document.querySelector( numberInput ).val();
-      },
-
-      orderPrice() {
-        return this.unitsForOrder() * selectedProduct.thisProduct.selectedProductPrice;
-      },
-
-      displayProductOrderPrice() {
-        document.getElementById( 'unit-price' ).value = Number.isNaN( this.orderPrice() ) ?
-          0 :
-          this.orderPrice();
+      function getSelectionPrice( productStr ) {
+        return +productStr.substr( productStr.indexOf( '$' ) + 1 );
       }
-    };
+      return [ selectedProductName, selectedProductPrice ];
+    }
+    function thisProductOrder() {
+      function unitsForOrder( numberInput = '#item-units' ) {
+        return $( numberInput ).val();
+      }
+      function orderPrice() {
+        return unitsForOrder() * productPrice;
+      }
+      return [ unitsForOrder(), orderPrice() ];
+    }
+    return [ productName, productUnits, productTotalPrice ];
   }
 
-  const shoppingCart = {
+  function displayProductOrderPrice() {
+    const productPrice = selectedProduct()[ 2 ];
+    document.getElementById( 'unit-price' ).value = Number.isNaN( productPrice ) ?
+      0 :
+      productPrice;
+  }
 
-    orderHandler: {
-      subtotal: 0,
-      productOrderPrices: [],
+  function shoppingCart() {
+      let subtotal = 0;
+      let productOrderPrices = [];
 
-      calculateSubtotal () {
-        this.subtotal =
-          this.productOrderPrices.length > 1 ?
-            this.productOrderPrices.reduce( ( prev, next ) => prev + next, 0 ) :
-            this.productOrderPrices;
-        return this.subtotal;
-      },
+      function calculateSubtotal() {
+        subtotal =
+          productOrderPrices.length > 1 ?
+            productOrderPrices.reduce( ( prev, next ) => prev + next, 0 ) :
+            productOrderPrices;
+        return subtotal;
+      }
 
-      displaySubtotal ( cartSubtotalLabel = '#cart-subtotal-number' ) {
-        cartSubtotalLabel.text( `$${this.calculateSubtotal()}` );
-      },
+      function displaySubtotal ( cartSubtotalLabel = '#cart-subtotal-number' ) {
+        cartSubtotalLabel.text( `$${calculateSubtotal()}` );
+      }
 
-      clearOrders () {
-        for ( let i = 1; i < this.productOrderPrices.length + 1; i += 1 ) {
+      function clearOrders () {
+        for ( let i = 1; i < productOrderPrices.length + 1; i += 1 ) {
           document.getElementById( 'cart-list' ).deleteRow( -1 );
         }
-        this.productOrderPrices = [];
+        productOrderPrices = [];
 
         // this.productOrderPrices.splice( 0, productOrders.length );
-        this.subtotal = 0;
+        subtotal = 0;
       }
 
+
+      function productHandler() {
+        const [ productName, productUnits, productPrice ] = selectedProduct();
+
+        function appendProductToCart ( name, units, price ) {
+          name = productName;
+          units = productUnits;
+          price = productPrice;
+
+          if (
+            selectedProduct()[ 2 ] !== 0 &&
+            !Number.isNaN( selectedProduct()[ 2 ])
+          ) {
+            $( '#cart-list > tbody' ).append( `<tr>
+                                          <td>${name}</td>
+                                          <td>${units}</td>
+                                          <td class="order-total">$${price}</td>
+                                          </tr>` );
+          }
+        }
+
+        function addProductToOrders ( selectedProductPrice ) {
+          productOrderPrices.push( selectedProductPrice );
+        }
+        return [ appendProductToCart(), addProductToOrders() ];
+      }
+      const [ addToCart, addToOrders ] = productHandler();
+
+      return [ displaySubtotal(), addToCart, addToOrders, clearOrders(), calculateSubtotal() ];
+  }
+
+  const checkoutCalculations = {
+    getOrderTaxes() {
+      return this.orderSubtotal * 0.08;
+    },
+    getOrderShipping() {
+      return this.orderSubtotal * 0.03;
+    },
+    getOrderTotalCost() {
+      return +this.orderSubtotal + +this.orderTaxes + +this.orderShipping;
     },
 
-    productHandler: {
-      productName: selectedProduct.selectedProductName,
-      productUnits: selectedProduct.productUnits,
-      productPrice: selectedProduct.productPrice,
-
-      appendProductToCart ( name, units, price ) {
-        name = this.productName;
-        units = this.productUnits;
-        price = this.productPrice;
-
-        if (
-          selectedProduct.selectedProductOrder.orderPrice() !== 0 &&
-          !Number.isNaN( selectedProduct.selectedProductPrice )
-        ) {
-          $( '#cart-list > tbody' ).append( `<tr>
-                                      <td>${name}</td>
-                                      <td>${units}</td>
-                                      <td class="order-total">$${price}</td>
-                                      </tr>` );
-        }
-      },
-
-      addProductToOrders ( selectedProductPrice ) {
-        this.order.productOrderPrices.push( selectedProductPrice );
-      }
+    setOrderValues( newSubtotal ) {
+      this.orderSubtotal = newSubtotal;
+      this.orderTaxes = this.getOrderTaxes();
+      this.orderShipping = this.getOrderShipping();
+      this.orderTotalCost = this.getOrderTotalCost();
+    },
+    getOrderValues() {
+      return [
+        +this.orderSubtotal,
+        +this.orderTaxes,
+        +this.orderShipping,
+        +this.orderTotalCost
+      ];
     }
-
   };
 
+  $( '#send-cart-to-checkout-button' ).on( 'click', () => {
+    checkoutCalculations.setOrderValues( shoppingCart()[ 5 ]);
+    const [
+      initialCost,
+      taxes,
+      shipping,
+      totalCost
+    ] = checkoutCalculations.getOrderValues();
+
+    $( '#checkout-subtotal-value' ).text( `$${Number( initialCost ).toFixed( 2 )}` );
+    $( '#checkout-taxes-value' ).text( `$${Number( taxes ).toFixed( 2 )}` );
+    $( '#checkout-shipping-value' ).text( `$${Number( shipping ).toFixed( 2 )}` );
+    $( '#checkout-total-value' ).text( `$${Number( totalCost ).toFixed( 2 )}` );
+  });
 
   $( '#item-units' ).on( 'change', () => {
-    selectedProduct.selectedProductOrder.displayOrderPrice();
+    displayProductOrderPrice();
   });
 
   productDropDown.on( 'change', () => {
-    selectedProduct.selectedProductOrder.displayProductOrderPrice();
+    displayProductOrderPrice();
   });
 
   $( '#add-item-to-cart-button' ).on( 'click', () => {
-    shoppingCart.productHandler.appendProductToCart();
-    shoppingCart.productHandler.addProductToOrders();
-
-    shoppingCart.orderHandler.displaySubtotal();
+    const [ showSubtotal, addToCart, addToOrders ] = shoppingCart();
+    addToOrders();
+    addToCart();
+    showSubtotal();
   });
 
   $( '#clear-cart-button' ).on( 'click', () => {
-    shoppingCart.orderHandler.clearOrders();
-    shoppingCart.orderHandler.displaySubtotal();
+    const showSubtotal = shoppingCart()[ 0 ];
+    const clearOrders = shoppingCart()[ 3 ];
+    clearOrders();
+    showSubtotal();
   });
 
 
