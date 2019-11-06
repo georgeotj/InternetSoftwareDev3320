@@ -40,6 +40,6 @@ const userInformationSchema = new Schema({
       unique: false
 }
   });
-  const UserInformation = mongoose.model( 'userInformation', userInformationSchema );
+  const UsersInformation = mongoose.model( 'userInformation', userInformationSchema );
 
-module.exports = UserInformation;
+module.exports = UsersInformation;

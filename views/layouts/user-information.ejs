@@ -72,7 +72,7 @@
             <!-- use HTTP post method for sensitive information-->
             <form
                     class="register-user-form"
-                    action="/my-handling-form-page"
+                    action="/users/sign_up"
                     method="POST"
             >
                 <!-- TODO: Combine First Name and Last Name into the "Full Name" Field-->
@@ -260,8 +260,8 @@
                     </div>
                 </div>
                 <br />
-                <div class="create-user-buttons">
-                    <button class="create-user-button">Create</button>
+                <div class="register-user-buttons">
+                    <button id= "register-user-btn" class="register-user-button disabled-button" disabled>Register</button>
                     <button class="reset-user-fields-button">Reset</button>
                 </div>
             </form>

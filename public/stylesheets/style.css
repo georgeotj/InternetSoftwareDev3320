@@ -464,7 +464,7 @@ span.register-optional {
   width: 30%;
 }
 
-.register-user-form .create-user-buttons button {
+.register-user-form .register-user-buttons button {
   background-color: #151a2f;
   border: none;
   border-radius: 8px;
@@ -493,7 +493,7 @@ input#user_city {
   flex-direction: column;
 }
 
-.register-user-form .create-user-buttons button:hover {
+.register-user-form .register-user-buttons button:hover {
   background-color: #917a90;
 }
 
@@ -1212,4 +1212,14 @@ span.total-value.cost-value {
 .form-is-invalid {
   border: 2px solid salmon !important;
   box-shadow: 0 0 8px 2px rgba(250, 128, 114, 0.75);
+}
+
+#register-user-btn.disabled-button {
+  /* border: 1px solid #ababab; */
+  background-color: rgba(54, 51, 58, 0.61);
+  color: #a9a6a6;
+  box-shadow: 0 0 8px 2px rgba(250, 128, 114, 0.75);
+}
+#register-user-btn.disabled-button:hover {
+  box-shadow: 0 0 8px 2px rgba(76, 6, 6, 0.75);
 }

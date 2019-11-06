@@ -20,6 +20,6 @@ const userCredentialsSchema = new Schema({
     unique: false
   }
 });
-const UserCredentials = mongoose.model( 'userCredentials', userCredentialsSchema );
+const UsersCredentials = mongoose.model( 'userCredentials', userCredentialsSchema );
 
-module.exports = UserCredentials;
+module.exports = UsersCredentials;

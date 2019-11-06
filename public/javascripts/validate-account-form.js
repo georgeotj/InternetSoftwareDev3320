@@ -220,8 +220,35 @@ function checkAccountZipValid() {
   }
 }
 
+function isFormValid() {
+  isAccountAddress1Valid = true;
+  isAccountAddress2Valid = true;
+  isAccountCityValid = true;
+  isAccountZipValid = true;
+
+  checkUserFirstNameValid();
+  checkUserLastNameValid();
+  checkUserPhoneValid();
+  checkUserEmailValid();
+  checkUserAddress1Valid();
+  checkUserAddress2Valid2();
+  checkAccountCityValid();
+  checkAccountZipValid();
+
+  if ( isAccountStateValid && isAccountZipValid && isAccountCityValid &&
+    isAccountAddress1Valid && isAccountFirstNameValid && isAccountLastNameValid &&
+    isAccountPhoneValid && isAccountEmailValid === true ) {
+    $( '.register-user-form' ).removeAttribute( 'disabled' );
+    $( '#register-user-btn' ).removeClass( '.disabled-button' );
+  }else {
+    $( '.register-user-form' ).attr( 'disabled', 'disabled' );
+    $( '#register-user-btn' ).addClass( '.disabled-button' );
+
+  }
+}
+
 /* eslint no-multiple-empty-lines:0 */
-$( document ).ready( () => {
+$( () => {
   const userName = $( '#user_first_name' );
   const userLastName = $( '#user_last_name' );
   const userPhone = $( '#user_phone' );
@@ -236,6 +263,7 @@ $( document ).ready( () => {
 
   userName.on( 'change keyup', () => {
     checkUserFirstNameValid();
+    isFormValid();
   });
   userLastName.on( 'change keyup', () => {
     checkUserLastNameValid();
@@ -262,28 +290,28 @@ $( document ).ready( () => {
     checkAccountZipValid();
   });
 
-  $( '.shipping-info-form' ).on( 'submit', () => {
-    isAccountAddress1Valid = true;
-    isAccountAddress2Valid = true;
-    isAccountCityValid = true;
-    isAccountZipValid = true;
-
-    checkUserFirstNameValid();
-    checkUserLastNameValid();
-    checkUserPhoneValid();
-    checkUserEmailValid();
-    checkUserAddress1Valid();
-    checkUserAddress2Valid2();
-    checkAccountCityValid();
-    checkAccountZipValid();
-
-    if ( isAccountStateValid && isAccountZipValid && isAccountCityValid &&
-      isAccountAddress1Valid && isAccountFirstNameValid && isAccountLastNameValid &&
-      isAccountPhoneValid && isAccountEmailValid === true ) {
-      alert( 'Account Created' );
-      return true;
-    }
-    alert( 'Check Required Fields' );
-    return false;
-  });
+  // $( '.register-user-form' ).on( 'submit', () => {
+  //   isAccountAddress1Valid = true;
+  //   isAccountAddress2Valid = true;
+  //   isAccountCityValid = true;
+  //   isAccountZipValid = true;
+  //
+  //   checkUserFirstNameValid();
+  //   checkUserLastNameValid();
+  //   checkUserPhoneValid();
+  //   checkUserEmailValid();
+  //   checkUserAddress1Valid();
+  //   checkUserAddress2Valid2();
+  //   checkAccountCityValid();
+  //   checkAccountZipValid();
+  //
+  //   if ( isAccountStateValid && isAccountZipValid && isAccountCityValid &&
+  //     isAccountAddress1Valid && isAccountFirstNameValid && isAccountLastNameValid &&
+  //     isAccountPhoneValid && isAccountEmailValid === true ) {
+  //     alert( 'Account Created' );
+  //     return true;
+  //   }
+  //   alert( 'Check Required Fields' );
+  //   return false;
+  // });
 });
