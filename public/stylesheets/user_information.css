@@ -88,7 +88,7 @@ input[type="tel"] {
   position: relative;
 }
 
-.register-user-form .create-user-buttons button,
+.register-user-form .register-user-buttons button,
 button[type="submit"],
 button[type="reset"] {
   background-color: #151a2f;
