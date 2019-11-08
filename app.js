@@ -7,18 +7,39 @@ const cors = require( 'cors' );
 
 const morgan = require( 'morgan' );
 
+const errorHandler = require( 'errorhandler' );
+
 const compression = require( 'compression' );
 
 const helmet = require( 'helmet' );
+
+const cookieParser = require( 'cookie-parser' );
 
 const router = express.Router();
 
 const assets = require( 'connect-assets' );
 
+const bodyParser = require( 'body-parser' );
+
+const db = require( './config/database' );
+
+const models = require( './models' );
+
+const registerUser = require( './routes/users' );
+
 const port = process.env.PORT || 3000;
 
 // Log all request with morgan common
 app.use( morgan( 'common' ) );
+
+if ( process.env.NODE_ENV === 'development' ) {
+  app.use( errorHandler({
+    dumpExceptions: true,
+    showStack: true
+  }) );
+}
+
+app.use( cookieParser() );
 
 // Asset compiler and minimizer
 app.use( assets({
@@ -27,6 +48,13 @@ app.use( assets({
     'public/javascripts'
   ]
 }) );
+
+// Use the body-parser middleware in the app
+app.use( bodyParser.urlencoded({
+  extended: false
+}) );
+
+app.use( bodyParser.json() );
 
 // Helmet has 9 API middleware to prevent several attacks in HTTP
 // Adds security to HTTP header
@@ -59,11 +87,42 @@ router.get( '/', ( request, response ) => {
   response.render( 'index' );
 });
 
+router.get( '/states', ( request, response ) => {
+  models.States.find({}).then( ( states ) => {
+    response.send({ states });
+  });
+});
+
 // Add the router to the application
 app.use( '/', router );
+app.use( '/users', registerUser );
+
+// app.post( '/users/sign_up', ( req, res ) => {
+//   res.send( 'Successfully Signed Up!!' );
+// });
+
+// Add the database to the application
+
+db( ( error ) => {
+  if ( error ) {
+    console.log( `MongoDB event error: ${error}` );
+    process.exit( 1 );
+  }
+});
+
+process.once( 'unhandledRejection', ( err ) => {
+  console.log( 'UNHANDLED_REJECTION: ', err.stack.toString() );
+  process.exit( 1 );
+});
+
+process.once( 'uncaughtException', ( err ) => {
+  console.log( 'UNHANDLED_EXCEPTION: ', err.stack.toString() );
+  process.exit( 1 );
+});
+
 
 // Set Server listening at PORT environment variable or 3000
-// app.listen( port );
+app.listen( port );
 // eslint-disable-next-line no-console
 console.log( 'Server listening on http://localhost:%s', port );
 

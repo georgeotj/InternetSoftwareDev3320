@@ -10,7 +10,10 @@
         "standard",
         "promise",
         "css-modules",
-        "deprecate"
+        "deprecate",
+      "node",
+      "promise",
+      "jasmine"
     ],
     "extends": [
         "airbnb-base",
@@ -54,6 +57,7 @@
         "no-param-reassign": 0,
         "no-console": 0,
         "padded-blocks": 0,
-        "no-use-before-define": 0
+        "no-use-before-define": 0,
+        "arrow-body-style": ["error", "always"]
     }
 }

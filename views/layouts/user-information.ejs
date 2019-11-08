@@ -13,19 +13,19 @@
                 <div class="user-information-block ">
                     <span class="name-label user-info-label">Name</span>
                     <span class="name-value user-info-value"
-                    >{{{user-full-name}}}</span
+                    ></span
                     >
                 </div>
                 <div class="user-information-block">
                     <span class="address-1-label user-info-label">Address 1</span>
                     <span class="address-1-value user-info-value"
-                    >{{{user-address-1}}}</span
+                    ></span
                     >
                 </div>
                 <div class="user-information-block">
                     <span class="address-2-label user-info-label">Address 2</span>
                     <span class="address-2-value user-info-value"
-                    >{{{user-address-2}}}</span
+                    ></span
                     >
                 </div>
                 <div class="user-information-block">
@@ -35,25 +35,25 @@
                 <div class="user-information-block">
                     <span class="state-label user-info-label">state</span>
                     <span class="state-value user-info-value"
-                    >{{{user-state}}}</span
+                    ></span
                     >
                 </div>
                 <div class="user-information-block">
                     <span class="zip-code-label user-info-label">Zip Code</span>
                     <span class="zip-code-value user-info-value"
-                    >{{{user-zip-code}}}</span
+                    ></span
                     >
                 </div>
                 <div class="user-information-block">
                     <span class="phone-label user-info-label">phone</span>
                     <span class="phone-value user-info-value"
-                    >{{{user-phone}}}</span
+                    ></span
                     >
                 </div>
                 <div class="user-information-block">
                     <span class="email-label user-info-label">email</span>
                     <span class="email-value user-info-value"
-                    >{{{user-email}}}</span
+                    ></span
                     >
                 </div>
             </div>
@@ -72,7 +72,7 @@
             <!-- use HTTP post method for sensitive information-->
             <form
                     class="register-user-form"
-                    action="/my-handling-form-page"
+                    action="/users/sign_up"
                     method="POST"
             >
                 <!-- TODO: Combine First Name and Last Name into the "Full Name" Field-->
@@ -260,8 +260,8 @@
                     </div>
                 </div>
                 <br />
-                <div class="create-user-buttons">
-                    <button class="create-user-button">Create</button>
+                <div class="register-user-buttons">
+                    <button id= "register-user-btn" class="register-user-button disabled-button" disabled>Register</button>
                     <button class="reset-user-fields-button">Reset</button>
                 </div>
             </form>
