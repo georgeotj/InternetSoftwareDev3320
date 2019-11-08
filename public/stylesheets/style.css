@@ -395,7 +395,8 @@ a.back-to-top {
   display: flex;
   -ms-flex-direction: column;
   flex-direction: column;
-  margin: 5% 15%;
+  margin: 3% 15%;
+  width: auto;
 }
 
 .user-information-block {
@@ -404,7 +405,7 @@ a.back-to-top {
   display: flex;
   -ms-flex-direction: row;
   flex-direction: row;
-  margin: 1% 1% 2%;
+  margin: 1% 1% 2% 10%;
 }
 
 .user-info-label {
@@ -412,10 +413,17 @@ a.back-to-top {
   -ms-flex: 1;
   flex: 1;
   justify-items: flex-start;
+  /*min-width: fit-content;*/
+  min-width: 25%;
 }
 
 .user-info-value {
   padding-left: 20%;
+  width: -webkit-fill-available;
+  text-align: left;
+  font-size: 2vh;
+  align-self: center;
+  font-weight: bold;
 }
 
 .register-user-form {
@@ -1218,8 +1226,8 @@ span.total-value.cost-value {
   /* border: 1px solid #ababab; */
   background-color: rgba(54, 51, 58, 0.61);
   color: #a9a6a6;
-  box-shadow: 0 0 8px 2px rgba(250, 128, 114, 0.75);
+  box-shadow: 0 0 8px 2px #595959;
 }
 #register-user-btn.disabled-button:hover {
-  box-shadow: 0 0 8px 2px rgba(76, 6, 6, 0.75);
+  box-shadow: 0 0 8px 6px rgba(76, 6, 6, 0.75);
 }
