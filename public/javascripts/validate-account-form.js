@@ -221,10 +221,16 @@ function checkAccountZipValid() {
 }
 
 function isFormValid() {
+  const registerButton = $( '#register-user-btn' );
+
   isAccountAddress1Valid = true;
   isAccountAddress2Valid = true;
   isAccountCityValid = true;
   isAccountZipValid = true;
+  isAccountEmailValid = true;
+  isAccountPhoneValid = true;
+  isAccountLastNameValid = true;
+  isAccountFirstNameValid = true;
 
   checkUserFirstNameValid();
   checkUserLastNameValid();
@@ -238,11 +244,12 @@ function isFormValid() {
   if ( isAccountStateValid && isAccountZipValid && isAccountCityValid &&
     isAccountAddress1Valid && isAccountFirstNameValid && isAccountLastNameValid &&
     isAccountPhoneValid && isAccountEmailValid === true ) {
-    $( '.register-user-form' ).removeAttribute( 'disabled' );
-    $( '#register-user-btn' ).removeClass( '.disabled-button' );
+    $( '.register-user-form' ).removeAttr( 'disabled' );
+    registerButton.removeAttr( 'disabled' );
+    registerButton.removeClass( 'disabled-button' );
   }else {
     $( '.register-user-form' ).attr( 'disabled', 'disabled' );
-    $( '#register-user-btn' ).addClass( '.disabled-button' );
+    registerButton.addClass( 'disabled-button' );
 
   }
 }
@@ -267,51 +274,33 @@ $( () => {
   });
   userLastName.on( 'change keyup', () => {
     checkUserLastNameValid();
+    isFormValid();
   });
   userPhone.on( 'change keyup', () => {
     checkUserPhoneValid();
+    isFormValid();
   });
   userEmail.on( 'change keyup', () => {
     checkUserEmailValid();
+    isFormValid();
   });
   address1.on( 'change keyup', () => {
     checkUserAddress1Valid();
+    isFormValid();
   });
   address2.on( 'change keyup', () => {
     checkUserAddress2Valid2();
   });
   state.on( 'change keyup', () => {
     checkAccountStateValid();
+    isFormValid();
   });
   city.on( 'change keyup', () => {
     checkAccountCityValid();
+    isFormValid();
   });
   zipCode.on( 'change keyup', () => {
     checkAccountZipValid();
+    isFormValid();
   });
-
-  // $( '.register-user-form' ).on( 'submit', () => {
-  //   isAccountAddress1Valid = true;
-  //   isAccountAddress2Valid = true;
-  //   isAccountCityValid = true;
-  //   isAccountZipValid = true;
-  //
-  //   checkUserFirstNameValid();
-  //   checkUserLastNameValid();
-  //   checkUserPhoneValid();
-  //   checkUserEmailValid();
-  //   checkUserAddress1Valid();
-  //   checkUserAddress2Valid2();
-  //   checkAccountCityValid();
-  //   checkAccountZipValid();
-  //
-  //   if ( isAccountStateValid && isAccountZipValid && isAccountCityValid &&
-  //     isAccountAddress1Valid && isAccountFirstNameValid && isAccountLastNameValid &&
-  //     isAccountPhoneValid && isAccountEmailValid === true ) {
-  //     alert( 'Account Created' );
-  //     return true;
-  //   }
-  //   alert( 'Check Required Fields' );
-  //   return false;
-  // });
 });
