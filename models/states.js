@@ -1,17 +1,30 @@
 const mongoose = require( 'mongoose' );
-const GenerateSchema = require( 'generate-schema' );
+
 
 // Equivalent to "Schema = mongoose.Schema"
 const { Schema } = mongoose;
 
-const stateJSON = require( '../config/statesJSON' );
+const stateNames = [ 'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
+  'Connecticut', 'Delaware', 'District of Columbia', 'Florida', 'Georgia',
+  'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas',
+  'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan',
+  'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
+  'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon',
+  'Pennsylvania', 'Puerto Rico', 'Rhode Island', 'South Carolina', 'South Dakota',
+  'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia',
+  'Wisconsin', 'Wyoming' ];
 
-const schema = GenerateSchema.json( 'States', stateJSON );
+const stateSchema = new Schema({
+  name: {
+    type: String,
+    required: true,
+    unique: false,
+    enum: stateNames
+    }
+  },
+  { collection: 'states' });
 
-
-const statesSchema = new Schema( schema );
-
-const States = mongoose.model( 'user', statesSchema );
+const States = mongoose.model( 'states', stateSchema );
 
 module.exports = States;
 

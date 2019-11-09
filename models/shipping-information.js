@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 
 const shippingInformationSchema = new Schema({
   userID: {
-    type: Number,
+    type: String,
     required: true,
     unique: true
 },
@@ -33,13 +33,8 @@ const shippingInformationSchema = new Schema({
     type: String,
     required: true,
     unique: false
-},
-  shipping_equal_billing: {
-    type: Boolean,
-    required: false,
-    unique: false
 }
 });
-const shippingInformation = mongoose.model( 'shipping', shippingInformationSchema );
+const shippingInformation = mongoose.model( 'shippingInformation', shippingInformationSchema );
 
 module.exports = shippingInformation;

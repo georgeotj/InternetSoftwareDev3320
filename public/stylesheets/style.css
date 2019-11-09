@@ -701,7 +701,7 @@ table#cart-list tr th {
 
 table#cart-list tr td {
   text-align: center;
-  padding: 3%;
+  padding: 2.5%;
   font-size: 2.2vh;
 }
 
@@ -867,8 +867,25 @@ textarea:valid {
   color: rgba(255, 240, 239, 0.75);
 }
 
+#billing-address-error-message.error-field {
+  display: block;
+  font-size: 4vh;
+  color: #ff0000;
+  font-weight: bold;
+  text-align-last: center;
+  margin-top: -2%;
+  margin-bottom: 2%;
+  animation: blink 3.5s linear 3;
+}
+
+@keyframes blink{
+  0%{opacity: 0;}
+  50%{opacity: .5;}
+  100%{opacity: 1;}
+}
+
 .shipping-info-panel input[type="text"]:focus {
-  background-color: #f2f3f4;
+  /*background-color: #f2f3f4;*/
   border: 2px solid #c1b5e4;
   border-radius: 8px;
 }
@@ -1212,22 +1229,28 @@ span.total-value.cost-value {
   width: 20%;
 }
 
-.form-is-valid {
+.field-is-valid {
   border: 2px solid lightgreen !important;
   box-shadow: 0 0 8px 2px rgba(152, 251, 152, 0.75);
+  background: url("../assets/Images/accepted-img.jpg");
 }
 
-.form-is-invalid {
+.field-is-invalid {
   border: 2px solid salmon !important;
   box-shadow: 0 0 8px 2px rgba(250, 128, 114, 0.75);
+  background: url("../assets/Images/rejected-img.jpg");
 }
 
-#register-user-btn.disabled-button {
+#register-user-btn.disabled-button,
+#submit-payment-information-btn.disabled-button,
+#shipping-info-submit-btn.disabled-button {
   /* border: 1px solid #ababab; */
   background-color: rgba(54, 51, 58, 0.61);
   color: #a9a6a6;
   box-shadow: 0 0 8px 2px #595959;
 }
-#register-user-btn.disabled-button:hover {
+#register-user-btn.disabled-button:hover,
+#submit-payment-information-btn.disabled-button:hover,
+#shipping-info-submit-btn.disabled-button:hover {
   box-shadow: 0 0 8px 6px rgba(76, 6, 6, 0.75);
 }

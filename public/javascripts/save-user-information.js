@@ -20,7 +20,7 @@ function setUserOverview() {
   const userEmail = $( '#user_email' ).val();
   const address1 = $( '#user_address_1' ).val();
   const address2 = $( '#user_address_2' ).val();
-  const state = $( '#user_state' ).val();
+  const state = $( '#user_state option:selected' ).text();
   const city = $( '#user_city' ).val();
   const zipCode = $( '#user_zipcode' ).val();
 
@@ -50,7 +50,7 @@ function submitUserForm() {
   const userEmail = $( '#user_email' ).val();
   const address1 = $( '#user_address_1' ).val();
   const address2 = $( '#user_address_2' ).val();
-  const state = $( '#user_state' ).val();
+  const state = $( '#user_state option:selected' ).text();
   const city = $( '#user_city' ).val();
   const zipCode = $( '#user_zipcode' ).val();
 

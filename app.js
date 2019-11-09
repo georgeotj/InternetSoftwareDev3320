@@ -21,11 +21,13 @@ const assets = require( 'connect-assets' );
 
 const bodyParser = require( 'body-parser' );
 
-const db = require( './config/database' );
+const mongoDB = require( './config/database' );
 
 const models = require( './models' );
 
-const registerUser = require( './routes/users' );
+const users = require( './routes/users' );
+const products = require( './routes/products' );
+
 
 const port = process.env.PORT || 3000;
 
@@ -50,9 +52,7 @@ app.use( assets({
 }) );
 
 // Use the body-parser middleware in the app
-app.use( bodyParser.urlencoded({
-  extended: false
-}) );
+app.use( bodyParser.urlencoded({ extended: false }) );
 
 app.use( bodyParser.json() );
 
@@ -79,6 +79,14 @@ app.use( '/public', express.static( path.join( __dirname, '/public' ) ) );
 app.set( 'view engine', 'ejs' );
 app.set( 'views', path.resolve( __dirname, 'views' ) );
 
+// Add the database to the application
+mongoDB( ( error ) => {
+  if ( error ) {
+    console.log( `MongoDB event error: ${error}` );
+    process.exit( 1 );
+  }
+});
+
 // Add path to HTML file to the router
 router.get( '/', ( request, response ) => {
 
@@ -89,26 +97,17 @@ router.get( '/', ( request, response ) => {
 
 router.get( '/states', ( request, response ) => {
   models.States.find({}).then( ( states ) => {
+    console.log( 'Sending states response' );
     response.send({ states });
+    console.log( 'GET /states Response:    %j', states );
   });
 });
 
 // Add the router to the application
 app.use( '/', router );
-app.use( '/users', registerUser );
+app.use( '/users', users );
+app.use( '/products', products );
 
-// app.post( '/users/sign_up', ( req, res ) => {
-//   res.send( 'Successfully Signed Up!!' );
-// });
-
-// Add the database to the application
-
-db( ( error ) => {
-  if ( error ) {
-    console.log( `MongoDB event error: ${error}` );
-    process.exit( 1 );
-  }
-});
 
 process.once( 'unhandledRejection', ( err ) => {
   console.log( 'UNHANDLED_REJECTION: ', err.stack.toString() );
