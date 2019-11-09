@@ -4,6 +4,7 @@ let isCardNameValid = true;
 let isCardNumberValid = true;
 let isCardExpireValid = true;
 let isCardCodeValid = true;
+let isPaymentAgreedTo = false;
 
 function checkNameOnCard() {
   const cardName = $( '#payment-card-name' );
@@ -11,8 +12,8 @@ function checkNameOnCard() {
   cardNameErrorMessage.hide();
 
   const pattern = /^([\w]{3,})+\s+([\w\s]{3,})+$/i;
-  const formName = cardName.val();
-  if ( pattern.test( formName ) && formName !== '' ) {
+  const fieldName = cardName.val();
+  if ( pattern.test( fieldName ) && fieldName !== '' ) {
     cardNameErrorMessage.hide();
     cardName.css( 'border', '2px solid lightgreen' );
     cardName.css( 'box-shadow', '0 0 8px 2px rgba(152, 251, 152, 0.75)' );
@@ -40,8 +41,11 @@ function checkCardNumberValid() {
   const visaPattern = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
   const mastPattern = /^(?:5[1-5][0-9]{14})$/;
   const discPattern = /^(?:6(?:011|5[0-9][0-9])[0-9]{12})$/;
-  const formName = cardNumber.val();
-  if ( visaPattern.test( formName ) || mastPattern.test( formName ) || discPattern.test( formName ) && formName !== '' ) {
+  const fieldValue = cardNumber.val();
+  // eslint-disable-next-line no-mixed-operators
+  if ( visaPattern.test( fieldValue ) || mastPattern.test( fieldValue ) ||
+    // eslint-disable-next-line no-mixed-operators
+    discPattern.test( fieldValue ) && fieldValue !== '' ) {
     cardNumberErrorMessage.hide();
     cardNumber.css( 'border', '2px solid lightgreen' );
     cardNumber.css( 'box-shadow', '0 0 8px 2px rgba(152, 251, 152, 0.75)' );
@@ -86,13 +90,13 @@ function checkCardType() {
 }
 
 function checkCardExpireDate() {
-  const cardExpire = $( '#expiration-date' );
+  const cardExpire = $( '#payment-expiration-date' );
   const cardExpireErrorMessage = $( '#checkout-card-expire-error-message' );
   cardExpireErrorMessage.hide();
 
   const pattern = /^\d{2}\/\d{2}$/;
-  const formName = cardExpire.val();
-  if ( pattern.test( formName ) && formName !== '' ) {
+  const fieldValue = cardExpire.val();
+  if ( pattern.test( fieldValue ) && fieldValue !== '' ) {
     cardExpireErrorMessage.hide();
     cardExpire.css( 'border', '2px solid lightgreen' );
     cardExpire.css( 'box-shadow', '0 0 8px 2px rgba(152, 251, 152, 0.75)' );
@@ -113,12 +117,12 @@ function checkCardExpireDate() {
 }
 
 function checkCardCVV() {
-  const cardCVV = $( '#verification' );
+  const cardCVV = $( '#payment-card-verification' );
   const cardCVVErrorMessage = $( '#checkout-card-cvv-error-message' );
   cardCVVErrorMessage.hide();
   const pattern = /^[0-9]{3,4}$/;
-  const formName = cardCVV.val();
-  if ( pattern.test( formName ) && formName !== '' ) {
+  const fieldValue = cardCVV.val();
+  if ( pattern.test( fieldValue ) && fieldValue !== '' ) {
     cardCVVErrorMessage.hide();
     cardCVV.css( 'border', '2px solid lightgreen' );
     cardCVV.css( 'box-shadow', '0 0 8px 2px rgba(152, 251, 152, 0.75)' );
@@ -132,56 +136,78 @@ function checkCardCVV() {
   }
 }
 
+function checkPaymentAgreement() {
+  const paymentAgreement = $( '#pay-agreement' );
+
+  if ( paymentAgreement.is( ':checked' ) ) {
+    isPaymentAgreedTo = true;
+  }else {
+    isPaymentAgreedTo = false;
+  }
+
+}
+
+function isCheckoutFormValid() {
+  const checkoutButton = $( '#submit-payment-information-btn' );
+
+  isCardTypeValid = true;
+  isCardNameValid = true;
+  isCardNumberValid = true;
+  isCardExpireValid = true;
+  isCardCodeValid = true;
+  isPaymentAgreedTo = false;
+
+  checkNameOnCard();
+  checkCardNumberValid();
+  checkCardExpireDate();
+  checkCardCVV();
+  checkCardType();
+  checkPaymentAgreement();
+
+  if ( isCardNumberValid && isCardCodeValid && isCardExpireValid && isCardTypeValid &&
+    isCardNameValid && isPaymentAgreedTo === true ) {
+    $( '.checkout-payment-form' ).removeAttr( 'disabled' );
+    checkoutButton.removeAttr( 'disabled' );
+    checkoutButton.removeClass( 'disabled-button' );
+  }else {
+    $( '.checkout-payment-form' ).attr( 'disabled', 'disabled' );
+    checkoutButton.addClass( 'disabled-button' );
+
+  }
+}
+
 /* eslint no-multiple-empty-lines:0 */
 $( document ).ready( () => {
   const cardName = $( '#payment-card-name' );
   const cardNumber = $( '#payment-card-number' );
   const cardType = $( '#payment-method-types' );
-  const cardExpire = $( '#expiration-date' );
-  const cardCVV = $( '#verification' );
+  const cardExpire = $( '#payment-expiration-date' );
+  const cardCVV = $( '#payment-card-verification' );
+  const paymentAgreement = $( '#pay-agreement' );
 
 
   cardName.on( 'change keyup', () => {
     checkNameOnCard();
+    isCheckoutFormValid();
   });
   cardNumber.on( 'change keyup', () => {
     checkCardNumberValid();
+    isCheckoutFormValid();
   });
   cardType.on( 'change keyup', () => {
     checkCardType();
+    isCheckoutFormValid();
   });
   cardExpire.on( 'change keyup', () => {
     checkCardExpireDate();
+    isCheckoutFormValid();
   });
   cardCVV.on( 'change keyup', () => {
     checkCardCVV();
+    isCheckoutFormValid();
   });
-
-  $( '.shipping-info-form' ).submit( () => {
-    isCardTypeValid = true;
-    isCardNameValid = true;
-    isCardExpireValid = true;
-    isCardCodeValid = true;
-
-    checkNameOnCard();
-    checkCardNumberValid();
-    checkCardExpireDate();
-    checkCardCVV();
-    checkCardType();
-
-    if ( isCardNumberValid && isCardCodeValid && isCardExpireValid && isCardTypeValid &&
-      isCardNameValid === true ) {
-      alert( 'Shipping Address Saved' );
-      return true;
-    }
-    alert( 'Please Fill Out a Shipping Address' );
-    return false;
+  paymentAgreement.on( 'change keyup', () => {
+    checkPaymentAgreement();
+    isCheckoutFormValid();
   });
-
-
-
-  // $('#payment-card-name').on('input', function () {
-  //   let address_1_v2 = $(this).val();
-  //   alert(address_1_v2);
-  // });
 });

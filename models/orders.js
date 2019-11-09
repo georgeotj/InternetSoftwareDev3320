@@ -7,24 +7,26 @@ const ordersSchema = new Schema({
 
   // userID, orderNumber, and productID should be a primary key together
   userID: {
-    type: Number,
+    type: String,
     required: true,
     unique: true
   },
   orderNumber: {
-    type: Number,
+    type: Schema.Types.ObjectId,
     required: true,
     unique: true
   },
-  productID: {
-    type: Number,
-    required: true,
-    unique: true
-  },
-  quantity: {
-    type: Number,
-    required: true,
-    unique: false
+  items: {
+    itemID: {
+      type: Number,
+      required: true,
+      unique: true
+    },
+    quantity: {
+      type: Number,
+      required: true,
+      unique: false
+    }
   },
   totalPrice: {
     type: Number,

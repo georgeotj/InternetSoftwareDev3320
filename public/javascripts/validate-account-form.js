@@ -220,7 +220,7 @@ function checkAccountZipValid() {
   }
 }
 
-function isFormValid() {
+function isUserFormValid() {
   const registerButton = $( '#register-user-btn' );
 
   isAccountAddress1Valid = true;
@@ -270,37 +270,37 @@ $( () => {
 
   userName.on( 'change keyup', () => {
     checkUserFirstNameValid();
-    isFormValid();
+    isUserFormValid();
   });
   userLastName.on( 'change keyup', () => {
     checkUserLastNameValid();
-    isFormValid();
+    isUserFormValid();
   });
   userPhone.on( 'change keyup', () => {
     checkUserPhoneValid();
-    isFormValid();
+    isUserFormValid();
   });
   userEmail.on( 'change keyup', () => {
     checkUserEmailValid();
-    isFormValid();
+    isUserFormValid();
   });
   address1.on( 'change keyup', () => {
     checkUserAddress1Valid();
-    isFormValid();
+    isUserFormValid();
   });
   address2.on( 'change keyup', () => {
     checkUserAddress2Valid2();
   });
   state.on( 'change keyup', () => {
     checkAccountStateValid();
-    isFormValid();
+    isUserFormValid();
   });
   city.on( 'change keyup', () => {
     checkAccountCityValid();
-    isFormValid();
+    isUserFormValid();
   });
   zipCode.on( 'change keyup', () => {
     checkAccountZipValid();
-    isFormValid();
+    isUserFormValid();
   });
 });

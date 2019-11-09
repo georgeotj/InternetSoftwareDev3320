@@ -81,24 +81,24 @@
                     </div>
                     <div class="column-2">
                         <div class="card-valid-through">
-                            <label for="expiration-date">Valid Through </label>
+                            <label for="payment-expiration-date">Valid Through </label>
                             <span
                                     class="error-field"
                                     id="checkout-card-expire-error-message"
                             ></span>
                             <input
                                     type="text"
-                                    id="expiration-date"
-                                    placeholder="MM / YYYY"
+                                    id="payment-expiration-date"
+                                    placeholder="MM/YY"
                             />
                         </div>
                         <div class="card-verification">
-                            <label for="verification">CVV / CVC</label>
+                            <label for="payment-card-verification">CVV / CVC</label>
                             <span
                                     class="error-field"
                                     id="checkout-card-cvv-error-message"
                             ></span>
-                            <input type="password" id="verification" />
+                            <input type="password" id="payment-card-verification"/>
                         </div>
                     </div>
                 </div>
@@ -116,7 +116,8 @@
         </div>
         <div class="checkout-panel-footer">
             <br />
-            <button type="submit" class="submit-btn checkout-btn">
+            <button type="submit" id="submit-payment-information-btn"
+                    class="submit-btn checkout-btn disabled-button" disabled>
                 Submit Order
             </button>
             <button type="button" class="back-btn checkout-btn">

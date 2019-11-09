@@ -9,6 +9,11 @@ const productsSchema = new Schema({
     required: true,
     unique: true
   },
+  name: {
+    type: String,
+    required: true,
+    unique: false
+  },
   description: {
     type: String,
     required: true,
@@ -19,6 +24,9 @@ const productsSchema = new Schema({
     required: true,
     unique: false
   }
+},
+{
+ collection: 'products'
 });
 const products = mongoose.model( 'products', productsSchema );
 

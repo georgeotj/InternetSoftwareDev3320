@@ -1,50 +1,11 @@
 $( () => {
-  const products = [
-    {
-      name: 'Product-1: ',
-      price: '$1'
-    },
-    {
-      name: 'Product-2: ',
-      price: '$2'
-    },
-    {
-      name: 'Product-3: ',
-      price: '$3'
-    },
-    {
-      name: 'Product-4: ',
-      price: '$4'
-    },
-    {
-      name: 'Product-5: ',
-      price: '$5'
-    },
-    {
-      name: 'Product-6: ',
-      price: '$6'
-    },
-    {
-      name: 'Product-7: ',
-      price: '$7'
-    },
-    {
-      name: 'Product-8: ',
-      price: '$8'
-    }
-  ];
 
   const productDropDown = $( '#list-products' );
   const productOrders = [];
   let subtotal;
 
-  $.each( products, ( value, product ) => {
-    productDropDown.append( $( '<option></option>' ).val( value ).html( `${product.name} 
-    &nbsp;&nbsp;&nbsp;&nbsp; ${product.price}` ) );
-  });
 
-
-function getSelectedProductPrice() {
+  function getSelectedProductPrice() {
     const $selectedItem = productDropDown.find( 'option:selected' );
     const textOfItem = $selectedItem.text();
     const getProductPrice = textOfItem.substr( textOfItem.indexOf( '$' ) + 1 );
@@ -52,22 +13,23 @@ function getSelectedProductPrice() {
   }
 
 
-function displayProductPrice( produceValue ) {
+  function displayProductPrice( produceValue ) {
     document.getElementById( 'unit-price' ).value = Number.isNaN( produceValue ) ? 0 : produceValue;
   }
 
 
-function getItemQuantity( units ) {
+  function getItemQuantity( units ) {
     return $( units ).val();
   }
 
 
-function getSelectedOrderPrice() {
+  function getSelectedOrderPrice() {
     const quantity = getItemQuantity( '#item-units' );
     return quantity * getSelectedProductPrice();
   }
 
   $( '#item-units' ).on( 'change', () => {
+
     // Const quantity = getItemQuantity('#item-units');
     // const totalPrice = quantity * getSelectedProductPrice();
     const totalPrice = getSelectedOrderPrice();
@@ -84,23 +46,41 @@ function getProductName() {
     const $selectedItem = productDropDown.find( 'option:selected' );
     const textOfProduct = $selectedItem.text();
     const productDetails = textOfProduct.split( ' ' );
-    return productDetails[ 0 ].substr( 0,
-      productDetails[ 0 ].length - 1 );
+    return `${productDetails[ 0 ]}-${productDetails[ 1 ]}`;
   }
 
 
 function appendOrderToCart( productName, productUnits, productValue ) {
-    $( '#cart-list > tbody' ).append( `<tr>
-                                    <td>${productName}</td>
-                                    <td>${productUnits}</td>
-                                    <td class="order-total">$${productValue}</td>
+  const rowProduct = `td.${productName}`;
+  console.log( $( rowProduct ).length );
+  if ( $( rowProduct ).length === 1 ) {
+    const unitsIdentifier = $( `td.units-${productName}` );
+    const totalCostIdentifier = $( `td.total-cost-of-${productName}` );
+
+    const oldUnits = unitsIdentifier.html();
+    const oldItemCostDollarAmount = totalCostIdentifier.html();
+    const oldItemCostNumber = oldItemCostDollarAmount
+      .substr( oldItemCostDollarAmount.indexOf( '$' ) + 1 );
+    const newUnits = Number( productUnits ) + Number( oldUnits );
+    const newTotalItemCost = Number( productValue ) + Number( oldItemCostNumber );
+    unitsIdentifier.html( newUnits );
+    // eslint-disable-next-line no-useless-concat
+    totalCostIdentifier.html( `$${newTotalItemCost}` );
+  }else {
+
+    $( '#cart-list > tbody' )
+      .append( `<tr>
+                                    <td class='${productName}'>${productName}</td>
+                                    <td class='units-${productName}'>${productUnits}</td>
+                                    <td class='total-cost-of-${productName}'>$${productValue}</td>
                                     </tr>` );
   }
+}
 
 
 function calculateSubtotal() {
     subtotal = productOrders.length > 1 ?
-      productOrders.reduce( ( prev, next ) => prev + next, 0 ) : productOrders;
+      productOrders.reduce( ( prev, next ) => { return prev + next; }, 0 ) : productOrders;
   }
 
 function displaySubtotal() {

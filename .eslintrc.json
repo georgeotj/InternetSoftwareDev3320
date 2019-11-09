@@ -58,6 +58,12 @@
         "no-console": 0,
         "padded-blocks": 0,
         "no-use-before-define": 0,
-        "arrow-body-style": ["error", "always"]
+        "arrow-body-style": ["error", "always"],
+        "object-curly-newline": ["error", {
+            "ObjectExpression": {"multiline":  true, "minProperties": 2},
+            "ObjectPattern": { "multiline": true },
+            "ImportDeclaration": "never",
+            "ExportDeclaration": { "multiline": true, "minProperties": 2 }
+        }]
     }
 }
