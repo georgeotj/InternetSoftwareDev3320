@@ -61,7 +61,8 @@ const userInformationSchema = new Schema({
       city: this.user_city,
       state: this.user_state,
       zipcode: this.user_zipcode
-    }};
+    };
+};
 
   const UsersInformation = mongoose.model( 'userInformation', userInformationSchema );
 

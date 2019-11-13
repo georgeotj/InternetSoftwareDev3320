@@ -95,7 +95,7 @@ function saveAddressAsShippingInfo() {
     },
     ( data ) => {
       // eslint-disable-next-line no-alert
-      console.out( `POST /users/shipping_info Response: ${data}` );
+      console.log( `POST /users/shipping_info Response: ${data}` );
       // eslint-disable-next-line no-alert
       alert( data );
     }

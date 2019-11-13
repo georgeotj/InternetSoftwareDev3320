@@ -227,6 +227,7 @@ function isUserFormValid() {
   isAccountAddress2Valid = true;
   isAccountCityValid = true;
   isAccountZipValid = true;
+  isAccountStateValid = true;
   isAccountEmailValid = true;
   isAccountPhoneValid = true;
   isAccountLastNameValid = true;

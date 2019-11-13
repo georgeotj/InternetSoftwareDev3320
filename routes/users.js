@@ -84,7 +84,8 @@ router.post( '/shipping_info', ( req, res, next ) => {
       try {
         const condition = { fullname: userFullName };
         const shippingUser = await models.UserInformation.findOne( condition )
-          .exec().then( ( userForShipping ) => {
+          .exec()
+          .then( ( userForShipping ) => {
             return userForShipping.userID;
           });
         console.log( `This is the UserInfo for this ShippingInfo: ${shippingUser}` );
