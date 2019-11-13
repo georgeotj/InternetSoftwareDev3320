@@ -1,0 +1,15 @@
+import './load-products';
+import './load-states';
+import './navigation-buttons';
+import './save-order-information';
+import './save-payment-information';
+import './save-shipping-information';
+import './save-user-information';
+import './shopping-cart';
+import './validate-account-form';
+import './validate-checkout-form';
+import './validate-shipping-form';
+import '../../node_modules/jquery/dist/jquery.min';
+import '../../node_modules/jquery-ui-dist/jquery-ui.min';
+import '../../node_modules/jquery-ui-dist/jquery-ui.min.css';
+import '../../node_modules/jquery-validation/dist/jquery.validate.min';

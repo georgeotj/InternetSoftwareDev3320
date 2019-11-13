@@ -19,7 +19,13 @@ const router = express.Router();
 
 const assets = require( 'connect-assets' );
 
+const webpackMiddleware = require( 'webpack-dev-middleware' );
+
+const webpack = require( 'webpack' );
+
 const bodyParser = require( 'body-parser' );
+
+const webpackConfig = require( './webpack.server.config' );
 
 const mongoDB = require( './config/database' );
 
@@ -27,6 +33,10 @@ const models = require( './models' );
 
 const users = require( './routes/users' );
 const products = require( './routes/products' );
+
+const compiler = webpack( webpackConfig );
+
+const DIST_DIR = __dirname;
 
 
 const port = process.env.PORT || 3000;
@@ -42,6 +52,12 @@ if ( process.env.NODE_ENV === 'development' ) {
 }
 
 app.use( cookieParser() );
+
+app.use( require( 'webpack-dev-middleware' )( compiler, {
+  noInfo: true, publicPath: webpackConfig.output.publicPath
+}) );
+
+app.use( require( 'webpack-hot-middleware' )( compiler ) );
 
 // Asset compiler and minimizer
 app.use( assets({
@@ -73,11 +89,11 @@ app.use( cors({
 app.use( compression() );
 
 // Add .css and .js static files to the app
-app.use( '/public', express.static( path.join( __dirname, '/public' ) ) );
+app.use( '/public', express.static( path.join( DIST_DIR, '/public' ) ) );
 
 // Set Application Settings
 app.set( 'view engine', 'ejs' );
-app.set( 'views', path.resolve( __dirname, 'views' ) );
+app.set( 'views', path.resolve( DIST_DIR, 'views' ) );
 
 // Add the database to the application
 mongoDB( ( error ) => {
@@ -99,7 +115,8 @@ router.get( '/states', ( request, response ) => {
   models.States.find({}).then( ( states ) => {
     console.log( 'Sending states response' );
     response.send({ states });
-    console.log( 'GET /states Response:    %j', states );
+
+    // console.log( 'GET /states Response:\n', JSON.stringify( states, null, 2 ) );
   });
 });
 

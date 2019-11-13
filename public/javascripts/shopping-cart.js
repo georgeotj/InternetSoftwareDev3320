@@ -42,53 +42,54 @@ $( () => {
   });
 
 
-function getProductName() {
-    const $selectedItem = productDropDown.find( 'option:selected' );
-    const textOfProduct = $selectedItem.text();
-    const productDetails = textOfProduct.split( ' ' );
-    return `${productDetails[ 0 ]}-${productDetails[ 1 ]}`;
+  function getProductName() {
+      const $selectedItem = productDropDown.find( 'option:selected' );
+      const textOfProduct = $selectedItem.text();
+      const productDetails = textOfProduct.split( ' ' );
+      return `${productDetails[ 0 ]}-${productDetails[ 1 ]}`;
+    }
+
+
+  function appendOrderToCart( productName, productUnits, productValue ) {
+    const rowProduct = `td.${productName}`;
+    console.log( $( rowProduct ).length );
+    if ( $( rowProduct ).length === 1 ) {
+      const unitsIdentifier = $( `td.units-${productName}` );
+      const totalCostIdentifier = $( `td.total-cost-of-${productName}` );
+
+      const oldUnits = unitsIdentifier.html();
+      const oldItemCostDollarAmount = totalCostIdentifier.html();
+      const oldItemCostNumber = oldItemCostDollarAmount
+        .substr( oldItemCostDollarAmount.indexOf( '$' ) + 1 );
+      const newUnits = Number( productUnits ) + Number( oldUnits );
+      const newTotalItemCost = Number( productValue ) + Number( oldItemCostNumber );
+      unitsIdentifier.html( newUnits );
+      // eslint-disable-next-line no-useless-concat
+      totalCostIdentifier.html( `$${newTotalItemCost}` );
+    }else {
+
+      $( '#cart-list > tbody' )
+        .append( `<tr class="product-order">
+                    <td class='${productName} productName'>${productName}</td>
+                    <td class='units-${productName} productUnits'>${productUnits}</td>
+                    // eslint-disable-next-line max-len
+                    <td class='total-cost-of-${productName}'>$${productValue}</td>
+                  </tr>` );
+    }
   }
 
 
-function appendOrderToCart( productName, productUnits, productValue ) {
-  const rowProduct = `td.${productName}`;
-  console.log( $( rowProduct ).length );
-  if ( $( rowProduct ).length === 1 ) {
-    const unitsIdentifier = $( `td.units-${productName}` );
-    const totalCostIdentifier = $( `td.total-cost-of-${productName}` );
-
-    const oldUnits = unitsIdentifier.html();
-    const oldItemCostDollarAmount = totalCostIdentifier.html();
-    const oldItemCostNumber = oldItemCostDollarAmount
-      .substr( oldItemCostDollarAmount.indexOf( '$' ) + 1 );
-    const newUnits = Number( productUnits ) + Number( oldUnits );
-    const newTotalItemCost = Number( productValue ) + Number( oldItemCostNumber );
-    unitsIdentifier.html( newUnits );
-    // eslint-disable-next-line no-useless-concat
-    totalCostIdentifier.html( `$${newTotalItemCost}` );
-  }else {
-
-    $( '#cart-list > tbody' )
-      .append( `<tr>
-                                    <td class='${productName}'>${productName}</td>
-                                    <td class='units-${productName}'>${productUnits}</td>
-                                    <td class='total-cost-of-${productName}'>$${productValue}</td>
-                                    </tr>` );
-  }
-}
-
-
-function calculateSubtotal() {
+  function calculateSubtotal() {
     subtotal = productOrders.length > 1 ?
       productOrders.reduce( ( prev, next ) => { return prev + next; }, 0 ) : productOrders;
   }
 
-function displaySubtotal() {
+  function displaySubtotal() {
     const cartSubtotal = $( '#cart-subtotal-number' );
     cartSubtotal.text( `$${subtotal}` );
   }
 
-function addOrderTotalToSubtotal( orderTotal ) {
+  function addOrderTotalToSubtotal( orderTotal ) {
     productOrders.push( orderTotal );
     calculateSubtotal();
   }

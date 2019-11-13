@@ -25,9 +25,7 @@ const productsSchema = new Schema({
     unique: false
   }
 },
-{
- collection: 'products'
-});
+{ collection: 'products' });
 const products = mongoose.model( 'products', productsSchema );
 
 module.exports = products;

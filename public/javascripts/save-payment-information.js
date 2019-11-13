@@ -1,25 +1,31 @@
+function getPaymentInformation() {
+  return {
+    paymentMethod: $( '#payment-method-types option:selected' ).text(),
+    paymentCardName: $( '#payment-card-name' ).val(),
+    paymentCardNumber: $( '#payment-card-number' ).val(),
+    paymentCardExpirationDate: $( '#payment-expiration-date' ).val(),
+    paymentCardVerificationCode: $( '#payment-card-verification' ).val(),
+    userName: $( '.name-value' ).text()
+  };
+}
 
 function submitPaymentInformationForm() {
   console.log( 'Attempting to save New Billing Information' );
 
-  const paymentMethod = $( '#payment-method-types option:selected' ).text();
-  const paymentCardName = $( '#payment-card-name' ).val();
-  const paymentCardNumber = $( '#payment-card-number' ).val();
-  const paymentCardExpirationDate = $( '#payment-expiration-date' ).val();
-  const paymentCardVerificationCode = $( '#payment-card-verification' ).val();
-  const userName = $( '.name-value' ).text();
+  const paymentInformation = getPaymentInformation();
 
+  const paymentInformationJSONRequest = {
+    cardType: paymentInformation.paymentMethod,
+    cardNumber: paymentInformation.paymentCardNumber,
+    expDate: paymentInformation.paymentCardExpirationDate,
+    CVV: paymentInformation.paymentCardVerificationCode,
+    cardName: paymentInformation.paymentCardName,
+    userFullName: paymentInformation.userName
+  };
 
-  $.post(
+    $.post(
     '/users/billing_info',
-    {
-      cardType: paymentMethod,
-      cardNumber: paymentCardNumber,
-      expDate: paymentCardExpirationDate,
-      CVV: paymentCardVerificationCode,
-      cardName: paymentCardName,
-      userFullName: userName
-    },
+    paymentInformationJSONRequest,
     ( data ) => {
       // eslint-disable-next-line no-alert
       alert( data );
