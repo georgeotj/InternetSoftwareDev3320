@@ -1,3 +1,5 @@
+const $ = require( 'jquery' );
+
 function getShippingInputFields() {
   const shippingAddress1 = $( '#shipping_address_1' );
   const shippingAddress2 = $( '#shipping_address_2' );
@@ -5,8 +7,13 @@ function getShippingInputFields() {
   const shippingState = $( '#shipping_user_state option:selected' );
   const shippingZipCode = $( '#shipping_zipcode' );
 
-  return [ shippingAddress1, shippingAddress2, shippingCity,
-    shippingState, shippingZipCode ];
+  return [
+    shippingAddress1,
+    shippingAddress2,
+    shippingCity,
+    shippingState,
+    shippingZipCode
+  ];
 }
 
 function getBillingInputFields() {
@@ -16,8 +23,13 @@ function getBillingInputFields() {
   const billingState = $( '.state-value' );
   const billingZipCode = $( '.zip-code-value' );
 
-  return [ billingAddress1, billingAddress2, billingCity,
-    billingState, billingZipCode ];
+  return [
+    billingAddress1,
+    billingAddress2,
+    billingCity,
+    billingState,
+    billingZipCode
+  ];
 }
 
 function clearShippingInputs() {
@@ -32,14 +44,18 @@ function clearShippingInputs() {
 function isTypeOfAddressBilling() {
   const useBilling = $( '#use-billing-address-for-shipping' );
 
-  return !!( useBilling.is( ':checked' ) );
+  return !!useBilling.is( ':checked' );
 }
 
 function checkForBillingAddress() {
   const [ address1, , city, state, zipcode ] = getBillingInputFields();
-  if ( ( !address1.text() || !city.text() ||
-    !state.text() || !zipcode.text() ) ||
-    ( $( 'section.account-information' ).css( 'display' ) === 'none' ) ) {
+  if (
+    !address1.text() ||
+    !city.text() ||
+    !state.text() ||
+    !zipcode.text() ||
+    $( 'section.account-information' ).css( 'display' ) === 'none'
+  ) {
     $( '#billing-address-error-message' ).show();
     clearShippingInputs();
   }else {
@@ -49,19 +65,31 @@ function checkForBillingAddress() {
 }
 
 function setBillingToShipping() {
-  const [ shippingAddress1, shippingAddress2, shippingCity,
-    shippingState, shippingZipCode ] = getShippingInputFields();
+  const [
+    shippingAddress1,
+    shippingAddress2,
+    shippingCity,
+    shippingState,
+    shippingZipCode
+  ] = getShippingInputFields();
 
-  const [ billingAddress1, billingAddress2, billingCity,
-    billingState, billingZipCode ] = getBillingInputFields();
+  const [
+    billingAddress1,
+    billingAddress2,
+    billingCity,
+    billingState,
+    billingZipCode
+  ] = getBillingInputFields();
 
   const stateString = billingState.text();
 
   shippingAddress1.val( billingAddress1.text() );
   shippingAddress2.val( billingAddress2.text() );
   shippingCity.val( billingCity.text() );
-  ( $( `#shipping_user_state option:contains(${stateString})` ) )
-    .attr( 'selected', true );
+  $( `#shipping_user_state option:contains(${stateString})` ).attr(
+    'selected',
+    true
+  );
   shippingZipCode.val( billingZipCode.text() );
 
   // shippingValidators.address1();
@@ -99,9 +127,7 @@ function saveAddressAsShippingInfo() {
       // eslint-disable-next-line no-alert
       alert( data );
     }
-  ).done(
-    console.log( 'POST shipping information is complete' )
-  );
+  ).done( console.log( 'POST shipping information is complete' ) );
 }
 
 $( () => {
@@ -111,7 +137,6 @@ $( () => {
   $( '#shipping-info-submit-btn' ).on( 'click', ( event ) => {
     event.preventDefault();
     if ( $( 'section.account-information' ).css( 'display' ) === 'none' ) {
-
       // eslint-disable-next-line no-alert
       alert( 'Make an Account Before Registering a Shipping Address!' );
       clearShippingInputs();
@@ -128,5 +153,4 @@ $( () => {
       $( '#billing-address-error-message' ).hide();
     }
   });
-
 });

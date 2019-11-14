@@ -1,3 +1,8 @@
+const $ = require( 'jquery' );
+
+global.jQuery = require( 'jquery' );
+
+
 const productsDropDown = $( '#list-products' );
 
 function appendToProductsDropDown( productsFromServer ) {
@@ -22,10 +27,11 @@ $( () => {
         console.log( 'This is the JSON response:' );
         console.log( serverResponse );
         appendToProductsDropDown( serverResponse.products );
-      }).done(
-        console.log( 'GET /products/get_products Request is done' ),
-        ( areProductsLoaded = true )
-      );
+      })
+        .done(
+          console.log( 'GET /products/get_products Request is done' ),
+          ( areProductsLoaded = true )
+        );
     }
   });
 });

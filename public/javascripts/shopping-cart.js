@@ -1,9 +1,9 @@
-$( () => {
+const $ = require( 'jquery' );
 
+$( () => {
   const productDropDown = $( '#list-products' );
   const productOrders = [];
   let subtotal;
-
 
   function getSelectedProductPrice() {
     const $selectedItem = productDropDown.find( 'option:selected' );
@@ -12,16 +12,15 @@ $( () => {
     return Number( getProductPrice );
   }
 
-
   function displayProductPrice( produceValue ) {
-    document.getElementById( 'unit-price' ).value = Number.isNaN( produceValue ) ? 0 : produceValue;
+    document.getElementById( 'unit-price' ).value = Number.isNaN( produceValue ) ?
+      0 :
+      produceValue;
   }
-
 
   function getItemQuantity( units ) {
     return $( units ).val();
   }
-
 
   function getSelectedOrderPrice() {
     const quantity = getItemQuantity( '#item-units' );
@@ -29,7 +28,6 @@ $( () => {
   }
 
   $( '#item-units' ).on( 'change', () => {
-
     // Const quantity = getItemQuantity('#item-units');
     // const totalPrice = quantity * getSelectedProductPrice();
     const totalPrice = getSelectedOrderPrice();
@@ -41,14 +39,12 @@ $( () => {
     displayProductPrice( selectedItemPrice );
   });
 
-
   function getProductName() {
-      const $selectedItem = productDropDown.find( 'option:selected' );
-      const textOfProduct = $selectedItem.text();
-      const productDetails = textOfProduct.split( ' ' );
-      return `${productDetails[ 0 ]}-${productDetails[ 1 ]}`;
-    }
-
+    const $selectedItem = productDropDown.find( 'option:selected' );
+    const textOfProduct = $selectedItem.text();
+    const productDetails = textOfProduct.split( ' ' );
+    return `${productDetails[ 0 ]}-${productDetails[ 1 ]}`;
+  }
 
   function appendOrderToCart( productName, productUnits, productValue ) {
     const rowProduct = `td.${productName}`;
@@ -59,17 +55,16 @@ $( () => {
 
       const oldUnits = unitsIdentifier.html();
       const oldItemCostDollarAmount = totalCostIdentifier.html();
-      const oldItemCostNumber = oldItemCostDollarAmount
-        .substr( oldItemCostDollarAmount.indexOf( '$' ) + 1 );
+      const oldItemCostNumber = oldItemCostDollarAmount.substr(
+        oldItemCostDollarAmount.indexOf( '$' ) + 1
+      );
       const newUnits = Number( productUnits ) + Number( oldUnits );
       const newTotalItemCost = Number( productValue ) + Number( oldItemCostNumber );
       unitsIdentifier.html( newUnits );
       // eslint-disable-next-line no-useless-concat
       totalCostIdentifier.html( `$${newTotalItemCost}` );
     }else {
-
-      $( '#cart-list > tbody' )
-        .append( `<tr class="product-order">
+      $( '#cart-list > tbody' ).append( `<tr class="product-order">
                     <td class='${productName} productName'>${productName}</td>
                     <td class='units-${productName} productUnits'>${productUnits}</td>
                     // eslint-disable-next-line max-len
@@ -78,10 +73,13 @@ $( () => {
     }
   }
 
-
   function calculateSubtotal() {
-    subtotal = productOrders.length > 1 ?
-      productOrders.reduce( ( prev, next ) => { return prev + next; }, 0 ) : productOrders;
+    subtotal =
+      productOrders.length > 1 ?
+        productOrders.reduce( ( prev, next ) => {
+            return prev + next;
+          }, 0 ) :
+        productOrders;
   }
 
   function displaySubtotal() {
@@ -95,7 +93,10 @@ $( () => {
   }
 
   $( '#add-item-to-cart-button' ).on( 'click', () => {
-    if ( getSelectedOrderPrice() !== 0 && !Number.isNaN( getSelectedProductPrice() ) ) {
+    if (
+      getSelectedOrderPrice() !== 0 &&
+      !Number.isNaN( getSelectedProductPrice() )
+    ) {
       const productName = getProductName();
       const productValue = getSelectedOrderPrice();
       const productUnits = getItemQuantity( '#item-units' );

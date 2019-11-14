@@ -1,146 +1,139 @@
 const path = require( 'path' );
+const nodeExternals = require( 'webpack-node-externals' );
 const webpack = require( 'webpack' );
-
-const HtmlWebPackPlugin = require( 'html-webpack-plugin' );
-
-const FriendlyErrorsWebpackPlugin = require( 'friendly-errors-webpack-plugin' );
-
+const ScriptExtPlugin = require( 'script-ext-html-webpack-plugin' );
+const CopyWebpackPlugin = require( 'copy-webpack-plugin' );
+const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
+const { BundleAnalyzerPlugin } = require( 'webpack-bundle-analyzer' );
+const DefinePlugin = require( 'webpack/lib/DefinePlugin' );
+const MomentLocalesPlugin = require( 'moment-locales-webpack-plugin' );
+const Encore = require( '@symfony/webpack-encore' );
+const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
+const BrowserSyncPlugin = require( 'browser-sync-webpack-plugin' );
 const { CleanWebpackPlugin } = require( 'clean-webpack-plugin' );
-
+// const OptimizeCSSAssetsPlugin = require( 'optimize-css-assets-webpack-plugin' );
+const FriendlyErrorsWebpackPlugin = require( 'friendly-errors-webpack-plugin' );
+const DashboardPlugin = require( 'webpack-dashboard/plugin' );
 const TerserJSPlugin = require( 'terser-webpack-plugin' );
-
 const OptimizeCSSAssetsPlugin = require( 'optimize-css-assets-webpack-plugin' );
 
-const DashboardPlugin = require( 'webpack-dashboard/plugin' );
 
-const LiveReloadPlugin = require( 'webpack-livereload-plugin' );
+const buildPath = path.resolve( __dirname, 'public/build' );
 
-const buildPath = path.resolve( __dirname, './public' );
+const { root } = require( './config/helpers' );
 
-function customHtmlWebpackPlugin( specificOptions ) {
-  const defaults = {
+const clientConfig = {
 
-    // hashes the file to prevent bad caching
-    hash: true,
+  // Stuff the entire webpack-front.config.js
+  // without the require and module.exports lines
 
-    // exclude worthless JS files
-    minify: {
-      collapseWhitespace: true,
-      removeComments: true,
-      minifyCSS: true
-    },
-
-    // Tell plugin to inject any javascript into bottom of body
-    inject: 'body'
-  };
-
-  // cool ES6 spread operator
-  // add the default options with custom object passed as parameter
-  return new HtmlWebPackPlugin({
- ...defaults, ...specificOptions
-});
-}
-
-
-module.exports = {
-  entry: './public/javascripts/index',
+  entry: {
+    client: root( './public/javascripts/index.js' )
+  },
+  output: {
+    filename: '[name].js',
+    path: buildPath
+  },
+  target: 'web',
+  node: {
+    fs: 'empty',
+    console: true,
+    net: 'empty',
+    dns: 'empty'
+  },
+  watch: true,
+  watchOptions: {
+    poll: true,
+    ignored: /node_modules/
+  },
   optimization: {
     minimizer: [ new TerserJSPlugin({ sourceMap: true }),
       new OptimizeCSSAssetsPlugin({}) ]
   },
-
-  // {
-    // loadProducts: './public/load-products.js',
-    // loadStates: './public/load-states.js',
-    // navigationButtons: './public/navigation-buttons.js',
-    // saveOrderInformation: './public/save-order-information.js',
-    // savePaymentInformation: './public/save-payment-information.js',
-    // saveShippingInformation: './public/save-shipping-information.js',
-    // saveUserInformation: './public/save-user-information.js',
-    // shoppingCart: './public/shopping-cart.js',
-    // validateAccount: './public/validate-account-form.js',
-    // validateCheckout: './public/validate-checkout-form.js',
-    // validateShipping: './public/validate-shipping-form.js'
-  // },
-  output: {
-    path: buildPath,
-    filename: '[name].js',
-    publicPath: 'http://localhost:3000/public/'
+  devServer: {
+    host: '0.0.0.0', // Required for docker
+    publicPath: '/javascripts/',
+    contentBase: path.resolve( __dirname, './' ),
+    watchContentBase: true,
+    compress: true,
+    port: 3000
   },
-  target: 'web',
-  devtool: 'source-map',
   module: {
     rules: [
       {
+        test: /\.(js|jsx)$/,
         enforce: 'pre',
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'eslint-loader'
+        loader: 'eslint-loader',
+        options: {
+          emitWarning: true
+        }
       },
       {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader'
-      },
-
-      // {
-      //   test: /\.ejs$/,
-      //   use: [
-      //     { loader: 'ejs-loader' } ]
-      // },
-      {
-
-        // Loads the javacript into html template provided.
-        // Entry point is set below in HtmlWebPackPlugin in Plugins
-        test: /\.html$/,
-        use: [
-          {
-            loader: 'html-loader'
-
-            // options: { minimize: true }
-          }
-        ]
-      },
-      {
-        test: /\.scss$/,
-        use: [ { loader: 'style-loader' }, {
-          loader: 'css-loader',
-          options: { sourceMap: true }
-        }, {
-          loader: 'sass-loader',
-          options: { sourceMap: true }
-        } ]
+        test: /\.(js|jsx)$/,
+        use: [ 'babel-loader' ],
+        exclude: /node_modules/
       },
       {
         test: /\.css$/,
-        use: [ 'style-loader', 'css-loader' ]
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader
+          },
+          'css-loader'
+        ]
       },
       {
-        test: /\.(png|svg|jpg|gif)$/,
-        use: [ 'file-loader' ]
+        test: /\.(png|jpg|svg)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+          outputPath: 'assets/'
+        }
       }
     ]
   },
+  devtool: 'inline-source-map',
   plugins: [
-
-    // Webpack links the entry point and the template
-    customHtmlWebpackPlugin({
-
-      // The HTML file to be CREATED
-      filename: './dist/index.html',
-
-      // use ejs-compiled-loader to compile EJS to HTML, then use that as the template
-      template: '!!ejs-loader!./views/index.ejs'
+    new ScriptExtPlugin({
+      defaultAttribute: 'defer'
+    }),
+    // new CopyWebpackPlugin([
+    //   {
+    //     from: 'public/assets', to: 'assets'
+    //   },
+    //   {
+    //     from: 'public/stylesheets', to: 'stylesheets'
+    //   }
+    // ]),
+    // Make $ and jQuery available in every module without having to write
+    // require('jquery')
+    new webpack.ProvidePlugin({
+      $: root( './node_modules/jquery/dist/jquery.min' ),
+      jQuery: root( './node_modules/jquery/dist/jquery.min' ),
+      'window.jQuery': root( './node_modules/jquery/dist/jquery.min' )
+    }),
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'server', // 'disabled'|'server'
+      reportFilename: root( 'public/report.html' ),
+      generateStatsFile: true,
+      statsFilename: root( 'public/stats.json' )
     }),
     new FriendlyErrorsWebpackPlugin(),
     new CleanWebpackPlugin(),
-    new OptimizeCSSAssetsPlugin({
-      // eslint-disable-next-line global-require
-      cssProcessor: require( 'cssnano' ),
-      cssProcessorOptions: { preset: [ 'default', { discardComments: { removeAll: true } } ] },
-      canPrint: true
-    }),
     new DashboardPlugin(),
-    new LiveReloadPlugin()
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify( 'production' )
+      }
+    }),
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
+      debug: false
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].css'
+    })
   ]
 };
+
+module.exports = [ clientConfig ];

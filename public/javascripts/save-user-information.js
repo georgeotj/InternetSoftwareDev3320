@@ -1,3 +1,5 @@
+const $ = require( 'jquery' );
+
 function getUserInformation() {
   const userFirstName = $( '#user_first_name' ).val();
   const userLastName = $( '#user_last_name' ).val();
@@ -9,8 +11,17 @@ function getUserInformation() {
   const userCity = $( '#user_city' ).val();
   const userZipCode = $( '#user_zipcode' ).val();
 
-  return [ userFirstName, userLastName, userPhone, userEmail, userAddress1, userAddress2,
-  userState, userCity, userZipCode ];
+  return [
+    userFirstName,
+    userLastName,
+    userPhone,
+    userEmail,
+    userAddress1,
+    userAddress2,
+    userState,
+    userCity,
+    userZipCode
+  ];
 }
 
 function hideUserRegistration() {
@@ -29,8 +40,17 @@ function showUserOverview() {
 }
 
 function setUserOverview() {
-  const [ firstName, lastName, phone, email, address1, address2,
-  state, city, zipCode ] = getUserInformation();
+  const [
+    firstName,
+    lastName,
+    phone,
+    email,
+    address1,
+    address2,
+    state,
+    city,
+    zipCode
+  ] = getUserInformation();
 
   $( '.name-value' ).text( `${firstName} ${lastName}` );
   $( '.address-1-value' ).text( address1 );
@@ -46,17 +66,25 @@ function setUserOverview() {
   $( '.zip-code-value' ).text( zipCode );
   $( '.phone-value' ).text( phone );
   $( '.email-value' ).text( email );
-
 }
 
 function submitUserForm() {
   console.log( 'Attempting to POST a new user...' );
 
-  const [ firstName, lastName, phone, email, address1, address2,
-    state, city, zipCode ] = getUserInformation();
+  const [
+    firstName,
+    lastName,
+    phone,
+    email,
+    address1,
+    address2,
+    state,
+    city,
+    zipCode
+  ] = getUserInformation();
 
   const userInformation = {
-    fullname: ( `${firstName} ${lastName}` ),
+    fullname: `${firstName} ${lastName}`,
     user_phone: phone,
     user_email: email,
     user_address1: address1,
@@ -68,22 +96,15 @@ function submitUserForm() {
 
   showUserOverview();
 
-  $.post(
-    '/users/sign_up',
-    userInformation,
-    ( data ) => {
-      // eslint-disable-next-line no-alert
-      alert( data );
-    }
-  ).done(
-    setUserOverview()
-  );
+  $.post( '/users/sign_up', userInformation, ( data ) => {
+    // eslint-disable-next-line no-alert
+    alert( data );
+  }).done( setUserOverview() );
 
   // setUserOverview();
 }
 
 $( () => {
-
   hideUserOverview();
   $( '#register-user-btn' ).on( 'click', ( event ) => {
     event.preventDefault();
@@ -96,5 +117,4 @@ $( () => {
   // $( '#register-user-btn' )
   //   .on( 'click', () => {
   //   });
-
 });
