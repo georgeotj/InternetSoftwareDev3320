@@ -1,3 +1,5 @@
+const $ = require( 'jquery' );
+
 // const state = $('#shipping_user_state'); ca
 let isAddress1Valid = true;
 let isAddress2Valid = true;
@@ -182,12 +184,10 @@ function isShippingFormValid() {
   }else {
     $( '.shipping-info-form' ).attr( 'disabled', 'disabled' );
     setShippingAddressButton.addClass( 'disabled-button' );
-
   }
 }
 
 const shippingEventHandlers = {
-
   address1() {
     checkShippingAddress1();
     isShippingFormValid();
@@ -210,7 +210,6 @@ const shippingEventHandlers = {
   }
 };
 
-
 /* eslint no-multiple-empty-lines:0 */
 $( document ).ready( () => {
   const address1 = $( '#shipping_address_1' );
@@ -218,7 +217,6 @@ $( document ).ready( () => {
   const state = $( '#shipping_user_state' );
   const city = $( '#shipping_city' );
   const zipCode = $( '#shipping_zipcode' );
-
 
   address1.on( 'change keyup', () => {
     shippingEventHandlers.address1();

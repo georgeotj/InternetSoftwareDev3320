@@ -1,3 +1,5 @@
+const $ = require( 'jquery' );
+
 // const state = $('#shipping_user_state'); ca
 let isCardTypeValid = true;
 let isCardNameValid = true;
@@ -43,9 +45,12 @@ function checkCardNumberValid() {
   const discPattern = /^(?:6(?:011|5[0-9][0-9])[0-9]{12})$/;
   const fieldValue = cardNumber.val();
   // eslint-disable-next-line no-mixed-operators
-  if ( visaPattern.test( fieldValue ) || mastPattern.test( fieldValue ) ||
+  if (
+    visaPattern.test( fieldValue ) ||
+    mastPattern.test( fieldValue ) ||
     // eslint-disable-next-line no-mixed-operators
-    discPattern.test( fieldValue ) && fieldValue !== '' ) {
+    ( discPattern.test( fieldValue ) && fieldValue !== '' )
+  ) {
     cardNumberErrorMessage.hide();
     cardNumber.css( 'border', '2px solid lightgreen' );
     cardNumber.css( 'box-shadow', '0 0 8px 2px rgba(152, 251, 152, 0.75)' );
@@ -144,7 +149,6 @@ function checkPaymentAgreement() {
   }else {
     isPaymentAgreedTo = false;
   }
-
 }
 
 function isCheckoutFormValid() {
@@ -164,15 +168,20 @@ function isCheckoutFormValid() {
   checkCardType();
   checkPaymentAgreement();
 
-  if ( isCardNumberValid && isCardCodeValid && isCardExpireValid && isCardTypeValid &&
-    isCardNameValid && isPaymentAgreedTo === true ) {
+  if (
+    isCardNumberValid &&
+    isCardCodeValid &&
+    isCardExpireValid &&
+    isCardTypeValid &&
+    isCardNameValid &&
+    isPaymentAgreedTo === true
+  ) {
     $( '.checkout-payment-form' ).removeAttr( 'disabled' );
     checkoutButton.removeAttr( 'disabled' );
     checkoutButton.removeClass( 'disabled-button' );
   }else {
     $( '.checkout-payment-form' ).attr( 'disabled', 'disabled' );
     checkoutButton.addClass( 'disabled-button' );
-
   }
 }
 
@@ -184,7 +193,6 @@ $( document ).ready( () => {
   const cardExpire = $( '#payment-expiration-date' );
   const cardCVV = $( '#payment-card-verification' );
   const paymentAgreement = $( '#pay-agreement' );
-
 
   cardName.on( 'change keyup', () => {
     checkNameOnCard();

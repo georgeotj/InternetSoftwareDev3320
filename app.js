@@ -23,7 +23,7 @@ const webpack = require( 'webpack' );
 
 const bodyParser = require( 'body-parser' );
 
-const webpackConfig = require( './config/webpack.server.config' );
+const webpackConfig = require( './docs/archive/webpack.server.config' );
 
 const mongoDB = require( './config/database' );
 

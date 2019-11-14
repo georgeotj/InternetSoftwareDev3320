@@ -15,10 +15,10 @@ const CleanWebpackPlugin = require( 'clean-webpack-plugin' );
 const buildPath = path.resolve( __dirname, './build' );
 
 
-const { root } = require( './helpers' );
+const { root } = require( '../../config/helpers' );
 
 Encore
-  // directory where compiled assets are stored
+// directory where compiled assets are stored
   .setOutputPath( 'public/build/front' )
   // public path used by web server to access the output path
   .setPublicPath( '/build/' )
@@ -39,7 +39,7 @@ Encore
   .enableVersioning( Encore.isProduction() )
   // Add ejs loader and plugin depends
   .addLoader({
-      test: /\.ejs$/, loader: 'ejs-render-loader'
+    test: /\.ejs$/, loader: 'ejs-render-loader'
   })
 
   .addPlugin( new webpack.ProvidePlugin({
@@ -104,48 +104,7 @@ const clientConfig = {
         minifyJS: true
       }
     }),
-    new HtmlWebpackPlugin({
-      inject: false,
-      hash: true,
-      template: '!!ejs-webpack-loader!views/layouts/checkout.ejs',
-      filename: root( '/html/checkout.html' )
-    }),
-    new HtmlWebpackPlugin({
-      inject: false,
-      hash: true,
-      template: '!!ejs-webpack-loader!views/layouts/shipping-information.ejs',
-      filename: root( '/html/shipping-information.html' )
-    }),
-    new HtmlWebpackPlugin({
-      inject: false,
-      hash: true,
-      template: '!!ejs-webpack-loader!views/layouts/shopping-cart.ejs',
-      filename: root( '/html/shopping-cart.html' )
-    }),
-    new HtmlWebpackPlugin({
-      inject: false,
-      hash: true,
-      template: '!!ejs-webpack-loader!views/layouts/user-information.ejs',
-      filename: root( '/html/user-information.html' )
-    }),
-    new HtmlWebpackPlugin({
-      inject: false,
-      hash: true,
-      template: '!!ejs-webpack-loader!views/index.ejs',
-      filename: root( '/html/index.html' )
-    }),
-    new HtmlWebpackPlugin({
-      inject: false,
-      hash: true,
-      template: '!!ejs-webpack-loader!views/partials/header.ejs',
-      filename: root( '/html/header.html' )
-    }),
-    new HtmlWebpackPlugin({
-      inject: false,
-      hash: true,
-      template: '!!ejs-webpack-loader!views/partials/footer.ejs',
-      filename: root( '/html/footer.html' )
-    }),
+
     new ScriptExtPlugin({
       defaultAttribute: 'defer'
     }),
@@ -219,7 +178,48 @@ const serverConfig = {
     ]
   },
   plugins: [
-
+    new HtmlWebpackPlugin({
+      inject: false,
+      hash: true,
+      template: '!!ejs-webpack-loader!views/layouts/checkout.ejs',
+      filename: root( '/html/checkout.html' )
+    }),
+    new HtmlWebpackPlugin({
+      inject: false,
+      hash: true,
+      template: '!!ejs-webpack-loader!views/layouts/shipping-information.ejs',
+      filename: root( '/html/shipping-information.html' )
+    }),
+    new HtmlWebpackPlugin({
+      inject: false,
+      hash: true,
+      template: '!!ejs-webpack-loader!views/layouts/shopping-cart.ejs',
+      filename: root( '/html/shopping-cart.html' )
+    }),
+    new HtmlWebpackPlugin({
+      inject: false,
+      hash: true,
+      template: '!!ejs-webpack-loader!views/layouts/user-information.ejs',
+      filename: root( '/html/user-information.html' )
+    }),
+    new HtmlWebpackPlugin({
+      inject: false,
+      hash: true,
+      template: '!!ejs-webpack-loader!views/index.ejs',
+      filename: root( '/html/index.html' )
+    }),
+    new HtmlWebpackPlugin({
+      inject: false,
+      hash: true,
+      template: '!!ejs-webpack-loader!views/partials/header.ejs',
+      filename: root( '/html/header.html' )
+    }),
+    new HtmlWebpackPlugin({
+      inject: false,
+      hash: true,
+      template: '!!ejs-webpack-loader!views/partials/footer.ejs',
+      filename: root( '/html/footer.html' )
+    }),
     new DefinePlugin({
       window: undefined,
       document: undefined,

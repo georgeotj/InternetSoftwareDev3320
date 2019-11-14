@@ -1,3 +1,5 @@
+const $ = require( 'jquery' );
+
 // const state = $('#user_state'); ca
 let isAccountFirstNameValid = true;
 let isAccountLastNameValid = true;
@@ -56,7 +58,7 @@ function checkUserPhoneValid() {
   const userPhoneErrorMessage = $( '#user-phone-error-message' );
   userPhoneErrorMessage.hide();
 
-  const pattern = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+  const pattern = /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/im;
   const formName = userPhone.val();
   if ( pattern.test( formName ) && formName !== '' ) {
     userPhoneErrorMessage.hide();
@@ -92,8 +94,6 @@ function checkUserEmailValid() {
     isAccountEmailValid = false;
   }
 }
-
-
 
 function checkUserAddress1Valid() {
   const address1 = $( '#user_address_1' );
@@ -242,16 +242,22 @@ function isUserFormValid() {
   checkAccountCityValid();
   checkAccountZipValid();
 
-  if ( isAccountStateValid && isAccountZipValid && isAccountCityValid &&
-    isAccountAddress1Valid && isAccountFirstNameValid && isAccountLastNameValid &&
-    isAccountPhoneValid && isAccountEmailValid === true ) {
+  if (
+    isAccountStateValid &&
+    isAccountZipValid &&
+    isAccountCityValid &&
+    isAccountAddress1Valid &&
+    isAccountFirstNameValid &&
+    isAccountLastNameValid &&
+    isAccountPhoneValid &&
+    isAccountEmailValid === true
+  ) {
     $( '.register-user-form' ).removeAttr( 'disabled' );
     registerButton.removeAttr( 'disabled' );
     registerButton.removeClass( 'disabled-button' );
   }else {
     $( '.register-user-form' ).attr( 'disabled', 'disabled' );
     registerButton.addClass( 'disabled-button' );
-
   }
 }
 
@@ -266,8 +272,6 @@ $( () => {
   const state = $( '#user_state' );
   const city = $( '#user_city' );
   const zipCode = $( '#user_zipcode' );
-
-
 
   userName.on( 'change keyup', () => {
     checkUserFirstNameValid();

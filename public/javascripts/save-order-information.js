@@ -1,3 +1,6 @@
+const $ = require( 'jquery' );
+global.jQuery = require( 'jquery' );
+
 function getOrderItems() {
   const items = [];
   $( '.product-order' ).each( () => {
@@ -17,7 +20,9 @@ function getOrderItems() {
 }
 
 function getOrderPrice() {
-  return $( '#checkout-total-value' ).text().slice( 1 );
+  return $( '#checkout-total-value' )
+    .text()
+    .slice( 1 );
 }
 
 function checkEmptyCart() {
@@ -37,9 +42,10 @@ function submitOrder() {
     totalPrice: orderPrice
   };
 
-  console.log( 'users/sign_up POST Request:\n',
-    JSON.stringify( orderJSONRequest, null, 2 ) );
-
+  console.log(
+    'users/sign_up POST Request:\n',
+    JSON.stringify( orderJSONRequest, null, 2 )
+  );
 
   // $.post(
   //   '/orders/new_order',
@@ -69,5 +75,4 @@ $( () => {
     //   submitOrder();
     // }
   });
-
 });

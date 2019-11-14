@@ -1,9 +1,14 @@
+const $ = require( 'jquery' );
+const jquery = require( '../../node_modules/jquery/dist/jquery.min' );
+
+global.jQuery = require( 'jquery' );
+
 $( 'a.back-to-top' ).on( 'click', () => {
   $( document.body ).animate({ scrollTop: 0 }, 800 );
   return false;
 });
 
-function openTab( tabName ) {
+window.openTab = function openTab( tabName ) {
   let tab;
   const activeTab = document.getElementById( tabName );
   const viewTabs = document.getElementsByClassName( 'container tab' );
@@ -17,7 +22,7 @@ function openTab( tabName ) {
     tabLinks[ tab ].className = tabLinks[ tab ].className.replace( ' active', '' );
   }
   activeLink.className += ' active';
-}
+};
 
 // $(document).ready(() => {
 //   const windowHeight = $(window).height();

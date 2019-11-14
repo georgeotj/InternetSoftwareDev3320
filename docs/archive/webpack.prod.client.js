@@ -1,6 +1,6 @@
 const webpack = require( 'webpack' );
 
-const { root } = require( './helpers' );
+const { root } = require( '../../config/helpers' );
 
 /**
  * This is a client config which should be merged on top of common config

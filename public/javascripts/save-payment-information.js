@@ -1,3 +1,5 @@
+const $ = require( 'jquery' );
+
 function getPaymentInformation() {
   return {
     paymentMethod: $( '#payment-method-types option:selected' ).text(),
@@ -23,16 +25,10 @@ function submitPaymentInformationForm() {
     userFullName: paymentInformation.userName
   };
 
-    $.post(
-    '/users/billing_info',
-    paymentInformationJSONRequest,
-    ( data ) => {
-      // eslint-disable-next-line no-alert
-      alert( data );
-    }
-  ).done(
-    console.log( 'The billing AJAX is over' )
-  );
+  $.post( '/users/billing_info', paymentInformationJSONRequest, ( data ) => {
+    // eslint-disable-next-line no-alert
+    alert( data );
+  }).done( console.log( 'The billing AJAX is over' ) );
 }
 
 $( () => {
@@ -40,5 +36,4 @@ $( () => {
     event.preventDefault();
     submitPaymentInformationForm();
   });
-
 });

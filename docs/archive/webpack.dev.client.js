@@ -1,7 +1,7 @@
 
 const { BundleAnalyzerPlugin } = require( 'webpack-bundle-analyzer' );
 
-const { root } = require( './helpers' );
+const { root } = require( '../../config/helpers' );
 
 /**
  * This is a client config which should be merged on top of common config

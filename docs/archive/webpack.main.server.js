@@ -1,6 +1,6 @@
 const DefinePlugin = require( 'webpack/lib/DefinePlugin' );
 
-const { root } = require( './helpers' );
+const { root } = require( '../../config/helpers' );
 
 /**
  * This is a server config which should be merged on top of common config
