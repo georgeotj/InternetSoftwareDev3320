@@ -19,13 +19,11 @@ const router = express.Router();
 
 const assets = require( 'connect-assets' );
 
-const webpackMiddleware = require( 'webpack-dev-middleware' );
-
 const webpack = require( 'webpack' );
 
 const bodyParser = require( 'body-parser' );
 
-const webpackConfig = require( './webpack.server.config' );
+const webpackConfig = require( './config/webpack.server.config' );
 
 const mongoDB = require( './config/database' );
 
@@ -38,8 +36,19 @@ const compiler = webpack( webpackConfig );
 
 const DIST_DIR = __dirname;
 
+const STATIC_MIDDLEWARE = express.static( 'dist' );
 
 const port = process.env.PORT || 3000;
+
+// eslint-disable-next-line import/order
+// const webpackDevMiddleware = require( 'webpack-dev-middleware' )(
+//   compiler,
+//   webpackConfig.devServer
+// );
+
+// eslint-disable-next-line import/order
+// const webpackHotMiddleware = require( 'webpack-hot-middleware' )( compiler );
+
 
 // Log all request with morgan common
 app.use( morgan( 'common' ) );
@@ -53,11 +62,10 @@ if ( process.env.NODE_ENV === 'development' ) {
 
 app.use( cookieParser() );
 
-app.use( require( 'webpack-dev-middleware' )( compiler, {
-  noInfo: true, publicPath: webpackConfig.output.publicPath
-}) );
+// app.use( webpackDevMiddleware );
 
-app.use( require( 'webpack-hot-middleware' )( compiler ) );
+// Must use after DevMiddleware, but before static middleware
+// app.use( webpackHotMiddleware );
 
 // Asset compiler and minimizer
 app.use( assets({
@@ -66,6 +74,8 @@ app.use( assets({
     'public/javascripts'
   ]
 }) );
+
+app.use( STATIC_MIDDLEWARE );
 
 // Use the body-parser middleware in the app
 app.use( bodyParser.urlencoded({ extended: false }) );
@@ -89,7 +99,9 @@ app.use( cors({
 app.use( compression() );
 
 // Add .css and .js static files to the app
-app.use( '/public', express.static( path.join( DIST_DIR, '/public' ) ) );
+app.use( express.static( path.join( DIST_DIR, '/public' ) ) );
+app.use( '/dist', express.static( path.join( DIST_DIR, '/dist' ) ) );
+
 
 // Set Application Settings
 app.set( 'view engine', 'ejs' );

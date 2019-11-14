@@ -13,3 +13,8 @@ import '../../node_modules/jquery/dist/jquery.min';
 import '../../node_modules/jquery-ui-dist/jquery-ui.min';
 import '../../node_modules/jquery-ui-dist/jquery-ui.min.css';
 import '../../node_modules/jquery-validation/dist/jquery.validate.min';
+
+require( 'babel-runtime/regenerator' );
+require( 'webpack-hot-middleware/client' );
+require( '../stylesheets/style.css' );
+require( '../../views/index.ejs' );

@@ -11,7 +11,7 @@ html {
 }
 
 body {
-  background-color: #7d6d84;
+  background-color: #f2f3f4;
   -webkit-box-direction: normal;
   -webkit-box-orient: vertical;
   display: flex;
@@ -73,7 +73,7 @@ option {
   padding-top: 1vh;
   position: absolute;
   text-align: center;
-  text-shadow: 0 9px 16px rgba(51, 36, 99, 0.5);
+  text-shadow: 2px 6px 8px #332463;
   top: 50%;
   -ms-transform: translate(-50%, -50%);
   -webkit-transform: translate(-50%, -50%);
@@ -142,7 +142,8 @@ option {
 }
 
 .nav-item .nav-link {
-  color: #968e95;
+  color: #332463;
+  text-shadow: 0 0 5px #917a90;
   display: inline;
   margin: 10px 12px;
   text-align: center;
@@ -151,7 +152,7 @@ option {
 }
 
 .nav-item .nav-link:hover {
-  color: #332463;
+  color: #7d6d84;
   font-weight: 800;
   -ms-transform: scale(1.5);
   -webkit-transform: scale(1.5);
@@ -181,7 +182,13 @@ a.back-to-top {
   text-decoration: none;
   font-size: 2.5vh;
   margin: auto;
-  color: #161024;
+  color: #332463;
+  background-color: #f2f3f4;
+  border-radius: 5px;
+  box-shadow: 0 0 3px #332463;
+  padding: 3px 5px 3px 5px;
+  position: fixed;
+  top: 25%;
 }
 
 .bottom-bar {
@@ -368,7 +375,7 @@ a.back-to-top {
 }
 
 .register-user-panel {
-  background-color: #e1e1e1;
+  background-color: #f5f2ff;
   border-radius: 5px;
   -webkit-box-direction: normal;
   -webkit-box-orient: vertical;
@@ -377,6 +384,7 @@ a.back-to-top {
   flex-direction: column;
   margin: 5% auto;
   width: 40%;
+  box-shadow: 0 0 6px 1px #332463;
 }
 
 .register-user-panel input[type="text"]:focus {
@@ -413,7 +421,8 @@ a.back-to-top {
   -ms-flex: 1;
   flex: 1;
   justify-items: flex-start;
-  /*min-width: fit-content;*/
+
+  /* min-width: fit-content; */
   min-width: 25%;
 }
 
@@ -1249,6 +1258,7 @@ span.total-value.cost-value {
   color: #a9a6a6;
   box-shadow: 0 0 8px 2px #595959;
 }
+
 #register-user-btn.disabled-button:hover,
 #submit-payment-information-btn.disabled-button:hover,
 #shipping-info-submit-btn.disabled-button:hover {
