@@ -1,5 +1,5 @@
 const mongoose = require( './mongoose-promise' );
-const config = require( './config.js' );
+const config = require( './server.config.js' );
 
 const mongooseOptions = {
   useNewUrlParser: true,
