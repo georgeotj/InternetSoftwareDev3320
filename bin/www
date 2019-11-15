@@ -6,7 +6,7 @@
 
 const debug = require( 'debug' )( 'internetsoftwaredev3320:server' );
 const http = require( 'http' );
-const app = require( '../app' );
+const app = require( '../server/app' );
 
 /**
  * Get port from environment and store in Express.
