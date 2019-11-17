@@ -1,59 +1,72 @@
-// const { createLogger, transports, format } = require( 'winston' );
 const winston = require( 'winston' );
-require( 'winston-daily-rotate-file' );
+const expressWinston = require( 'express-winston' );
 
-const { format } = winston;
-
-const { label, combine, timestamp, prettyPrint, colorize } = format;
-
-const options = {
-  file: {
-    level: process.env.ENV === 'development' ? 'debug' : 'info',
-    filename: './%DATE%-logsDemo.log',
-    datePattern: 'YYYY-MM-DD',
-    zippedArchive: true,
-    timestamp: true,
-    handleExceptions: true,
-    humanReadableUnhandledException: true,
-    prettyPrint: true,
-    json: true,
-    maxsize: 5242880, // 5MB
-    colorize: true
+const config = {
+  levels: {
+    fatal: 0,
+    error: 1,
+    warning: 2,
+    info: 3,
+    debug: 4,
+    trace: 5
+  },
+  colors: {
+    fatal: 'red',
+    error: 'magenta',
+    warning: 'yellow',
+    info: 'green',
+    debug: 'blue',
+    trace: 'gray'
   }
 };
 
-winston.addColors({
-  error: 'red',
-  warn: 'yellow',
-  info: 'cyan',
-  debug: 'green'
-});
+winston.addColors( config.colors );
 
-const transport = new winston.transports.Console();
+const consoleTransport = new winston.transports.Console();
+const colorizer = winston.format.colorize();
 
-// createLogger function creates a new logger
 const logger = winston.createLogger({
-  levels: winston.config.syslog.levels,
-  // add timestamp to logs and define formatting options
-  format: combine(
-    timestamp(),
-    prettyPrint(),
-    colorize()
-  ),
   transports: [
-    // Display the log in the console.
-    transport
-    // Writes logs to file
-    // new transports.DailyRotateFileTransport( options.file )
+    consoleTransport
   ],
-  // Handled exceptions won't cause process.exit
-  exitOnError: false
+  format: winston.format.combine(
+    winston.format.colorize(),
+    winston.format.json(),
+    winston.format.align(),
+    winston.format.simple() ),
+  levels: config.levels
 });
 
-logger.stream = {
-  write: ( info ) => {
-    logger.info( info );
-  }
-};
+expressWinston.requestWhitelist.splice( 0 );
+expressWinston.requestWhitelist = [ 'url', 'body' ];
+expressWinston.responseWhitelist.splice( 0 );
+expressWinston.responseWhitelist = [ 'url', 'body' ];
 
-module.exports = logger;
+const expressLogger = expressWinston.logger({
+  transports: [
+    consoleTransport
+  ],
+  // meta: true,
+  expressFormat: true,
+  colorStatus: true,
+  colorize: true,
+  msg: `HTTP {{res.statusCode}} {{req.method}} {{req.url}} {{res.responseTime}}ms \n
+    Request Body: \n
+    {{req.body}} +
+    Response Body: \n
+    {{res.body}}`,
+  ignoreRoute ( req, res ) { return false; },
+  // requestFilter ( req, propName ) { return req[ propName ]; },
+  ignoredRoutes: [ '/__webpack_hmr' ],
+  dynamicMeta ( req, res, err ) {
+    return {
+      body: JSON.stringify( req.body ),
+      FROM: req.originalUrl,
+      responseBody: res.body
+    };
+  },
+  winstonInstance: logger // The magic!
+});
+
+
+module.exports = expressLogger;

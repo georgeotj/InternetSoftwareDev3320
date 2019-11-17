@@ -15,7 +15,7 @@ const helmet = require( 'helmet' );
 
 const cookieParser = require( 'cookie-parser' );
 
-const router = express.Router();
+// const router = express.Router();
 
 const assets = require( 'connect-assets' );
 
@@ -24,7 +24,12 @@ const chalk = require( 'chalk' );
 
 const webpack = require( 'webpack' );
 
+const PrettyError = require( 'pretty-error' );
+
 const bodyParser = require( 'body-parser' );
+const winston = require( 'winston' );
+
+const expressWinston = require( 'express-winston' );
 
 const webpackConfig = require( '../docs/archive/webpack.server.config' );
 
@@ -35,9 +40,13 @@ const models = require( './models' );
 const users = require( './routes/users' );
 const products = require( './routes/products' );
 
-const httpLogger = require( './config/httpLogger' );
+// const httpLogger = require( './config/httpLogger' );
+const router = require( './routes/index' )
 
-const logger = require( './config/logger' );
+
+const expressLogger = require( './config/logger.js' );
+
+const logger = require( '../docs/archive/logger' );
 
 const compiler = webpack( webpackConfig );
 
@@ -47,6 +56,10 @@ const STATIC_MIDDLEWARE = express.static( 'dist' );
 
 const port = process.env.PORT || 3000;
 
+let errors;
+errors = new PrettyError();
+errors.skipNodeFiles();
+errors.skipPackage( 'express' );
 
 // eslint-disable-next-line import/order
 // const webpackDevMiddleware = require( 'webpack-dev-middleware' )(
@@ -59,8 +72,7 @@ const port = process.env.PORT || 3000;
 
 
 // Log all request with morgan common
-app.use( morgan( 'combined', { stream: logger.stream }) );
-
+// app.use( morgan( 'combined', { stream: logger.stream }) );
 
 if ( process.env.NODE_ENV === 'development' ) {
   app.use( errorHandler({
@@ -107,6 +119,8 @@ app.use( cors({
 // and static files.
 app.use( compression() );
 
+app.use( expressLogger );
+
 // Add .css and .js static files to the app
 app.use( express.static( path.join( DIST_DIR, '/public' ) ) );
 app.use( '/dist', express.static( path.join( DIST_DIR, '/dist' ) ) );
@@ -124,40 +138,65 @@ mongoDB( ( error ) => {
   }
 });
 
-router.get( '*', ( req, res, next ) => {
-  console.log( chalk.blue( `These Request Were Made To: ${req.originalUrl}` ) );
-  // logger.log({
-  //   message: 'Request received',
-  //   level: 'info',
-  //   transationId: 'request',
-  //   correlationId: req.originalUrl,
-  //   operation: 'log request'
-  // });
-  return next();
-});
+// router.post( '*', ( req, res, next ) => {
+//
+//   if ( req.originalUrl !== '/__webpack_hmr' ) {
+//     console.log( chalk.red( `A POST Request was Made To: ${req.originalUrl}` ) );
+//   }
+//
+//   return next();
+// });
+//
+// router.get( '*', ( req, res, next ) => {
+//
+//   if ( req.originalUrl !== '/__webpack_hmr' ) {
+//     console.log( chalk.blue( `A GET Request was Made To: ${req.originalUrl}` ) );
+//   }
+//   // logger.log({
+//   //   message: 'Request received',
+//   //   level: 'info',
+//   //   transationId: 'request',
+//   //   correlationId: req.originalUrl,
+//   //   operation: 'log request'
+//   // });
+//   return next();
+// });
+//
+// // Add path to HTML file to the router
+// router.get( '/', ( request, response ) => {
+//
+//   // __dirname: resolves to project folder
+//   // sendfile(): sends HTML files to the browser
+//   response.render( 'index' );
+// });
+//
+// router.get( '/states', ( request, response ) => {
+//   models.States.find({}).then( ( states ) => {
+//     console.log( 'Sending states response' );
+//     response.send({ states });
+//
+//     // console.log( 'GET /states Response:\n', JSON.stringify( states, null, 2 ) );
+//   });
+// });
 
-// Add path to HTML file to the router
-router.get( '/', ( request, response ) => {
-
-  // __dirname: resolves to project folder
-  // sendfile(): sends HTML files to the browser
-  response.render( 'index' );
-});
-
-router.get( '/states', ( request, response ) => {
-  models.States.find({}).then( ( states ) => {
-    console.log( 'Sending states response' );
-    response.send({ states });
-
-    // console.log( 'GET /states Response:\n', JSON.stringify( states, null, 2 ) );
-  });
-});
 
 // Add the router to the application
 app.use( '/', router );
 app.use( '/users', users );
 app.use( '/products', products );
 
+app.use( expressWinston.errorLogger({
+  transports: [
+    new winston.transports.Console({
+      json: true,
+      colorize: true
+    })
+  ],
+  format: winston.format.combine(
+    winston.format.colorize(),
+    winston.format.json()
+  )
+}) );
 
 process.once( 'unhandledRejection', ( err ) => {
   console.log( 'UNHANDLED_REJECTION: ', err.stack.toString() );
