@@ -10,7 +10,7 @@ const mongooseOptions = {
 module.exports = ( cb ) => {
   const mongoDBurl = `mongodb://${config.MONGO_DB_HOST}:${config.MONGO_DB_PORT}/${config.MONGO_DB_DATABASE}`;
 
-  console.log( 'Connecting to MongoDB URL: %s\n', mongoDBurl );
+  console.log( 'Starting Connection to MongoDB at: %s\n', mongoDBurl );
 
 
   mongoose.connect( mongoDBurl, mongooseOptions ).then( () => {

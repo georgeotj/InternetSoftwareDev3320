@@ -19,6 +19,7 @@ import shoppingCart from './shopping-cart';
 import validateAccountForm from './validate-account-form';
 import validateCheckoutForm from './validate-checkout-form';
 import validateShippingForm from './validate-shipping-form';
+import closingApplication from './application-closed';
 
 console.log( loadStates );
 
@@ -42,4 +43,5 @@ $( () => {
   validateCheckoutForm();
   validateAccountForm();
   validateShippingForm();
+  closingApplication();
 });

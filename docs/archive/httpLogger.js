@@ -1,7 +1,7 @@
 const stream = require( 'stream' );
 
 const morgan = require( 'morgan' );
-const { logger } = require( '../../docs/archive/logger' );
+const { logger } = require( './logger' );
 
 module.exports = class httpLogger {
   write( message ) {

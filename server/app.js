@@ -15,7 +15,7 @@ const helmet = require( 'helmet' );
 
 const cookieParser = require( 'cookie-parser' );
 
-const router = express.Router();
+// const router = express.Router();
 
 const assets = require( 'connect-assets' );
 
@@ -41,7 +41,7 @@ const users = require( './routes/users' );
 const products = require( './routes/products' );
 
 // const httpLogger = require( './config/httpLogger' );
-
+const router = require( './routes/index' )
 
 
 const expressLogger = require( './config/logger.js' );
@@ -56,7 +56,8 @@ const STATIC_MIDDLEWARE = express.static( 'dist' );
 
 const port = process.env.PORT || 3000;
 
-let errors = new PrettyError();
+let errors;
+errors = new PrettyError();
 errors.skipNodeFiles();
 errors.skipPackage( 'express' );
 
@@ -72,9 +73,6 @@ errors.skipPackage( 'express' );
 
 // Log all request with morgan common
 // app.use( morgan( 'combined', { stream: logger.stream }) );
-
-
-
 
 if ( process.env.NODE_ENV === 'development' ) {
   app.use( errorHandler({
@@ -140,34 +138,46 @@ mongoDB( ( error ) => {
   }
 });
 
-router.get( '*', ( req, res, next ) => {
-  console.log( chalk.blue( `These Request Were Made To: ${req.originalUrl}` ) );
-  // logger.log({
-  //   message: 'Request received',
-  //   level: 'info',
-  //   transationId: 'request',
-  //   correlationId: req.originalUrl,
-  //   operation: 'log request'
-  // });
-  return next();
-});
-
-// Add path to HTML file to the router
-router.get( '/', ( request, response ) => {
-
-  // __dirname: resolves to project folder
-  // sendfile(): sends HTML files to the browser
-  response.render( 'index' );
-});
-
-router.get( '/states', ( request, response ) => {
-  models.States.find({}).then( ( states ) => {
-    console.log( 'Sending states response' );
-    response.send({ states });
-
-    // console.log( 'GET /states Response:\n', JSON.stringify( states, null, 2 ) );
-  });
-});
+// router.post( '*', ( req, res, next ) => {
+//
+//   if ( req.originalUrl !== '/__webpack_hmr' ) {
+//     console.log( chalk.red( `A POST Request was Made To: ${req.originalUrl}` ) );
+//   }
+//
+//   return next();
+// });
+//
+// router.get( '*', ( req, res, next ) => {
+//
+//   if ( req.originalUrl !== '/__webpack_hmr' ) {
+//     console.log( chalk.blue( `A GET Request was Made To: ${req.originalUrl}` ) );
+//   }
+//   // logger.log({
+//   //   message: 'Request received',
+//   //   level: 'info',
+//   //   transationId: 'request',
+//   //   correlationId: req.originalUrl,
+//   //   operation: 'log request'
+//   // });
+//   return next();
+// });
+//
+// // Add path to HTML file to the router
+// router.get( '/', ( request, response ) => {
+//
+//   // __dirname: resolves to project folder
+//   // sendfile(): sends HTML files to the browser
+//   response.render( 'index' );
+// });
+//
+// router.get( '/states', ( request, response ) => {
+//   models.States.find({}).then( ( states ) => {
+//     console.log( 'Sending states response' );
+//     response.send({ states });
+//
+//     // console.log( 'GET /states Response:\n', JSON.stringify( states, null, 2 ) );
+//   });
+// });
 
 
 // Add the router to the application
@@ -175,7 +185,7 @@ app.use( '/', router );
 app.use( '/users', users );
 app.use( '/products', products );
 
-app.use(expressWinston.errorLogger({
+app.use( expressWinston.errorLogger({
   transports: [
     new winston.transports.Console({
       json: true,
@@ -186,7 +196,7 @@ app.use(expressWinston.errorLogger({
     winston.format.colorize(),
     winston.format.json()
   )
-}));
+}) );
 
 process.once( 'unhandledRejection', ( err ) => {
   console.log( 'UNHANDLED_REJECTION: ', err.stack.toString() );

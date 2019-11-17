@@ -211,7 +211,7 @@ const shippingEventHandlers = {
 };
 
 /* eslint no-multiple-empty-lines:0 */
-$( document ).ready( () => {
+$( () => {
   const address1 = $( '#shipping_address_1' );
   const address2 = $( '#shipping_address_2' );
   const state = $( '#shipping_user_state' );

@@ -30,7 +30,7 @@ $( () => {
       })
         .done(
           console.log( 'GET /products/get_products Request is done' ),
-          ( areProductsLoaded = true )
+          areProductsLoaded = true
         );
     }
   });
