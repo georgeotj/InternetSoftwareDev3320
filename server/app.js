@@ -24,7 +24,12 @@ const chalk = require( 'chalk' );
 
 const webpack = require( 'webpack' );
 
+const PrettyError = require( 'pretty-error' );
+
 const bodyParser = require( 'body-parser' );
+const winston = require( 'winston' );
+
+const expressWinston = require( 'express-winston' );
 
 const webpackConfig = require( '../docs/archive/webpack.server.config' );
 
@@ -35,9 +40,13 @@ const models = require( './models' );
 const users = require( './routes/users' );
 const products = require( './routes/products' );
 
-const httpLogger = require( './config/httpLogger' );
+// const httpLogger = require( './config/httpLogger' );
 
-const logger = require( './config/logger' );
+
+
+const expressLogger = require( './config/logger.js' );
+
+const logger = require( '../docs/archive/logger' );
 
 const compiler = webpack( webpackConfig );
 
@@ -47,6 +56,9 @@ const STATIC_MIDDLEWARE = express.static( 'dist' );
 
 const port = process.env.PORT || 3000;
 
+let errors = new PrettyError();
+errors.skipNodeFiles();
+errors.skipPackage( 'express' );
 
 // eslint-disable-next-line import/order
 // const webpackDevMiddleware = require( 'webpack-dev-middleware' )(
@@ -59,7 +71,9 @@ const port = process.env.PORT || 3000;
 
 
 // Log all request with morgan common
-app.use( morgan( 'combined', { stream: logger.stream }) );
+// app.use( morgan( 'combined', { stream: logger.stream }) );
+
+
 
 
 if ( process.env.NODE_ENV === 'development' ) {
@@ -107,6 +121,8 @@ app.use( cors({
 // and static files.
 app.use( compression() );
 
+app.use( expressLogger );
+
 // Add .css and .js static files to the app
 app.use( express.static( path.join( DIST_DIR, '/public' ) ) );
 app.use( '/dist', express.static( path.join( DIST_DIR, '/dist' ) ) );
@@ -153,11 +169,24 @@ router.get( '/states', ( request, response ) => {
   });
 });
 
+
 // Add the router to the application
 app.use( '/', router );
 app.use( '/users', users );
 app.use( '/products', products );
 
+app.use(expressWinston.errorLogger({
+  transports: [
+    new winston.transports.Console({
+      json: true,
+      colorize: true
+    })
+  ],
+  format: winston.format.combine(
+    winston.format.colorize(),
+    winston.format.json()
+  )
+}));
 
 process.once( 'unhandledRejection', ( err ) => {
   console.log( 'UNHANDLED_REJECTION: ', err.stack.toString() );
