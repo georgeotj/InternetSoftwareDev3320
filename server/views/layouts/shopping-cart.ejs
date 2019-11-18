@@ -53,7 +53,26 @@
         <div class="shopping-cart-panel flex-column-2">
             <h2>Cart</h2>
             <div class="shopping-cart">
-                <div id="items-list">
+                <div id="all-store-items-table" hidden>
+                   <table id="hidden-item-table">
+                       <caption>
+                           All Items
+                       </caption>
+                       <thead>
+                       <tr>
+                           <th scope="col">productID</th>
+                           <th scope="col">productName</th>
+                           <th scope="col">productDescription</th>
+                           <th scope="col">productUnits</th>
+                       </tr>
+                       </thead>
+                       <tbody>
+
+                       </tbody>
+                   </table>
+
+                </div>
+                <div id="product-list-users-see">
                     <table id="cart-list">
                         <caption>
                             Saved Items

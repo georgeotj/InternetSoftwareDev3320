@@ -2,16 +2,16 @@ const $ = require( 'jquery' );
 global.jQuery = require( 'jquery' );
 
 function getOrderItems() {
-  const items = [];
-  $( '.product-order' ).each( () => {
-    const productName = $( this > '.productName' ).text();
-    const productQuantity = $( this > '.productUnits' ).text();
+  // eslint-disable-next-line global-require
+  const items = {};
 
-    const productID = productName.substr( productName.indexOf( '-' ) + 1 );
+  const rowsOfOrderItems = $( '.product-order' );
 
+  rowsOfOrderItems.each( () => {
     const item = {};
-    item.itemID = productID;
-    item.quantity = productQuantity;
+
+    item.itemID = $( this ).children( '.productID' ).text();
+    item.name = $( this ).children( '.productName' ).text();
 
     items.push( item );
   });
@@ -60,7 +60,7 @@ function submitOrder() {
 }
 
 $( () => {
-  $( '#submit-payment-information-btn' ).on( 'click', ( event ) => {
+  $( '#submit-order-information-btn' ).on( 'click', ( event ) => {
     event.preventDefault();
     submitOrder();
 

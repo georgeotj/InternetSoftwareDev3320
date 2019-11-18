@@ -1,5 +1,8 @@
 const $ = require( 'jquery' );
 
+
+const productItems = [];
+
 $( () => {
   const productDropDown = $( '#list-products' );
   const productOrders = [];
@@ -46,10 +49,17 @@ $( () => {
     return `${productDetails[ 0 ]}-${productDetails[ 1 ]}`;
   }
 
-  function appendOrderToCart( productName, productUnits, productValue ) {
+  function getProductID() {
+    const $selectedItem = productDropDown.find( 'option:selected' );
+    return $selectedItem.val();
+  }
+
+  function appendOrderToCart( productName, productUnits, productValue, productID ) {
     const rowProduct = `td.${productName}`;
     console.log( $( rowProduct ).length );
+
     if ( $( rowProduct ).length === 1 ) {
+
       const unitsIdentifier = $( `td.units-${productName}` );
       const totalCostIdentifier = $( `td.total-cost-of-${productName}` );
 
@@ -65,11 +75,13 @@ $( () => {
       totalCostIdentifier.html( `$${newTotalItemCost}` );
     }else {
       $( '#cart-list > tbody' ).append( `<tr class="product-order">
+                    <td class='productID' hidden>${productID}</td>
                     <td class='${productName} productName'>${productName}</td>
                     <td class='units-${productName} productUnits'>${productUnits}</td>
                     // eslint-disable-next-line max-len
                     <td class='total-cost-of-${productName}'>$${productValue}</td>
                   </tr>` );
+
     }
   }
 
@@ -92,15 +104,17 @@ $( () => {
     calculateSubtotal();
   }
 
+
   $( '#add-item-to-cart-button' ).on( 'click', () => {
     if (
       getSelectedOrderPrice() !== 0 &&
       !Number.isNaN( getSelectedProductPrice() )
     ) {
       const productName = getProductName();
+      const productID = getProductID();
       const productValue = getSelectedOrderPrice();
       const productUnits = getItemQuantity( '#item-units' );
-      appendOrderToCart( productName, productUnits, productValue );
+      appendOrderToCart( productName, productUnits, productValue, productID );
 
       addOrderTotalToSubtotal( productValue );
       displaySubtotal();
@@ -158,3 +172,8 @@ $( () => {
     $( '#checkout-total-value' ).text( `$${Number( totalCost ).toFixed( 2 )}` );
   });
 });
+
+// eslint-disable-next-line import/prefer-default-export
+export function sendShoppingCart () {
+  return productItems;
+}

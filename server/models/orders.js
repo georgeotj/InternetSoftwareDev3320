@@ -17,15 +17,17 @@ const ordersSchema = new Schema({
     unique: true
   },
   items: {
-    itemID: {
-      type: Number,
-      required: true,
-      unique: true
-    },
-    quantity: {
-      type: Number,
-      required: true,
-      unique: false
+    item: {
+      itemID: {
+        type: Schema.Types.ObjectId,
+        required: true,
+        unique: true
+      },
+      quantity: {
+        type: Number,
+        required: true,
+        unique: false
+      }
     }
   },
   totalPrice: {

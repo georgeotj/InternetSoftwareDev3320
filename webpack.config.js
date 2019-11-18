@@ -112,6 +112,11 @@ const clientConfig = {
       jQuery: root( './node_modules/jquery/dist/jquery.min' ),
       'window.jQuery': root( './node_modules/jquery/dist/jquery.min' )
     }),
+    new webpack.ProvidePlugin({
+      _: root( './node_modules/underscore/underscore-min' ),
+      Underscore: root( './node_modules/underscore/underscore-min' ),
+      'window.Underscore': root( './node_modules/underscore/underscore-min' )
+    }),
     new BundleAnalyzerPlugin({
       analyzerMode: 'server', // 'disabled'|'server'
       reportFilename: root( 'public/report.html' ),
