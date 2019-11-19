@@ -16,7 +16,7 @@ router.post( '*', ( req, res, next ) => {
 });
 
 router.get( '*', ( req, res, next ) => {
-  const timestamp = moment().format( 'HH:mm:ss' );
+  const timestamp = moment().format( 'hh:mm:ss' );
   if ( ( req.originalUrl !== '/__webpack_hmr' ) && ( req.originalUrl !== '/' ) ) {
     console.log(
       chalk.blue( `A GET Request was Received For: ${req.originalUrl} at ${timestamp}` )

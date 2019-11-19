@@ -3,19 +3,51 @@ global.jQuery = require( 'jquery' );
 
 function getOrderItems() {
   // eslint-disable-next-line global-require
-  const items = {};
+  const items = [];
 
   const rowsOfOrderItems = $( '.product-order' );
 
-  rowsOfOrderItems.each( () => {
+  rowsOfOrderItems.each( ( index, value ) => {
     const item = {};
 
-    item.itemID = $( this ).children( '.productID' ).text();
-    item.name = $( this ).children( '.productName' ).text();
+    // console.log( $( ':eq(1)', $( this ) ).html() );
+    // console.log( $( ':eq(1)', $( this ) ).text() );
+    // console.log( $( ':eq(0)', $( this ) ).val() );
+    // // console.log( this.cells[ 0 ].innerHTML );
+    // // console.log( this.cells[ 0 ].innerText );
+    // // console.log( this.cells[ 1 ].innerHTML );
+    // console.log( $( this ).children( '.productID' ).text() );
+    // console.log( $( this ).children( '.productName' ).text() );
+    // console.log( $( this ).children( 'td.productName' ).val() );
+    // console.log( $( this ).children( 'td.productName' ).text() );
+    // console.log( $( this ).children( 'td.productName' ).html() );
+    // console.log( $( this ).children( 'td.productName' ).eq( 1 ).text() );
+    // console.log( $( this ).children( 'td.productName' ).eq( 1 ).html() );
+    // console.log( $( this ).children().first().text() );
+    // console.log( $( this ).children( 'td' ).slice( 1, 2 ).text() );
+    // console.log( $( this ).children( 'td' ).first()
+    //                                     .next()
+    //                                         .text() );
+    // console.log( $( this ).firstElementChild.text() );
+    // console.log( $( this ).firstElementChild.next().text() );
+
+    // console.log( $( this ).eq( 1 ).html() );
+    // console.log( $( this ).children( 'td' ).eq( 1 ).text() );
+    // console.log( $( this ).find( '.productName' ).text() );
+    // console.log( $( this ).get( 1 ).text() );
+    // console.log( $( this ).first().text() );
+    // console.log( $( this ).first().next().text() );
+    // console.log( $( this ).get( 1 ).value() );
+                      //  .children[ 1 ]
+    item.itemID = $( '.productID' ).eq( index ).text();
+    item.name = $( '.productName' ).eq( index ).text();
+
+    console.log( 'An item\'s ID from the order:', item.itemID );
+    console.log( 'An item\'s Name from the order:', item.name );
 
     items.push( item );
   });
-
+  console.log( 'This is the user\'s order: ', items );
   return items;
 }
 
@@ -35,6 +67,11 @@ function submitOrder() {
   const orderItems = getOrderItems();
   const orderPrice = getOrderPrice();
   const userName = $( '.name-value' ).text();
+
+  if ( !userName ) {
+    // eslint-disable-next-line no-alert
+    alert( 'Make an Account Before Completing a Purchase' );
+  }
 
   const orderJSONRequest = {
     userName,
