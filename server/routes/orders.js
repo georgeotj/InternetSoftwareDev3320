@@ -10,6 +10,8 @@ router.post( '/new_order', ( request, response, next ) => {
     JSON.stringify( request.body, null, 2 ) );
 
   console.log( `User's Name for Order: ${request.body.userName}` );
+  console.log( `User's Items for Order: ${request.body.items}` );
+  console.log( `Price for User's Order: ${request.body.totalPrice}` );
 
   const findUserID = {
     getOrderRequestUserID: async ( userFullName ) => {
@@ -32,12 +34,14 @@ router.post( '/new_order', ( request, response, next ) => {
 
     createNewOrder() {
       findUserID.getOrderRequestUserID( request.body.userName ).then( ( userID ) => {
-        const orderID = new mongoose.mongo.ObjectID();
+        const orderNumber = new mongoose.mongo.ObjectID();
+        const { items } = request.body;
+        const { totalPrice } = request.body;
         const orderInformation = {
           userID,
-          orderID,
-          items: request.body.items,
-          totalPrice: request.body.totalPrice
+          orderNumber,
+          items,
+          totalPrice
         };
 
         const userOrder = new models.Orders( orderInformation );

@@ -40,7 +40,7 @@ function getOrderItems() {
     // console.log( $( this ).get( 1 ).value() );
                       //  .children[ 1 ]
     item.itemID = $( '.productID' ).eq( index ).text();
-    item.name = $( '.productName' ).eq( index ).text();
+    item.quantity = $( '.productUnits' ).eq( index ).text();
 
     console.log( 'An item\'s ID from the order:', item.itemID );
     console.log( 'An item\'s Name from the order:', item.name );
@@ -74,7 +74,7 @@ function submitOrder() {
   }
 
   const orderJSONRequest = {
-    userName,
+    userName: 'Trevor McDougald',
     items: orderItems,
     totalPrice: orderPrice
   };
@@ -84,16 +84,19 @@ function submitOrder() {
     JSON.stringify( orderJSONRequest, null, 2 )
   );
 
-  // $.post(
-  //   '/orders/new_order',
-  //   orderJSONRequest,
-  //   ( data ) => {
-  //     // eslint-disable-next-line no-alert
-  //     alert( data );
-  //   }
-  // ).done(
-  //   console.log( 'The order AJAX is over' )
-  // );
+  $.post(
+    '/orders/new_order',
+    {
+      userName: 'Trevor McDougald',
+      items: orderItems,
+      totalPrice: orderPrice
+    },
+    ( data ) => {
+      // eslint-disable-next-line no-alert
+      alert( data );
+    }
+  )
+    .then( ( r ) => { return console.log( 'POST /orders/new_order is Over! ' ); });
 }
 
 $( () => {

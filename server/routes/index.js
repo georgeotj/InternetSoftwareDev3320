@@ -46,6 +46,11 @@ router.get( '/', ( request, response ) => {
   // __dirname: resolves to project folder
   // sendfile(): sends HTML files to the browser
   response.render( 'index' );
+  // response.send( 'Sent the Application View' );
+});
+
+router.get( '/', ( request, response ) => {
+  response.send( 'Sent the Application View!' );
 });
 
 router.get( '/states', ( request, response ) => {

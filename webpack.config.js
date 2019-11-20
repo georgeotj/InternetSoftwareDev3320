@@ -13,6 +13,7 @@ const BrowserSyncPlugin = require( 'browser-sync-webpack-plugin' );
 const { CleanWebpackPlugin } = require( 'clean-webpack-plugin' );
 // const OptimizeCSSAssetsPlugin = require( 'optimize-css-assets-webpack-plugin' );
 const FriendlyErrorsWebpackPlugin = require( 'friendly-errors-webpack-plugin' );
+// eslint-disable-next-line node/no-unpublished-require
 const DashboardPlugin = require( 'webpack-dashboard/plugin' );
 const TerserJSPlugin = require( 'terser-webpack-plugin' );
 const OptimizeCSSAssetsPlugin = require( 'optimize-css-assets-webpack-plugin' );

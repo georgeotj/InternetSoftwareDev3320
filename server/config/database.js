@@ -4,7 +4,9 @@ const config = require( './server.config.js' );
 const mongooseOptions = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useCreateIndex: true
+  useCreateIndex: true,
+  reconnectTries: 30,
+  reconnectInterval: 800
 };
 
 module.exports = ( cb ) => {
