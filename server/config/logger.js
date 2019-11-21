@@ -12,8 +12,8 @@ const config = {
   },
   colors: {
     fatal: 'red',
-    error: 'magenta',
-    warning: 'yellow',
+    error: 'yellow',
+    warning: 'blue',
     info: 'green',
     debug: 'blue',
     trace: 'gray'
@@ -33,7 +33,8 @@ const logger = winston.createLogger({
     winston.format.colorize(),
     winston.format.json(),
     winston.format.align(),
-    winston.format.simple() ),
+    winston.format.simple()
+    ),
   levels: config.levels
 });
 

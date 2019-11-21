@@ -28,7 +28,8 @@ function submitPaymentInformationForm() {
   $.post( '/users/billing_info', paymentInformationJSONRequest, ( data ) => {
     // eslint-disable-next-line no-alert
     alert( data );
-  }).done( console.log( 'The billing AJAX is over' ) );
+  })
+    .then( ( response ) => { return ( console.log( 'The billing AJAX is over' ) ); });
 }
 
 $( () => {

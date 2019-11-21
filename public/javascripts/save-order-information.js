@@ -2,20 +2,23 @@ const $ = require( 'jquery' );
 global.jQuery = require( 'jquery' );
 
 function getOrderItems() {
+  // eslint-disable-next-line global-require
   const items = [];
-  $( '.product-order' ).each( () => {
-    const productName = $( this > '.productName' ).text();
-    const productQuantity = $( this > '.productUnits' ).text();
 
-    const productID = productName.substr( productName.indexOf( '-' ) + 1 );
+  const rowsOfOrderItems = $( '.product-order' );
 
+  rowsOfOrderItems.each( ( index, value ) => {
     const item = {};
-    item.itemID = productID;
-    item.quantity = productQuantity;
+
+    item.itemID = $( '.productID' ).eq( index ).text();
+    item.quantity = $( '.productUnits' ).eq( index ).text();
+
+    console.log( 'An item\'s ID from the order:', item.itemID );
+    console.log( 'An item\'s Name from the order:', item.name );
 
     items.push( item );
   });
-
+  console.log( 'This is the user\'s order: ', items );
   return items;
 }
 
@@ -25,8 +28,8 @@ function getOrderPrice() {
     .slice( 1 );
 }
 
-function checkEmptyCart() {
-  return !!$( '.product-order' ).length;
+function isCartNotEmpty() {
+  return $( '.product-order' ).length > 0;
 }
 
 function submitOrder() {
@@ -36,43 +39,50 @@ function submitOrder() {
   const orderPrice = getOrderPrice();
   const userName = $( '.name-value' ).text();
 
-  const orderJSONRequest = {
-    userName,
-    items: orderItems,
-    totalPrice: orderPrice
-  };
+  if ( !userName ) {
+    // eslint-disable-next-line no-alert
+    alert( 'Make an Account Before Completing a Purchase' );
+  } else {
+    const orderJSONRequest = {
+      userName: 'Trevor McDougald',
+      items: orderItems,
+      totalPrice: orderPrice
+    };
 
-  console.log(
-    'users/sign_up POST Request:\n',
-    JSON.stringify( orderJSONRequest, null, 2 )
-  );
+    console.log(
+      'users/sign_up POST Request:\n',
+      JSON.stringify( orderJSONRequest, null, 2 )
+    );
 
-  // $.post(
-  //   '/orders/new_order',
-  //   orderJSONRequest,
-  //   ( data ) => {
-  //     // eslint-disable-next-line no-alert
-  //     alert( data );
-  //   }
-  // ).done(
-  //   console.log( 'The order AJAX is over' )
-  // );
+    $.post(
+      '/orders/new_order',
+      {
+        userName,
+        items: orderItems,
+        totalPrice: orderPrice
+      },
+      ( data ) => {
+        // eslint-disable-next-line no-alert
+        alert( data );
+      }
+    )
+      .then( ( r ) => {
+        return console.log( 'POST /orders/new_order is Over! ' );
+      });
+
+  }
+
+
 }
 
 $( () => {
-  $( '#submit-payment-information-btn' ).on( 'click', ( event ) => {
-    event.preventDefault();
-    submitOrder();
-
-    // if ( $( 'section.account-information' ).css( 'display' ) === 'none' ) {
-    //
-    //   // eslint-disable-next-line no-alert
-    //   alert( 'Register an Account Before Placing an Order!' );
-    // }else if ( !checkEmptyCart() ) {
-    //   // eslint-disable-next-line no-alert
-    //   alert( 'Your Cart is Empty!' );
-    // }else {
-    //   submitOrder();
-    // }
+  $( '#submit-order-information-btn' ).on( 'click', ( event ) => {
+    if ( isCartNotEmpty() ) {
+      event.preventDefault();
+      submitOrder();
+    } else {
+      // eslint-disable-next-line no-alert
+      alert( 'Add an Item to Your Cart Before Checking Out' );
+    }
   });
 });

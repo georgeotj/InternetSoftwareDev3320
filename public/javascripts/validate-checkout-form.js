@@ -1,6 +1,7 @@
 const $ = require( 'jquery' );
 
-// const state = $('#shipping_user_state'); ca
+const { isValid } = require( './index' );
+
 let isCardTypeValid = true;
 let isCardNameValid = true;
 let isCardNumberValid = true;
@@ -15,10 +16,14 @@ function checkNameOnCard() {
 
   const pattern = /^([\w]{3,})+\s+([\w\s]{3,})+$/i;
   const fieldName = cardName.val();
-  if ( pattern.test( fieldName ) && fieldName !== '' ) {
+  if ( cardName.isValid() && fieldName !== '' ) {
     cardNameErrorMessage.hide();
-    cardName.css( 'border', '2px solid lightgreen' );
-    cardName.css( 'box-shadow', '0 0 8px 2px rgba(152, 251, 152, 0.75)' );
+    cardName.addClass( 'field-is-valid' );
+    if ( cardName.hasClass( 'field-is-invalid' ) ) {
+      cardName.removeClass( 'field-is-invalid' );
+    }
+    // cardName.css( 'border', '2px solid lightgreen' );
+    // cardName.css( 'box-shadow', '0 0 8px 2px rgba(152, 251, 152, 0.75)' );
   }else {
     cardNameErrorMessage.html( 'Invalid Name' );
     cardNameErrorMessage.css( 'color', '#b00808' );
@@ -29,31 +34,53 @@ function checkNameOnCard() {
     // cardNameErrorMessage.css('display', 'inline-block');
     // cardNameErrorMessage.css('position', 'absolute');
     cardNameErrorMessage.show();
-    cardName.css( 'border', '2px solid salmon' );
-    cardName.css( 'box-shadow', '0 0 8px 2px rgba(250, 128, 114, 0.75)' );
+    cardName.addClass( 'field-is-invalid' );
+    if ( cardName.hasClass( 'field-is-valid' ) ) {
+      cardName.removeClass( 'field-is-valid' );
+    }
+
+    // cardName.css( 'border', '2px solid salmon' );
+    // cardName.css( 'box-shadow', '0 0 8px 2px rgba(250, 128, 114, 0.75)' );
     isCardNameValid = false;
   }
 }
 
 function checkCardNumberValid() {
+  const cardType = $( '#payment-method-types' );
   const cardNumber = $( '#payment-card-number' );
   const cardNumberErrorMessage = $( '#checkout-card-number-error-message' );
   cardNumberErrorMessage.hide();
 
   const visaPattern = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
   const mastPattern = /^(?:5[1-5][0-9]{14})$/;
-  const discPattern = /^(?:6(?:011|5[0-9][0-9])[0-9]{12})$/;
+  const amexPattern = /^3[47][0-9]{13}$/;
   const fieldValue = cardNumber.val();
   // eslint-disable-next-line no-mixed-operators
-  if (
-    visaPattern.test( fieldValue ) ||
-    mastPattern.test( fieldValue ) ||
-    // eslint-disable-next-line no-mixed-operators
-    ( discPattern.test( fieldValue ) && fieldValue !== '' )
-  ) {
-    cardNumberErrorMessage.hide();
-    cardNumber.css( 'border', '2px solid lightgreen' );
-    cardNumber.css( 'box-shadow', '0 0 8px 2px rgba(152, 251, 152, 0.75)' );
+
+  if ( visaPattern.test( fieldValue ) ) {
+    // $( '#payment-method-types > option:eq(1)' ).prop( 'selected', true );
+    cardType.prop( 'selectedIndex', 1 );
+  }
+  if ( mastPattern.test( fieldValue ) ) {
+    // $( '#payment-method-types > option:eq(2)' ).prop( 'selected', true );
+    cardType.prop( 'selectedIndex', 2 );
+  }
+  if ( amexPattern.test( fieldValue ) ) {
+    // $( '#payment-method-types > option:eq(3)' ).prop( 'selected', true );
+    cardType.prop( 'selectedIndex', 3 );
+  }
+
+  if ( ( visaPattern.test( fieldValue ) ||
+      mastPattern.test( fieldValue ) || amexPattern.test( fieldValue ) ) &&
+      fieldValue !== '' ) {
+
+        cardNumberErrorMessage.hide();
+        cardNumber.addClass( 'field-is-valid' );
+        if ( cardNumber.hasClass( 'field-is-invalid' ) ) {
+          cardNumber.removeClass( 'field-is-invalid' );
+        }
+        // cardNumber.css( 'border', '2px solid lightgreen' );
+        // cardNumber.css( 'box-shadow', '0 0 8px 2px rgba(152, 251, 152, 0.75)' );
   }else {
     cardNumberErrorMessage.html( 'Invalid Card Number' );
     cardNumberErrorMessage.css( 'color', '#b00808' );
@@ -64,8 +91,13 @@ function checkCardNumberValid() {
     // cardNumberErrorMessage.css('display', 'inline-block');
     // cardNumberErrorMessage.css('position', 'absolute');
     cardNumberErrorMessage.show();
-    cardNumber.css( 'border', '2px solid salmon' );
-    cardNumber.css( 'box-shadow', '0 0 8px 2px rgba(250, 128, 114, 0.75)' );
+
+    cardNumber.addClass( 'field-is-invalid' );
+    if ( cardNumber.hasClass( 'field-is-valid' ) ) {
+      cardNumber.removeClass( 'field-is-valid' );
+    }
+    // cardNumber.css( 'border', '2px solid salmon' );
+    // cardNumber.css( 'box-shadow', '0 0 8px 2px rgba(250, 128, 114, 0.75)' );
     isCardNumberValid = false;
   }
 }
@@ -103,8 +135,12 @@ function checkCardExpireDate() {
   const fieldValue = cardExpire.val();
   if ( pattern.test( fieldValue ) && fieldValue !== '' ) {
     cardExpireErrorMessage.hide();
-    cardExpire.css( 'border', '2px solid lightgreen' );
-    cardExpire.css( 'box-shadow', '0 0 8px 2px rgba(152, 251, 152, 0.75)' );
+    cardExpire.addClass( 'field-is-valid' );
+    if ( cardExpire.hasClass( 'field-is-invalid' ) ) {
+      cardExpire.removeClass( 'field-is-invalid' );
+    }
+    // cardExpire.css( 'border', '2px solid lightgreen' );
+    // cardExpire.css( 'box-shadow', '0 0 8px 2px rgba(152, 251, 152, 0.75)' );
   }else {
     cardExpireErrorMessage.html( 'Invalid Expiration Date' );
     cardExpireErrorMessage.css( 'color', '#b00808' );
@@ -115,8 +151,12 @@ function checkCardExpireDate() {
     // cardExpireErrorMessage.css('display', 'inline-block');
     // cardExpireErrorMessage.css('position', 'absolute');
     cardExpireErrorMessage.show();
-    cardExpire.css( 'border', '2px solid salmon' );
-    cardExpire.css( 'box-shadow', '0 0 8px 2px rgba(250, 128, 114, 0.75)' );
+    cardExpire.addClass( 'field-is-invalid' );
+    if ( cardExpire.hasClass( 'field-is-valid' ) ) {
+      cardExpire.removeClass( 'field-is-valid' );
+    }
+    // cardExpire.css( 'border', '2px solid salmon' );
+    // cardExpire.css( 'box-shadow', '0 0 8px 2px rgba(250, 128, 114, 0.75)' );
     isCardExpireValid = false;
   }
 }
@@ -144,11 +184,7 @@ function checkCardCVV() {
 function checkPaymentAgreement() {
   const paymentAgreement = $( '#pay-agreement' );
 
-  if ( paymentAgreement.is( ':checked' ) ) {
-    isPaymentAgreedTo = true;
-  }else {
-    isPaymentAgreedTo = false;
-  }
+  isPaymentAgreedTo = paymentAgreement.is( ':checked' );
 }
 
 function isCheckoutFormValid() {
@@ -186,7 +222,7 @@ function isCheckoutFormValid() {
 }
 
 /* eslint no-multiple-empty-lines:0 */
-$( document ).ready( () => {
+$( () => {
   const cardName = $( '#payment-card-name' );
   const cardNumber = $( '#payment-card-number' );
   const cardType = $( '#payment-method-types' );

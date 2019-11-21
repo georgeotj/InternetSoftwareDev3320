@@ -1,0 +1,53 @@
+const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
+
+const JSLoader = {
+  test: /\.js$/,
+  exclude: /node_modules/,
+  use: {
+    loader: 'babel-loader',
+    options: {
+      presets: [ 'env' ]
+    }
+  }
+};
+const ESLintLoader = {
+  test: /\.js$/,
+  enforce: 'pre',
+  exclude: /node_modules/,
+  use: {
+    loader: 'eslint-loader',
+    options: {
+      configFile: `${__dirname}/.eslintrc`
+    }
+  }
+};
+
+const CSSLoader = {
+  test: /\.css$/,
+  exclude: /node_modules/,
+  use: [
+    {
+      loader: MiniCssExtractPlugin.loader,
+      options: {
+        publicPath: `${__dirname}/public/stylesheets/`
+      }
+    },
+    {
+      loader: 'css-loader',
+      options: { importLoaders: 1 }
+    },
+    {
+      loader: 'postcss-loader',
+      options: {
+        config: {
+          path: `${__dirname}/webpack/postcss.config.js`
+        }
+      }
+    }
+  ]
+};
+module.exports = {
+  JSLoader,
+  ESLintLoader,
+  CSSLoader
+};

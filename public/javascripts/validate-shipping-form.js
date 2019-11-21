@@ -8,7 +8,7 @@ let isCityValid = true;
 let isZipValid = true;
 
 // eslint-disable-next-line func-names
-$.fn.isValid = function() {
+$.fn.isValid = function isValid() {
   return this[ 0 ].checkValidity();
 };
 
@@ -17,7 +17,7 @@ function checkShippingAddress1() {
   const address1ErrorMessage = $( '#address-1-error-message' );
   address1ErrorMessage.hide();
 
-  const pattern = /d{1,5}\s\w.\s(\b\w*\b\s){1,2}\w*/;
+  const pattern = /d{1,5}\s\w.\s\w\s(\b\w*\b\s){1,2}\w*/;
 
   // const pattern = /^\s*\S+(?:\s+\S+){2}/;
   const formName = address1.val();

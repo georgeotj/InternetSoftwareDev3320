@@ -13,9 +13,12 @@ const BrowserSyncPlugin = require( 'browser-sync-webpack-plugin' );
 const { CleanWebpackPlugin } = require( 'clean-webpack-plugin' );
 // const OptimizeCSSAssetsPlugin = require( 'optimize-css-assets-webpack-plugin' );
 const FriendlyErrorsWebpackPlugin = require( 'friendly-errors-webpack-plugin' );
+// eslint-disable-next-line node/no-unpublished-require
 const DashboardPlugin = require( 'webpack-dashboard/plugin' );
 const TerserJSPlugin = require( 'terser-webpack-plugin' );
 const OptimizeCSSAssetsPlugin = require( 'optimize-css-assets-webpack-plugin' );
+const PurgecssPlugin = require( 'purgecss-webpack-plugin' );
+const glob = require( 'glob' );
 
 
 const buildPath = path.resolve( __dirname, 'public/build' );
@@ -97,20 +100,15 @@ const clientConfig = {
     new ScriptExtPlugin({
       defaultAttribute: 'defer'
     }),
-    // new CopyWebpackPlugin([
-    //   {
-    //     from: 'public/assets', to: 'assets'
-    //   },
-    //   {
-    //     from: 'public/stylesheets', to: 'stylesheets'
-    //   }
-    // ]),
-    // Make $ and jQuery available in every module without having to write
-    // require('jquery')
     new webpack.ProvidePlugin({
       $: root( './node_modules/jquery/dist/jquery.min' ),
       jQuery: root( './node_modules/jquery/dist/jquery.min' ),
       'window.jQuery': root( './node_modules/jquery/dist/jquery.min' )
+    }),
+    new webpack.ProvidePlugin({
+      _: root( './node_modules/underscore/underscore-min' ),
+      Underscore: root( './node_modules/underscore/underscore-min' ),
+      'window.Underscore': root( './node_modules/underscore/underscore-min' )
     }),
     new BundleAnalyzerPlugin({
       analyzerMode: 'server', // 'disabled'|'server'
@@ -132,6 +130,9 @@ const clientConfig = {
     }),
     new MiniCssExtractPlugin({
       filename: '[name].css'
+    }),
+    new PurgecssPlugin({
+      paths: glob.sync( `${root( '/public/stylesheets' )}/**/*`, { nodir: true })
     })
   ]
 };
