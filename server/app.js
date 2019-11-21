@@ -57,10 +57,6 @@ const STATIC_MIDDLEWARE = express.static( 'dist' );
 
 const port = process.env.PORT || 3000;
 
-const errors = new PrettyError();
-errors.skipNodeFiles();
-errors.skipPackage( 'express' );
-
 // eslint-disable-next-line import/order
 // const webpackDevMiddleware = require( 'webpack-dev-middleware' )(
 //   compiler,
@@ -74,12 +70,11 @@ errors.skipPackage( 'express' );
 // Log all request with morgan common
 // app.use( morgan( 'combined', { stream: logger.stream }) );
 
-if ( process.env.NODE_ENV === 'development' ) {
-  app.use( errorHandler({
-    dumpExceptions: true,
-    showStack: true
-  }) );
-}
+// Standard is to only log in development environment
+app.use( errorHandler({
+  dumpExceptions: true,
+  showStack: true
+}) );
 
 app.use( cookieParser() );
 
@@ -99,9 +94,9 @@ app.use( assets({
 app.use( STATIC_MIDDLEWARE );
 
 // Use the body-parser middleware in the app
+app.use( bodyParser.json() );
 app.use( bodyParser.urlencoded({ extended: true }) );
 
-app.use( bodyParser.json() );
 
 // Helmet has 9 API middleware to prevent several attacks in HTTP
 // Adds security to HTTP header
@@ -186,6 +181,7 @@ app.use( '/users', users );
 app.use( '/products', products );
 app.use( '/orders', orders );
 
+
 app.use( expressWinston.errorLogger({
   transports: [
     new winston.transports.Console({
@@ -214,6 +210,16 @@ process.once( 'uncaughtException', ( err ) => {
 app.listen( port );
 // eslint-disable-next-line no-console
 console.log( 'Server listening on [http://localhost:%s]', port );
-console.log( 'or listening on [http://localhost:8080/debug?port=3000] for debugger');
+console.log( 'or listening on [http://localhost:8080/debug?port=3000] for debugger' );
+
+const errors = new PrettyError();
+
+app.use( ( err, req, res, next ) => {
+  console.log( errors.render( err ) );
+  next();
+});
+
+errors.skipNodeFiles();
+errors.skipPackage( 'express' );
 
 module.exports = app;

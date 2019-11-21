@@ -12,22 +12,33 @@ let isAccountCityValid = true;
 let isAccountZipValid = true;
 
 function checkUserFirstNameValid() {
-  const userName = $( '#user_first_name' );
-  const userNameErrorMessage = $( '#user-first-name-error-message' );
-  userNameErrorMessage.hide();
+  const userFirstName = $( '#user_first_name' );
+  const userFirstNameErrorMessage = $( '#user-first-name-error-message' );
+  userFirstNameErrorMessage.hide();
 
   const pattern = /^(?=.{1,50}$)[a-z]+(?:['_.\s][a-z]+)*$/i;
-  const formName = userName.val();
+  const formName = userFirstName.val();
   if ( pattern.test( formName ) && formName !== '' ) {
-    userNameErrorMessage.hide();
-    userName.css( 'border', '2px solid lightgreen' );
-    userName.css( 'box-shadow', '0 0 8px 2px rgba(152, 251, 152, 0.75)' );
+    userFirstNameErrorMessage.hide();
+    userFirstName.addClass( 'field-is-valid' );
+    if ( userFirstName.hasClass( 'field-is-invalid' ) ) {
+      userFirstName.removeClass( 'field-is-invalid' );
+    }
+
+    // userFirstName.css( 'border', '2px solid lightgreen' );
+    // userFirstName.css( 'box-shadow', '0 0 8px 2px rgba(152, 251, 152, 0.75)' );
   }else {
-    userNameErrorMessage.html( 'Invalid First Name' );
-    userNameErrorMessage.css( 'color', '#b00808' );
-    userNameErrorMessage.show();
-    userName.css( 'border', '2px solid salmon' );
-    userName.css( 'box-shadow', '0 0 8px 2px rgba(250, 128, 114, 0.75)' );
+    userFirstNameErrorMessage.html( 'Invalid First Name' );
+    userFirstNameErrorMessage.css( 'color', '#b00808' );
+    userFirstNameErrorMessage.show();
+
+    userFirstName.addClass( 'field-is-invalid' );
+    if ( userFirstName.hasClass( 'field-is-valid' ) ) {
+      userFirstName.removeClass( 'field-is-valid' );
+    }
+
+    // userFirstName.css( 'border', '2px solid salmon' );
+    // userFirstName.css( 'box-shadow', '0 0 8px 2px rgba(250, 128, 114, 0.75)' );
     isAccountFirstNameValid = false;
   }
 }
@@ -41,14 +52,23 @@ function checkUserLastNameValid() {
   const formName = userLastName.val();
   if ( pattern.test( formName ) && formName !== '' ) {
     userLastNameErrorMessage.hide();
-    userLastName.css( 'border', '2px solid lightgreen' );
-    userLastName.css( 'box-shadow', '0 0 8px 2px rgba(152, 251, 152, 0.75)' );
+
+    userLastName.addClass( 'field-is-valid' );
+    if ( userLastName.hasClass( 'field-is-invalid' ) ) {
+      userLastName.removeClass( 'field-is-invalid' );
+    }
+    // userLastName.css( 'border', '2px solid lightgreen' );
+    // userLastName.css( 'box-shadow', '0 0 8px 2px rgba(152, 251, 152, 0.75)' );
   }else {
     userLastNameErrorMessage.html( 'Invalid Last Name' );
     userLastNameErrorMessage.css( 'color', '#b00808' );
     userLastNameErrorMessage.show();
-    userLastName.css( 'border', '2px solid salmon' );
-    userLastName.css( 'box-shadow', '0 0 8px 2px rgba(250, 128, 114, 0.75)' );
+    userLastName.addClass( 'field-is-invalid' );
+    if ( userLastName.hasClass( 'field-is-valid' ) ) {
+      userLastName.removeClass( 'field-is-valid' );
+    }
+    // userLastName.css( 'border', '2px solid salmon' );
+    // userLastName.css( 'box-shadow', '0 0 8px 2px rgba(250, 128, 114, 0.75)' );
     isAccountLastNameValid = false;
   }
 }
@@ -62,14 +82,23 @@ function checkUserPhoneValid() {
   const formName = userPhone.val();
   if ( pattern.test( formName ) && formName !== '' ) {
     userPhoneErrorMessage.hide();
-    userPhone.css( 'border', '2px solid lightgreen' );
-    userPhone.css( 'box-shadow', '0 0 8px 2px rgba(152, 251, 152, 0.75)' );
+
+    userPhone.addClass( 'field-is-valid' );
+    if ( userPhone.hasClass( 'field-is-invalid' ) ) {
+      userPhone.removeClass( 'field-is-invalid' );
+    }
+    // userPhone.css( 'border', '2px solid lightgreen' );
+    // userPhone.css( 'box-shadow', '0 0 8px 2px rgba(152, 251, 152, 0.75)' );
   }else {
     userPhoneErrorMessage.html( 'Invalid Phone' );
     userPhoneErrorMessage.css( 'color', '#b00808' );
     userPhoneErrorMessage.show();
-    userPhone.css( 'border', '2px solid salmon' );
-    userPhone.css( 'box-shadow', '0 0 8px 2px rgba(250, 128, 114, 0.75)' );
+    userPhone.addClass( 'field-is-invalid' );
+    if ( userPhone.hasClass( 'field-is-valid' ) ) {
+      userPhone.removeClass( 'field-is-valid' );
+    }
+    // userPhone.css( 'border', '2px solid salmon' );
+    // userPhone.css( 'box-shadow', '0 0 8px 2px rgba(250, 128, 114, 0.75)' );
     isAccountPhoneValid = false;
   }
 }
@@ -83,14 +112,23 @@ function checkUserEmailValid() {
   const formName = userEmail.val();
   if ( pattern.test( formName ) && formName !== '' ) {
     userEmailErrorMessage.hide();
-    userEmail.css( 'border', '2px solid lightgreen' );
-    userEmail.css( 'box-shadow', '0 0 8px 2px rgba(152, 251, 152, 0.75)' );
+    userEmail.addClass( 'field-is-valid' );
+    if ( userEmail.hasClass( 'field-is-invalid' ) ) {
+      userEmail.removeClass( 'field-is-invalid' );
+    }
+
+    // userEmail.css( 'border', '2px solid lightgreen' );
+    // userEmail.css( 'box-shadow', '0 0 8px 2px rgba(152, 251, 152, 0.75)' );
   }else {
     userEmailErrorMessage.html( 'Invalid Email' );
     userEmailErrorMessage.css( 'color', '#b00808' );
     userEmailErrorMessage.show();
-    userEmail.css( 'border', '2px solid salmon' );
-    userEmail.css( 'box-shadow', '0 0 8px 2px rgba(250, 128, 114, 0.75)' );
+    userEmail.addClass( 'field-is-invalid' );
+    if ( userEmail.hasClass( 'field-is-valid' ) ) {
+      userEmail.removeClass( 'field-is-valid' );
+    }
+    // userEmail.css( 'border', '2px solid salmon' );
+    // userEmail.css( 'box-shadow', '0 0 8px 2px rgba(250, 128, 114, 0.75)' );
     isAccountEmailValid = false;
   }
 }
@@ -104,8 +142,13 @@ function checkUserAddress1Valid() {
   const formName = address1.val();
   if ( pattern.test( formName ) && formName !== '' ) {
     address1ErrorMessage.hide();
-    address1.css( 'border', '2px solid lightgreen' );
-    address1.css( 'box-shadow', '0 0 8px 2px rgba(152, 251, 152, 0.75)' );
+    address1.addClass( 'field-is-valid' );
+    if ( address1.hasClass( 'field-is-invalid' ) ) {
+      address1.removeClass( 'field-is-invalid' );
+    }
+
+    // address1.css( 'border', '2px solid lightgreen' );
+    // address1.css( 'box-shadow', '0 0 8px 2px rgba(152, 251, 152, 0.75)' );
   }else {
     address1ErrorMessage.html( 'Invalid Address' );
     address1ErrorMessage.css( 'color', '#b00808' );
@@ -116,8 +159,12 @@ function checkUserAddress1Valid() {
     // address1ErrorMessage.css('display', 'inline-block');
     // address1ErrorMessage.css('position', 'absolute');
     address1ErrorMessage.show();
-    address1.css( 'border', '2px solid salmon' );
-    address1.css( 'box-shadow', '0 0 8px 2px rgba(250, 128, 114, 0.75)' );
+    address1.addClass( 'field-is-invalid' );
+    if ( address1.hasClass( 'field-is-valid' ) ) {
+      address1.removeClass( 'field-is-valid' );
+    }
+    // address1.css( 'border', '2px solid salmon' );
+    // address1.css( 'box-shadow', '0 0 8px 2px rgba(250, 128, 114, 0.75)' );
     isAccountAddress1Valid = false;
   }
 }
@@ -182,8 +229,13 @@ function checkAccountCityValid() {
   const formName = city.val();
   if ( pattern.test( formName ) && formName !== '' ) {
     cityErrorMessage.hide();
-    city.css( 'border', '2px solid lightgreen' );
-    city.css( 'box-shadow', '0 0 8px 2px rgba(152, 251, 152, 0.75)' );
+    city.addClass( 'field-is-valid' );
+    if ( city.hasClass( 'field-is-invalid' ) ) {
+      city.removeClass( 'field-is-invalid' );
+    }
+
+    // city.css( 'border', '2px solid lightgreen' );
+    // city.css( 'box-shadow', '0 0 8px 2px rgba(152, 251, 152, 0.75)' );
   }else {
     cityErrorMessage.html( 'Invalid City' );
     cityErrorMessage.css( 'color', '#b00808' );
@@ -194,8 +246,12 @@ function checkAccountCityValid() {
     // cityErrorMessage.css('display', 'inline-block');
     // cityErrorMessage.css('position', 'absolute');
     cityErrorMessage.show();
-    city.css( 'border', '2px solid salmon' );
-    city.css( 'box-shadow', '0 0 8px 2px rgba(250, 128, 114, 0.75)' );
+    city.addClass( 'field-is-invalid' );
+    if ( city.hasClass( 'field-is-valid' ) ) {
+      city.removeClass( 'field-is-valid' );
+    }
+    // city.css( 'border', '2px solid salmon' );
+    // city.css( 'box-shadow', '0 0 8px 2px rgba(250, 128, 114, 0.75)' );
     isAccountCityValid = false;
   }
 }
@@ -208,14 +264,22 @@ function checkAccountZipValid() {
   const formName = zipCode.val();
   if ( pattern.test( formName ) && formName !== '' ) {
     zipErrorMessage.hide();
-    zipCode.css( 'border', '2px solid lightgreen' );
-    zipCode.css( 'box-shadow', '0 0 8px 2px rgba(152, 251, 152, 0.75)' );
+    zipCode.addClass( 'field-is-valid' );
+    if ( zipCode.hasClass( 'field-is-invalid' ) ) {
+      zipCode.removeClass( 'field-is-invalid' );
+    }
+    // zipCode.css( 'border', '2px solid lightgreen' );
+    // zipCode.css( 'box-shadow', '0 0 8px 2px rgba(152, 251, 152, 0.75)' );
   }else {
     zipErrorMessage.html( 'Invalid Zip Code' );
     zipErrorMessage.css( 'color', '#b00808' );
     zipErrorMessage.show();
-    zipCode.css( 'border', '2px solid salmon' );
-    zipCode.css( 'box-shadow', '0 0 8px 2px rgba(250, 128, 114, 0.75)' );
+    zipCode.addClass( 'field-is-invalid' );
+    if ( zipCode.hasClass( 'field-is-valid' ) ) {
+      zipCode.removeClass( 'field-is-valid' );
+    }
+    // zipCode.css( 'border', '2px solid salmon' );
+    // zipCode.css( 'box-shadow', '0 0 8px 2px rgba(250, 128, 114, 0.75)' );
     isAccountZipValid = false;
   }
 }

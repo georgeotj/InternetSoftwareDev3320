@@ -5,22 +5,25 @@
         "es6": true,
         "jquery": true,
         "node": true,
-        "mocha": true,
-        "jest": true
+        "mocha": true
     },
     "plugins": [
         "standard",
         "promise",
         "css-modules",
         "deprecate",
-      "node",
-      "promise",
-      "jasmine"
+        "node",
+        "promise",
+        "jasmine",
+        "chai-friendly",
+        "mocha"
     ],
     "extends": [
         "airbnb-base",
         "jquery",
-        "plugin:node/recommended"
+        "plugin:node/recommended",
+        "plugin:chai-friendly/recommended",
+        "plugin:mocha/recommended"
     ],
     "globals": {
         "Atomics": "readonly",
@@ -31,11 +34,13 @@
         "ecmaVersion": 2019,
         "ecmaFeatures": {
             "destructuring": true
-        }
+        },
+        "sourceType": "module"
     },
     "rules": {
         "quotes": ["error", "single"],
-        "prefer-arrow-callback": [ "error", { "allowNamedFunctions": true } ],
+        "prefer-arrow-callback": 0,
+        "mocha/prefer-arrow-callback": 2,
         "consistent-return": 2,
         "no-var"           : 2,
         "new-cap"          : 0,
@@ -79,6 +84,10 @@
                 "consistent"    : true
             }
         }],
-        "lines-around-comment": 0
+        "lines-around-comment": 0,
+        "node/no-unpublished-import": 0,
+        "node/no-unpublished-require": 0,
+        "node/no-unsupported-features/es-syntax": 0,
+        "node/no-missing-require": 0
     }
 }

@@ -49,9 +49,6 @@ router.get( '/', ( request, response ) => {
   // response.send( 'Sent the Application View' );
 });
 
-router.get( '/', ( request, response ) => {
-  response.send( 'Sent the Application View!' );
-});
 
 router.get( '/states', ( request, response ) => {
   models.States.find({}).then( ( states ) => {

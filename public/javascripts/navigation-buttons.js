@@ -1,10 +1,10 @@
 const $ = require( 'jquery' );
-const jquery = require( '../../node_modules/jquery/dist/jquery.min' );
+// const jquery = require( '../../node_modules/jquery/dist/jquery.min' );
 
 global.jQuery = require( 'jquery' );
 
 $( 'a.back-to-top' ).on( 'click', () => {
-  $( document.body ).animate({ scrollTop: 0 }, 800 );
+  $( window ).scrollTop( 0 );
   return false;
 });
 

@@ -29,7 +29,7 @@ const CSSLoader = {
     {
       loader: MiniCssExtractPlugin.loader,
       options: {
-        publicPath: `${__dirname}/../../public/css/`
+        publicPath: `${__dirname}/public/stylesheets/`
       }
     },
     {
@@ -40,7 +40,7 @@ const CSSLoader = {
       loader: 'postcss-loader',
       options: {
         config: {
-          path: `${__dirname}/postcss.config.js`
+          path: `${__dirname}/webpack/postcss.config.js`
         }
       }
     }

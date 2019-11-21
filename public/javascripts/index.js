@@ -45,3 +45,8 @@ $( () => {
   validateShippingForm();
   closingApplication();
 });
+
+// eslint-disable-next-line no-multi-assign
+module.exports = $.fn.isValid = function isValid() {
+  return this[ 0 ].checkValidity();
+};

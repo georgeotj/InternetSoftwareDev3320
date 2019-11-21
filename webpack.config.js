@@ -17,6 +17,8 @@ const FriendlyErrorsWebpackPlugin = require( 'friendly-errors-webpack-plugin' );
 const DashboardPlugin = require( 'webpack-dashboard/plugin' );
 const TerserJSPlugin = require( 'terser-webpack-plugin' );
 const OptimizeCSSAssetsPlugin = require( 'optimize-css-assets-webpack-plugin' );
+const PurgecssPlugin = require( 'purgecss-webpack-plugin' );
+const glob = require( 'glob' );
 
 
 const buildPath = path.resolve( __dirname, 'public/build' );
@@ -98,16 +100,6 @@ const clientConfig = {
     new ScriptExtPlugin({
       defaultAttribute: 'defer'
     }),
-    // new CopyWebpackPlugin([
-    //   {
-    //     from: 'public/assets', to: 'assets'
-    //   },
-    //   {
-    //     from: 'public/stylesheets', to: 'stylesheets'
-    //   }
-    // ]),
-    // Make $ and jQuery available in every module without having to write
-    // require('jquery')
     new webpack.ProvidePlugin({
       $: root( './node_modules/jquery/dist/jquery.min' ),
       jQuery: root( './node_modules/jquery/dist/jquery.min' ),
@@ -138,6 +130,9 @@ const clientConfig = {
     }),
     new MiniCssExtractPlugin({
       filename: '[name].css'
+    }),
+    new PurgecssPlugin({
+      paths: glob.sync( `${root( '/public/stylesheets' )}/**/*`, { nodir: true })
     })
   ]
 };
