@@ -456,7 +456,7 @@ a.back-to-top:hover {
   background-color: #f2f3f4;
   border: 2px solid #151a2f;
   border-radius: 8px;
-  margin: 8px 0;
+  margin: 8px 0 4px 0;
   outline: none;
   padding: 8px 15px;
   position: relative;
@@ -538,8 +538,226 @@ input#user_city {
   margin: 0;
 }
 
+.new-username-registration.flex-column-1 {
+  margin: 0 0 2%;
+}
+
+.user-new-account-information {
+  margin: 0 0 5% 25%;
+}
+
+.user-new-account-information input[type=text] {
+  width: 80%;
+  margin-left: -10%;
+  background-color: #f2f3f4;
+  border: 2px solid #151a2f;
+  border-radius: 8px;
+  outline: none;
+  position: relative;
+  -o-transition: 0.2s;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  padding: 2% 5% 2% 5%;
+}
+
+.password-input-flex-row-2 {
+  place-self: center;
+}
+
+.user-new-account-information input[type=password] {
+  width: 70%;
+  margin-left: -4%;
+  margin-bottom: 1%;
+  font-size: small;
+  padding: 1% 8% 1% 5%;
+}
+
+.password-input-flex-row-2 input[type=password] {
+  font-size: small;
+  padding: 4px 15px;
+  margin: 0 0 0 7%;
+}
+
+.error {
+  color: salmon;
+}
+
+.create-account-form label {
+  font-size: 2vh;
+  display: block;
+}
+
+.username-input input[type=text] {
+  margin-top: 15%;
+}
+
+.username-input input[type="text"] {
+  background-color: #f2f3f4;
+  border: 2px solid #151a2f;
+  border-radius: 8px;
+  outline: none;
+  position: relative;
+  -o-transition: 0.2s;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  padding: 4% 8% 4% 8%;
+}
+
+.sign-in-account-buttons {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  justify-content: center;
+  align-self: center;
+  margin-top: 5%;
+}
+
+button#go-to-sign-up-btn {
+  flex-grow: 0.7;
+}
+
+.alternate-sign-in-btns {
+  display: flex;
+  align-self: center;
+  width: inherit;
+}
+
+.sign-in-account-buttons button,
+.sign-up-account-buttons button {
+  background-color: #151a2f;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 2.5vh;
+  margin-bottom: 1%;
+  margin-left: 3%;
+  padding: 7px 18px;
+  text-decoration: none;
+}
+
+#sign-up-create-acc-panel {
+  flex-direction: column;
+}
+
+.sign-in-account-buttons button:hover,
+button:focus,
+button:active {
+  background-color: #332463;
+
+  /* display: inline-block; */
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(5px) translateZ(0);
+  box-shadow: 3px 3px 10px 3px #161024;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: box-shadow, transform;
+  transition-property: box-shadow, transform;
+  display: inline-flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.sign-up-account-buttons button:hover,
+button:focus,
+button:active {
+  background-color: #332463;
+
+  /* display: inline-block; */
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(5px) translateZ(0);
+  box-shadow: 3px 3px 10px 3px #161024;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: box-shadow, transform;
+  transition-property: box-shadow, transform;
+  display: inline-flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.sign-up-account-buttons {
+  align-self: center;
+}
+
+.sign-up-account-buttons p {
+  font-size: 2vh;
+}
+
+form.sign-in-form label {
+  font-size: 2vh;
+  display: block;
+}
+
+div#sign-in-panel {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+
+img.login-icon {
+  align-self: center;
+}
+
+.password-label-flex-row-1 {
+  align-self: center;
+}
+
+.username-input {
+  align-self: center;
+}
+
+.hide-panel {
+  display: none;
+}
+
 .register-user-address {
-  margin-bottom: 2%;
+  margin-top: 2%;
+}
+
+.register-full-name input[type=text] {
+  width: 90%;
+}
+
+.register-full-name label {
+  display: inline;
+  width: fit-content;
+}
+
+.register-email-label {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0.3;
+}
+
+.register-contact-information input[type=email] {
+  width: 110%;
+}
+
+.register-contact-information label {
+  display: inline;
+}
+
+.register-contact-information input[type=tel] {
+  width: 60%;
+}
+
+.register-phone-label {
+  display: flex;
+  flex-direction: column;
+  padding: 0 4% 0 0;
+  flex-basis: 40%;
+}
+
+.register-first-name-label,
+.register-last-name-label {
+  flex-basis: 40%;
+  display: flex;
+  flex-direction: column;
+}
+
+.register-email-information input[type=email] {
+  width: 90%;
 }
 
 .register-user-form select {
@@ -877,7 +1095,7 @@ textarea:valid {
 
 .error-field {
   font-size: 1.3vh;
-  display: block;
+  display: inline;
 
   /* display: inline-block; */
   color: rgba(255, 240, 239, 0.75);
@@ -997,12 +1215,12 @@ input[type=checkbox] + label {
   width: 40%;
 }
 
-input[type="email"],
+.register-user-form input[type="email"],
 input[type="tel"] {
   background-color: #f2f3f4;
   border: 2px solid #151a2f;
   border-radius: 8px;
-  margin: 8px 0;
+  margin: 8px 0 4px 0;
   outline: none;
   padding: 8px 15px;
   position: relative;

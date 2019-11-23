@@ -128,8 +128,11 @@ router.post( '/shipping_info', ( req, res, next ) => {
       });
     }
   };
-
   userShippingInformation.setShippingInformation();
+});
+
+router.post( '/sign_up', ( req, res, next ) => {
+  
 });
 
 module.exports = router;

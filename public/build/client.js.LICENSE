@@ -46,3 +46,12 @@ object-assign
 /*! jQuery Validation Plugin - v1.19.1 - 6/15/2019
  * https://jqueryvalidation.org/
  * Copyright (c) 2019 Jörn Zaefferer; Licensed MIT */
+
+/*!
+ * jQuery Validation Plugin v1.19.1
+ *
+ * https://jqueryvalidation.org/
+ *
+ * Copyright (c) 2019 Jörn Zaefferer
+ * Released under the MIT license
+ */

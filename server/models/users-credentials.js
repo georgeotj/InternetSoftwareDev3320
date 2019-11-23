@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 
 const userCredentialsSchema = new Schema({
   userID: {
-    type: Number,
+    type: Schema.Types.ObjectId,
     required: true,
     unique: true
   },
