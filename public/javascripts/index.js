@@ -5,6 +5,10 @@ import '../../node_modules/jquery-ui-dist/jquery-ui.min.css';
 // eslint-disable-next-line import/no-unresolved
 import '../../node_modules/jquery-validation/dist/jquery.validate.min';
 
+
+import '../assets/Images/create-account-icon.jpg';
+import '../assets/Images/sign-into-account-icon.jpg';
+
 // // eslint-disable-next-line no-multi-assign
 // window.$ = window.jQuery = require( 'jquery' );
 
@@ -21,10 +25,13 @@ import validateCheckoutForm from './validate-checkout-form';
 import validateShippingForm from './validate-shipping-form';
 import closingApplication from './application-closed';
 
+import './login-component';
+import './validate-user-form';
+
 console.log( loadStates );
 
-require( 'babel-runtime/regenerator' );
-require( 'webpack-hot-middleware/client' );
+require( '../../node_modules/babel-runtime/regenerator' );
+// require( 'webpack-hot-middleware/client' );
 require( '../stylesheets/style.css' );
 
 const $ = require( '../../node_modules/jquery/dist/jquery.min' );

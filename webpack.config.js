@@ -2,7 +2,7 @@ const path = require( 'path' );
 const nodeExternals = require( 'webpack-node-externals' );
 const webpack = require( 'webpack' );
 const ScriptExtPlugin = require( 'script-ext-html-webpack-plugin' );
-const CopyWebpackPlugin = require( 'copy-webpack-plugin' );
+const CopyPlugin = require( 'copy-webpack-plugin' );
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
 const { BundleAnalyzerPlugin } = require( 'webpack-bundle-analyzer' );
 const DefinePlugin = require( 'webpack/lib/DefinePlugin' );
@@ -20,7 +20,7 @@ const OptimizeCSSAssetsPlugin = require( 'optimize-css-assets-webpack-plugin' );
 const PurgecssPlugin = require( 'purgecss-webpack-plugin' );
 const glob = require( 'glob' );
 
-
+const nodePath = `${__dirname}/node_modules`;
 const buildPath = path.resolve( __dirname, 'public/build' );
 
 const { root } = require( './config/helpers' );
@@ -32,6 +32,13 @@ const clientConfig = {
 
   entry: {
     client: root( './public/javascripts/index.js' )
+  },
+  resolve: {
+    alias: {
+      jquery: `${nodePath}/jquery/dist/jquery.js`,
+      'jquery-validation': `${nodePath}/jquery-validation/dist/jquery.validate.js`,
+      'jquery-ui': `${nodePath}/jquery-ui-dist/jquery-ui.min'`
+    }
   },
   output: {
     filename: '[name].js',
@@ -86,12 +93,20 @@ const clientConfig = {
         ]
       },
       {
-        test: /\.(png|jpg|svg)$/,
-        loader: 'file-loader',
-        options: {
-          name: '[name].[ext]',
-          outputPath: 'assets/'
-        }
+        test: /\.(png|jpg|svg|gif)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10000,
+              // eslint-disable-next-line no-useless-concat
+              name: 'images/[name].[ext]',
+              publicPath: '/assets',
+              outputPath: '/assets',
+              fallback: 'file-loader'
+            }
+          }
+        ]
       }
     ]
   },
@@ -131,9 +146,12 @@ const clientConfig = {
     new MiniCssExtractPlugin({
       filename: '[name].css'
     }),
-    new PurgecssPlugin({
-      paths: glob.sync( `${root( '/public/stylesheets' )}/**/*`, { nodir: true })
-    })
+    new CopyPlugin([
+      {
+        from: './public/assets/images',
+        to: './public/build/assets/images'
+      }
+    ])
   ]
 };
 
