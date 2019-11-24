@@ -25,7 +25,7 @@ import validateCheckoutForm from './validate-checkout-form';
 import validateShippingForm from './validate-shipping-form';
 import closingApplication from './application-closed';
 
-import './login-component';
+import './application-state';
 import './validate-user-form';
 
 console.log( loadStates );

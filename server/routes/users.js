@@ -1,7 +1,11 @@
 const mongoose = require( 'mongoose' );
 const express = require( 'express' );
+const chalk = require( 'chalk' );
+const bcrypt = require( 'bcrypt' );
 const models = require( '../models' );
+const auth = require( '../controllers/users/user.auth.controller' );
 
+const { register, generateAuthToken } = require( '../controllers/users/user.register.controller' );
 
 const router = express.Router();
 
@@ -131,8 +135,70 @@ router.post( '/shipping_info', ( req, res, next ) => {
   userShippingInformation.setShippingInformation();
 });
 
-router.post( '/sign_up', ( req, res, next ) => {
-  
+// Route to create a new user
+router.post( '/register', async ( req, res, next ) => {
+  console.log( chalk.keyword( 'orange' )( 'Attempting to register a user... ' ) );
+  const user = {
+    username: req.body.username,
+    password: req.body.password
+  };
+  console.log( `username received: ${user.username} Password received: ${user.password}` );
+
+  if ( !user.username || !user.password ) {
+    console.log( 'Error Registering User to Database, no username or password from request' );
+    return res.status( 400 ).json({ msg: 'Error processing request properties' });
+  }
+
+  const createdUser = await register( user );
+  const token = await generateAuthToken( createdUser.userID );
+  console.log( 'User and Token Created, sending JWT response header...' );
+
+  res.header( 'x-auth-token', token ).send({
+    userID: createdUser.userID,
+    username: createdUser.username
+  });
+  //   await user.save();
+  //   const token = await user.generateAuthToken();
+  //   res.status( 201 ).send({
+  //       user, token
+  //   });
+  // } catch ( error ) {
+  //   res.status( 400 ).send( error );
+  // }
 });
 
+// Pass the auth controller right before the method. This ensures controller is run
+// just before executing the rest of the function.
+router.get( '/profile', auth, async( req, res ) => {
+  // View logged in user profile
+
+  // get the user from the request ( added user to the request in auth controller )
+  res.send( req.user );
+});
+
+
+router.post( '/profile/logout', auth, async ( req, res ) => {
+  // Log user out of the application
+  try {
+    // Get array of all tokens NOT used by the user to login
+    req.user.tokens = req.user.tokens.filter( ( token ) => {
+      return token.token !== req.token;
+    });
+    await req.user.save();
+    res.send();
+  } catch ( error ) {
+    res.status( 500 ).send( error );
+  }
+});
+
+router.post( '/profile/logoutall', auth, async( req, res ) => {
+  // Log user out of all devices
+  try {
+    req.user.tokens.splice( 0, req.user.tokens.length );
+    await req.user.save();
+    res.send();
+  } catch ( error ) {
+    res.status( 500 ).send( error );
+  }
+});
 module.exports = router;
