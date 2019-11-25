@@ -9,7 +9,12 @@ const router = express.Router();
 router.post( '*', ( req, res, next ) => {
 
   if ( req.originalUrl !== '/__webpack_hmr' ) {
-    console.log( chalk.yellow( `A POST Request was Made To: ${req.originalUrl}` ) );
+    console.log(
+      chalk.yellow.bold( `             \nA POST Request was Received For: ${req.originalUrl}` )
+    );
+    console.log( chalk.yellow( 'This is the request\'s body:\n',
+      JSON.stringify( req.body, null, 2 ) ) );
+    console.log( ' ' );
   }
 
   return next();
@@ -19,7 +24,7 @@ router.get( '*', ( req, res, next ) => {
   const timestamp = moment().format( 'hh:mm:ss' );
   if ( ( req.originalUrl !== '/__webpack_hmr' ) && ( req.originalUrl !== '/' ) ) {
     console.log(
-      chalk.blue( `A GET Request was Received For: ${req.originalUrl} at ${timestamp}` )
+      chalk.blue( `        \nA GET Request was Received For: ${req.originalUrl} at ${timestamp}` )
     );
   }
   // logger.log({
@@ -41,7 +46,7 @@ router.get( '/', ( request, response ) => {
     console.log( chalk.green.bold( '\t\t\tThe Application VIEW was Requested!!' ) );
     isViewLoaded = true;
   } else {
-    console.log( chalk.green( 'Application Page Change was Requested' ) );
+    console.log( chalk.green( '\nApplication Page Change was Requested' ) );
   }
   // __dirname: resolves to project folder
   // sendfile(): sends HTML files to the browser
@@ -52,8 +57,15 @@ router.get( '/', ( request, response ) => {
 
 router.get( '/states', ( request, response ) => {
   models.States.find({}).then( ( states ) => {
-    console.log( 'Sending states response' );
+    console.log(
+      chalk.keyword( 'pink' )( '\nSENDING Response to Request for States!\n' )
+    );
     response.send({ states });
+
+    console.log(
+      chalk.keyword( 'red' )( '\nSuccess! GET "/states" Route is Now Complete. Moving onto' +
+        ' next Route/Middleware...' )
+    );
 
     // console.log( 'GET /states Response:\n', JSON.stringify( states, null, 2 ) );
   });

@@ -19,7 +19,7 @@ const applicationState = {
     // Set Account Panel Header
     $( '#account-login-signup-header' ).html( 'Register Account' );
 
-    applicationState.toggleAccountLinkState();
+    applicationState.toggleHeadNavAccountLinkState();
   },
 
   loginAccountPageState() {
@@ -30,10 +30,50 @@ const applicationState = {
     // Set Account Panel Header
     $( '#account-login-signup-header' ).html( 'Returning User' );
 
-    applicationState.toggleAccountLinkState();
+    applicationState.toggleHeadNavAccountLinkState();
   },
 
-  toggleAccountLinkState() {
+  additionalInformationAccountState() {
+    $( '#registered-top-bar-column-2' ).css( 'display', 'block' );
+    $( '#unregistered-top-bar-column-2' ).css( 'display', 'none' );
+    $( '#sign-up-create-acc-panel' ).css( 'display', 'none' );
+    $( '#sign-up-additional-information-panel' ).css( 'display', 'flex' );
+    $( '#account-login-signup-header' ).html( 'Finish Registering!' );
+  },
+
+  registeredShippingInfoAccountState() {
+    $( '.shipping-info-panel' ).css( 'display', 'block' );
+    $( '.account-information-panel' ).css( 'display', 'none' );
+    $( '.saved-payment-methods-panel' ).css( 'display', 'none' );
+    $( '.order-history-panel' ).css( 'display', 'none' );
+    applicationState.toggleRegisteredNavLinkState();
+  },
+
+  registeredUserOverviewAccountState() {
+    $( '.account-information-panel' ).css( 'display', 'flex' );
+    $( '.shipping-info-panel' ).css( 'display', 'none' );
+    $( '.saved-payment-methods-panel' ).css( 'display', 'none' );
+    $( '.order-history-panel' ).css( 'display', 'none' );
+    applicationState.toggleRegisteredNavLinkState();
+  },
+
+  registeredUserPaymentHistoryAccountState() {
+    $( '.saved-payment-methods-panel' ).css( 'display', 'block' );
+    $( '.account-information-panel' ).css( 'display', 'none' );
+    $( '.shipping-info-panel' ).css( 'display', 'none' );
+    $( '.order-history-panel' ).css( 'display', 'none' );
+    applicationState.toggleRegisteredNavLinkState();
+  },
+
+  registeredUserOrderHistoryAccountState() {
+    $( '.order-history-panel' ).css( 'display', 'block' );
+    $( '.saved-payment-methods-panel' ).css( 'display', 'none' );
+    $( '.account-information-panel' ).css( 'display', 'none' );
+    $( '.shipping-info-panel' ).css( 'display', 'none' );
+    applicationState.toggleRegisteredNavLinkState();
+  },
+
+  toggleHeadNavAccountLinkState() {
     if ( $( '#sign-in-panel' ).css( 'display' ) === 'flex' ) {
       $( '#Login-link' ).addClass( 'active' );
     } else if ( $( '#Login-link' ).hasClass( 'active' ) ) {
@@ -44,6 +84,32 @@ const applicationState = {
       $( '#Register-link' ).addClass( 'active' );
     } else if ( $( '#Register-link' ).hasClass( 'active' ) ) {
       $( '#Register-link' ).removeClass( 'active' );
+    }
+  },
+
+  toggleRegisteredNavLinkState() {
+    if( $( '.account-information-panel' ).css( 'display' ) === 'flex' ) {
+      $( '#overview-link' ).addClass( 'active' );
+    } else if ( $( '#overview-link' ).hasClass( 'active' ) ) {
+      $( '#overview-link' ).removeClass( 'active' );
+    }
+
+    if( $( '.shipping-info-panel' ).css( 'display' ) === 'block' ) {
+      $( '#shipping-link' ).addClass( 'active' );
+    } else if ( $( '#shipping-link' ).hasClass( 'active' ) ) {
+      $( '#shipping-link' ).removeClass( 'active' );
+    }
+
+    if( $( '.saved-payment-methods-panel' ).css( 'display' ) === 'block' ) {
+      $( '#payment-information-link' ).addClass( 'active' );
+    } else if ( $( '#payment-information-link' ).hasClass( 'active' ) ) {
+      $( '#payment-information-link' ).removeClass( 'active' );
+    }
+
+    if( $( '.order-history-panel' ).css( 'display' ) === 'block' ) {
+      $( '#order-history-link' ).addClass( 'active' );
+    } else if ( $( '#order-history-link' ).hasClass( 'active' ) ) {
+      $( '#order-history-link' ).removeClass( 'active' );
     }
   }
 };
@@ -67,4 +133,24 @@ $( () => {
   $( '#login-tab-button' ).on( 'click', () => {
     applicationState.loginAccountPageState();
   });
+
+  $( '#shipping-link' ).on( 'click', () => {
+    applicationState.registeredShippingInfoAccountState();
+  });
+
+  $( '#overview-link' ).on( 'click', () => {
+    applicationState.registeredUserOverviewAccountState();
+  });
+
+  $( '#saved-payment-link' ).on( 'click', () => {
+    applicationState.registeredUserPaymentHistoryAccountState();
+  });
+
+  $( '#order-history-link' ).on( 'click', () => {
+    applicationState.registeredUserOrderHistoryAccountState();
+  });
 });
+
+module.exports = {
+  applicationState
+};

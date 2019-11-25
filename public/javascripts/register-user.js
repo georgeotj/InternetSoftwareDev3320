@@ -1,5 +1,8 @@
+import { applicationState } from './application-state';
+
 const { valid } = require( 'jquery-validation' );
 const $ = require( 'jquery' );
+
 
 function getNewAccountInfo() {
   return {
@@ -20,16 +23,23 @@ function registerUser() {
 
   $.ajax({
     type: 'POST', // GET, POST, PUT
-    url: '/authenticatedService', // the url to call
+    url: '/users/register', // the url to call
     data: userJSON, // Data sent to server
-    dataType: 'json',
-    beforeSend ( xhr ) { // Include the bearer token in header
-      xhr.setRequestHeader( 'Authorization', `Bearer ${jwt}` );
-    }
-  }).done( ( response ) => {
-    // Response ok. process reuslt
-  }).fail( ( err ) => {
+    dataType: 'json'
+    // beforeSend ( xhr ) { // Include the bearer token in header
+    //   xhr.setRequestHeader( 'Authorization', `Bearer ${jwt}` );
+    // }
+  }).then( ( response ) => {
+      console.log( 'Registering was a success!' );
+      localStorage.setItem( 'token', response.token );
+      localStorage.setItem( 'userID', response.userID );
+      applicationState.additionalInformationAccountState();
+      $( '#account-username-header' ).text( response.username );
+    // eslint-disable-next-line no-alert, max-len
+      alert( `Thanks for Registering ${response.username}! Add additional required information before making a purchase.` );
+  }).catch( ( err ) => {
     // Error during request
+    console.log( `Error registering a user: ${err}` );
   });
 }
 

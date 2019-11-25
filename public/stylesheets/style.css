@@ -151,6 +151,15 @@ option {
   text-transform: uppercase;
 }
 
+a#Logout-link:hover {
+  color: #7d6d84;
+  text-shadow: 0 0 8px rgba(250, 128, 114, 0.50), 0 0 8px rgba(250, 128, 114, 0.50);
+  font-weight: 800;
+  -ms-transform: scale(1.5);
+  -webkit-transform: scale(1.5);
+  transform: scale(1.5);
+}
+
 .nav-item .nav-link:hover {
   color: #7d6d84;
   font-weight: 800;
@@ -376,7 +385,7 @@ a.back-to-top:hover {
   flex-direction: column;
   margin: 5% auto;
   text-align: center;
-  width: 35%;
+  width: 30%;
 }
 
 .register-user-panel {
@@ -392,6 +401,99 @@ a.back-to-top:hover {
   box-shadow: 0 0 6px 1px #332463;
 }
 
+.sign-up-additional-information-panel {
+  flex-direction: column;
+  margin: 5%;
+}
+
+.sign-up-additional-information-panel .register-full-name {
+  display: flex;
+}
+
+.sign-up-additional-information-panel .register-full-name input[type=text] {
+  width: 90%;
+  margin: 0 2% 0 2%;
+}
+
+.sign-up-additional-information-panel .register-contact-information {
+  display: flex;
+}
+
+.sign-up-additional-information-panel label {
+  display: inline-block;
+  font-size: 2vh;
+  padding: 5px 10px 0 0;
+  position: relative;
+  width: 20%;
+}
+
+.sign-up-additional-information-panel input[type="text"] {
+  background-color: #f2f3f4;
+  border: 2px solid #151a2f;
+  border-radius: 8px;
+  margin: 8px 0 4px 0;
+  outline: none;
+  padding: 8px 15px;
+  position: relative;
+  -o-transition: 0.2s;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  width: 60%;
+}
+
+.sign-up-additional-information-panel input[type="text"]:focus {
+  background-color: #f2f3f4;
+  border: 2px solid #c1b5e4;
+  border-radius: 8px;
+}
+
+.sign-up-additional-information-panel button:hover,
+button:focus,
+button:active {
+  background-color: #332463;
+
+  /* display: inline-block; */
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(5px) translateZ(0);
+  box-shadow: 3px 3px 10px 3px #161024;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: box-shadow, transform;
+  transition-property: box-shadow, transform;
+  display: inline-flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.sign-up-additional-information-panel input[type="email"],
+input[type="tel"] {
+  background-color: #f2f3f4;
+  border: 2px solid #151a2f;
+  border-radius: 8px;
+  margin: 8px 0 4px 0;
+  outline: none;
+  padding: 8px 15px;
+  position: relative;
+  -o-transition: 0.2s;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  width: 60%;
+}
+
+.sign-up-additional-information-panel select {
+  background-color: #f2f3f4;
+  border: 1px solid #151a2f;
+  border-radius: 4px;
+  padding: 8px 16px;
+  width: 80%;
+}
+
+.sign-up-additional-information-panel .register-user-location label {
+  display: inline-flex;
+  padding: 0;
+  width: fit-content;
+}
+
 .register-user-panel input[type="text"]:focus {
   background-color: #f2f3f4;
   border: 2px solid #c1b5e4;
@@ -402,13 +504,96 @@ a.back-to-top:hover {
   text-align: center;
 }
 
+.register-full-name label {
+  display: inline;
+  width: fit-content;
+}
+
+.register-email-label {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0.3;
+}
+
+.register-contact-information input[type=email] {
+  width: 100%;
+  margin-right: 2%;
+}
+
+.register-contact-information label {
+  display: inline;
+}
+
+.register-contact-information input[type=tel] {
+  width: 60%;
+  margin-right: 2%;
+  margin-left: 2%;
+}
+
+.register-phone-label {
+  display: flex;
+  flex-direction: column;
+  padding: 0 4% 0 0;
+  flex-basis: 40%;
+}
+
+.register-first-name-label,
+.register-last-name-label {
+  flex-basis: 40%;
+  display: flex;
+  flex-direction: column;
+}
+
+.register-email-information input[type=email] {
+  width: 90%;
+}
+
+.register-user-address {
+  margin: 2% 2% 0 2%;
+}
+
+.register-user-location {
+  display: inline-flex;
+  flex-direction: row;
+  margin-left: 2%;
+  margin-top: 1%;
+}
+
+.flex-user-location {
+  display: flex;
+  flex-direction: column;
+}
+
+.register-user-form .register-user-buttons button:hover {
+  background-color: #917a90;
+}
+
+.register-user-location input[type="text"] {
+  margin: 0;
+}
+
+.register-user-form .register-user-location label {
+  display: inline-flex;
+  padding: 0;
+  width: fit-content;
+}
+
+.register-user-location label.register-state-label {
+  width: min-content;
+}
+
+.register-user-address input[type="text"] {
+  width: 70%;
+  margin: 0;
+}
+
 .user-information-table {
   -webkit-box-direction: normal;
   -webkit-box-orient: vertical;
   display: flex;
   -ms-flex-direction: column;
   flex-direction: column;
-  margin: 3% 10%;
+  padding: 3% 10%;
   width: auto;
 }
 
@@ -418,7 +603,17 @@ a.back-to-top:hover {
   display: flex;
   -ms-flex-direction: row;
   flex-direction: row;
-  margin: 1% 1% 2% 10%;
+  padding: 0.5% 0 0 4%;
+}
+
+h4#start-billing-address-label,
+h4#start-contact-information-label {
+  text-align: left;
+  font-size: 3vh;
+  display: block;
+  margin: 8% 0 1% 0;
+  color: #917a90;
+  text-decoration: underline;
 }
 
 .user-info-label {
@@ -438,18 +633,6 @@ a.back-to-top:hover {
   font-size: 2vh;
   align-self: center;
   font-weight: bold;
-}
-
-.register-user-form {
-  margin: 5%;
-}
-
-.register-user-form label {
-  display: inline-block;
-  font-size: 2vh;
-  padding: 5px 10px 0 0;
-  position: relative;
-  width: 20%;
 }
 
 .register-user-form input[type="text"] {
@@ -486,7 +669,7 @@ span.register-optional {
   width: 30%;
 }
 
-.register-user-form .register-user-buttons button {
+.register-user-buttons button {
   background-color: #151a2f;
   border: none;
   border-radius: 8px;
@@ -502,40 +685,6 @@ span.register-optional {
 input#user_city {
   /* width: fit-content; */
   width: 90%;
-}
-
-.register-user-location {
-  display: inline-flex;
-  flex-direction: row;
-  margin-bottom: 5%;
-}
-
-.flex-user-location {
-  display: flex;
-  flex-direction: column;
-}
-
-.register-user-form .register-user-buttons button:hover {
-  background-color: #917a90;
-}
-
-.register-user-location input[type="text"] {
-  margin: 0;
-}
-
-.register-user-form .register-user-location label {
-  display: inline-flex;
-  padding: 0;
-  width: fit-content;
-}
-
-.register-user-location label.register-state-label {
-  width: min-content;
-}
-
-.register-user-form .register-user-address input[type="text"] {
-  width: 70%;
-  margin: 0;
 }
 
 .new-username-registration.flex-column-1 {
@@ -711,61 +860,90 @@ img.login-icon {
   display: none;
 }
 
-.register-user-address {
-  margin-top: 2%;
+section.account-information {
+  flex-direction: column;
 }
 
-.register-full-name input[type=text] {
-  width: 90%;
-}
-
-.register-full-name label {
-  display: inline;
-  width: fit-content;
-}
-
-.register-email-label {
+.account-navigation-panel {
   display: flex;
   flex-direction: column;
-  flex-grow: 0.3;
+  position: fixed;
+  left: 8%;
+  margin-top: 5%;
+  height: 100%;
 }
 
-.register-contact-information input[type=email] {
+.account-links {
   width: 110%;
 }
 
-.register-contact-information label {
+#account-username-header {
+  color: #161024;
+  text-shadow: 0 0 4px #c1b5e4, 0 0 9px #c1b5e4, 0 0 9px #c1b5e4, 0 0 9px #c1b5e4;
+}
+
+ul.account-nav-list {
+  list-style-type: none;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: sticky;
+}
+
+li.account-nav-item {
+  padding: 10% 0 15% 3%;
+}
+
+.account-nav-item a.active {
+  color: #332463;
+  font-weight: 500;
+}
+
+.account-nav-link {
+  color: #7d6d84;
+  text-shadow: 0 0 5px #917a90;
   display: inline;
+  margin: 10px 12px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 2.5vh;
 }
 
-.register-contact-information input[type=tel] {
-  width: 60%;
+.account-nav-item .account-nav-link:hover {
+  color: #c1b5e4;
+  font-weight: 400;
+  -ms-transform: scale(1.5);
+  -webkit-transform: scale(1.5);
+  transform: scale(1.5);
 }
 
-.register-phone-label {
+.saved-payment-methods-panel {
+  background-color: #f5f2ff;
+  box-shadow: 0 0 6px 1px #332463;
+  border-radius: 5px;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
   display: flex;
+  -ms-flex-direction: column;
   flex-direction: column;
-  padding: 0 4% 0 0;
-  flex-basis: 40%;
+  margin: 5% auto;
+  text-align: center;
+  width: 35%;
 }
 
-.register-first-name-label,
-.register-last-name-label {
-  flex-basis: 40%;
+.order-history-panel {
+  background-color: #f5f2ff;
+  box-shadow: 0 0 6px 1px #332463;
+  border-radius: 5px;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
   display: flex;
+  -ms-flex-direction: column;
   flex-direction: column;
-}
-
-.register-email-information input[type=email] {
-  width: 90%;
-}
-
-.register-user-form select {
-  background-color: #f2f3f4;
-  border: 1px solid #151a2f;
-  border-radius: 4px;
-  padding: 8px 16px;
-  width: 80%;
+  margin: 5% auto;
+  text-align: center;
+  width: 40%;
 }
 
 .checkout-panel {
@@ -774,7 +952,7 @@ img.login-icon {
   border-radius: 5px;
   display: block;
   margin: 5% auto;
-  width: 45%;
+  width: 40%;
 }
 
 .checkout-panel label {
@@ -898,6 +1076,11 @@ button:active {
   margin-right: 4%;
 }
 
+.delete-account-button:hover {
+  background-color: #793535;
+  box-shadow: 0 0 8px 6px rgba(76, 6, 6, 0.75), 0 0 8px 6px rgba(76, 6, 6, 0.75);
+}
+
 .edit-user-buttons button {
   background-color: #151a2f;
   border: none;
@@ -1008,18 +1191,92 @@ button#clear-cart-button:hover {
   -ms-flex-direction: row;
   flex-direction: row;
   -ms-flex-pack: end;
-  justify-content: flex-end;
-  margin-bottom: 5%;
-  margin-right: 10%;
+  margin-left: 8%;
   place-items: flex-start;
+  margin-top: 2%;
 }
 
 button.submit-btn.checkout-btn {
   font-size: 1.5vh;
 }
 
-button.submit-btn.checkout-btn:hover {
+button.submit-btn.checkout-btn:hover,
+.order-panel-footer button:hover {
   background-color: #332463;
+}
+
+/************* STARTING CHECKOUT PAGE ADJUSTMENTS ********************
+********************************************************************
+********************************************************************
+********************************************************************
+********************************************************************
+********************************************************************
+********************************************************************
+******************************************************************** */
+
+.checkout-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.checkout-page-title {
+  text-align: center;
+  margin-top: 4%;
+}
+
+.checkout-page-flex-column-2 {
+  display: flex;
+}
+
+.order-panel {
+  flex-basis: 20%;
+  display: block;
+  margin: auto 0 auto 10%;
+}
+
+.order-panel-body {
+  box-shadow: 0 0 20px 2px #f5f2ff, 0 0 16px 1px #c1b5e4;
+  border-radius: 5px;
+}
+
+.order-panel-header {
+  color: #917a90;
+  text-transform: capitalize;
+  text-align: center;
+  margin: 6% 5% 10% 0;
+}
+
+.cost-adjustment-fields {
+  padding: 10%;
+}
+
+.cost-fields .checkout-line {
+  margin: 4% 2% 0 2%;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #332463, rgba(0, 0, 0, 0));
+  height: 1px;
+  border: 0;
+}
+
+.cost-total-field {
+  padding: 5% 0 5% 8%;
+}
+
+.order-panel-footer {
+  text-align: end;
+  margin-top: 3%;
+}
+
+.order-panel-footer button {
+  background-color: #151a2f;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.5vh;
+  margin-bottom: 5%;
+  padding: 7px 18px;
+  text-decoration: none;
+  margin-right: 2%;
 }
 
 .checkout-panel-footer button {
@@ -1037,6 +1294,52 @@ button.submit-btn.checkout-btn:hover {
 
 .checkout-panel-footer button:hover {
   background-color: #332463;
+}
+
+.save-this-payment-method {
+  font-size: 2vh;
+  padding-left: 6%;
+}
+
+.payment-method-header {
+  margin: 3% 0 5% 5%;
+  color: #332463;
+}
+
+a.save-payment-method {
+  text-decoration-line: underline;
+}
+
+a.dont-save-payment-method {
+  text-decoration-line: underline;
+}
+
+.save-this-payment-method span {
+  color: #bb9eba;
+}
+
+a.user-wants-to-add-new-card {
+  color: #a684b5;
+  font-size: 2vh;
+}
+
+span.user-wants-to-add-new-card {
+  color: #a684b5;
+  padding-left: 2%;
+  font-size: 2vh;
+}
+
+h4.saved-payment-options-header {
+  color: #695671;
+  padding-left: 3%;
+  font-size: 2.8vh;
+}
+
+.show-saved-payment-methods {
+  display: block;
+  margin: 5% 0 6% 5%;
+  font-size: 3vh;
+  color: #fbaba2;
 }
 
 .shipping-info-panel {
@@ -1215,21 +1518,6 @@ input[type=checkbox] + label {
   width: 40%;
 }
 
-.register-user-form input[type="email"],
-input[type="tel"] {
-  background-color: #f2f3f4;
-  border: 2px solid #151a2f;
-  border-radius: 8px;
-  margin: 8px 0 4px 0;
-  outline: none;
-  padding: 8px 15px;
-  position: relative;
-  -o-transition: 0.2s;
-  -webkit-transition: 0.2s;
-  transition: 0.2s;
-  width: 60%;
-}
-
 button[type="submit"],
 button[type="reset"] {
   background-color: #151a2f;
@@ -1382,7 +1670,7 @@ input[type=checkbox]:checked + label {
 
 .checkout-panel-body {
   display: flex;
-  padding: 5% 5% 2%;
+  padding: 1% 5% 2%;
 }
 
 .checkout-panel-body .cost-fields {
@@ -1421,22 +1709,11 @@ input[type=checkbox]:checked + label {
 
 .cost-fields .checkout-total {
   font-size: 3.5vh;
-  margin-top: 20%;
   font-weight: 500;
 }
 
 .cost-fields .checkout-total .total-label {
   width: auto;
-}
-
-.cost-fields .checkout-line {
-  border: none;
-  -webkit-box-shadow: inset 0 11px 22px -22px #161024;
-  box-shadow: inset 0 11px 22px -22px #161024;
-  margin-left: -8%;
-  margin-right: -8%;
-  margin-top: 20%;
-  padding-bottom: 10%;
 }
 
 span.total-value.cost-value {
@@ -1463,7 +1740,8 @@ span.total-value.cost-value {
 
 #register-user-btn.disabled-button,
 #submit-payment-information-btn.disabled-button,
-#shipping-info-submit-btn.disabled-button {
+#shipping-info-submit-btn.disabled-button,
+#submit-order-information-btn.disabled-button {
   /* border: 1px solid #ababab; */
   background-color: rgba(54, 51, 58, 0.61);
   color: #a9a6a6;
@@ -1472,6 +1750,7 @@ span.total-value.cost-value {
 
 #register-user-btn.disabled-button:hover,
 #submit-payment-information-btn.disabled-button:hover,
-#shipping-info-submit-btn.disabled-button:hover {
+#shipping-info-submit-btn.disabled-button:hover,
+#submit-order-information-btn.disabled-button:hover {
   box-shadow: 0 0 8px 6px rgba(76, 6, 6, 0.75);
 }

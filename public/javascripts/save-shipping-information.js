@@ -109,25 +109,27 @@ function saveAddressAsShippingInfo() {
   // const shippingCity = $( '#shipping_user_state option:selected' ).text();
   // const shippingState = $( '#shipping_city' ).val();
   // const shippingZipCode = $( '#shipping_zipcode' ).val();
-  const userName = $( '.name-value' ).text();
+  const username = $( '#account-username-header' ).text();
 
-  $.post(
-    '/users/shipping_info',
-    {
+  $.ajax({
+    url: '/users/shipping_info',
+    type: 'POST',
+    headers: { Authorization: `Bearer ${localStorage.getItem( 'token' )}` },
+    data: {
       shipping_address1: address1.val(),
       shipping_address2: address2.val(),
       shipping_city: city.val(),
       shipping_state: state.text(),
       shipping_zipcode: zipcode.val(),
-      userFullName: userName
+      username
     },
-    ( data ) => {
+    success: ( data ) => {
       // eslint-disable-next-line no-alert
       console.log( `POST /users/shipping_info Response: ${data}` );
       // eslint-disable-next-line no-alert
       alert( data );
     }
-  ).done( console.log( 'POST shipping information is complete' ) );
+  }).done( console.log( 'POST shipping information is complete' ) );
 }
 
 $( () => {

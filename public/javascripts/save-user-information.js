@@ -1,4 +1,7 @@
+import { applicationState } from './application-state';
+
 const $ = require( 'jquery' );
+
 
 function getUserInformation() {
   const userFirstName = $( '#user_first_name' ).val();
@@ -59,7 +62,7 @@ function setUserOverview() {
   }else {
     $( '.address-2-value' ).css( 'display', 'none' );
     $( '.address-2-label' ).css( 'display', 'none' );
-    $( '.address-2-label:parent' ).css( 'display', 'none' );
+    $( '.show-address2-block' ).css( 'display', 'none' );
   }
   $( '.city-value' ).text( city );
   $( '.state-value' ).text( state );
@@ -84,6 +87,7 @@ function submitUserForm() {
   ] = getUserInformation();
 
   const userInformation = {
+    userID: localStorage.getItem( 'userID' ),
     fullname: `${firstName} ${lastName}`,
     user_phone: phone,
     user_email: email,
@@ -96,10 +100,19 @@ function submitUserForm() {
 
   showUserOverview();
 
-  $.post( '/users/sign_up', userInformation, ( data ) => {
-    // eslint-disable-next-line no-alert
-    alert( data );
-  }).done( setUserOverview() );
+  $.ajax({
+    url: '/users/additional_info',
+    type: 'POST',
+    headers: { Authorization: `Bearer ${localStorage.getItem( 'token' )}` },
+    data: userInformation,
+    success( data ) {
+      // eslint-disable-next-line no-alert
+      alert( data );
+    }
+  }).done(
+    setUserOverview(),
+    applicationState.registeredUserOverviewAccountState()
+  );
 
   // setUserOverview();
 }
