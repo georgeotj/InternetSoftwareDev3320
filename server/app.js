@@ -1,6 +1,5 @@
 const express = require( 'express' );
 
-const app = express();
 const path = require( 'path' );
 
 const cors = require( 'cors' );
@@ -8,6 +7,9 @@ const cors = require( 'cors' );
 const morgan = require( 'morgan' );
 
 const errorHandler = require( 'errorhandler' );
+
+// const session = require( 'express-session' );
+// const MongoStore = require( 'connect-mongo' )( session );
 
 const compression = require( 'compression' );
 
@@ -57,6 +59,10 @@ const STATIC_MIDDLEWARE = express.static( 'dist' );
 
 const port = process.env.PORT || 3000;
 
+const { SESS_NAME, SESS_SECRET, SESS_LIFETIME } = require( './config/server.config' );
+
+const app = express();
+
 // eslint-disable-next-line import/order
 // const webpackDevMiddleware = require( 'webpack-dev-middleware' )(
 //   compiler,
@@ -66,6 +72,8 @@ const port = process.env.PORT || 3000;
 // eslint-disable-next-line import/order
 // const webpackHotMiddleware = require( 'webpack-hot-middleware' )( compiler );
 
+// Hide that we're using express. The less hackers know the better
+app.disable( 'x-powered-by' );
 
 // Log all request with morgan common
 // app.use( morgan( 'combined', { stream: logger.stream }) );
@@ -126,53 +134,12 @@ app.set( 'view engine', 'ejs' );
 app.set( 'views', path.resolve( __dirname, 'views' ) );
 
 // Add the database to the application
-mongoDB( ( error ) => {
+const mongoConnection = mongoDB( ( error ) => {
   if ( error ) {
     console.log( `MongoDB event error: ${error}` );
     process.exit( 1 );
   }
 });
-
-// router.post( '*', ( req, res, next ) => {
-//
-//   if ( req.originalUrl !== '/__webpack_hmr' ) {
-//     console.log( chalk.red( `A POST Request was Made To: ${req.originalUrl}` ) );
-//   }
-//
-//   return next();
-// });
-//
-// router.get( '*', ( req, res, next ) => {
-//
-//   if ( req.originalUrl !== '/__webpack_hmr' ) {
-//     console.log( chalk.blue( `A GET Request was Made To: ${req.originalUrl}` ) );
-//   }
-//   // logger.log({
-//   //   message: 'Request received',
-//   //   level: 'info',
-//   //   transationId: 'request',
-//   //   correlationId: req.originalUrl,
-//   //   operation: 'log request'
-//   // });
-//   return next();
-// });
-//
-// // Add path to HTML file to the router
-// router.get( '/', ( request, response ) => {
-//
-//   // __dirname: resolves to project folder
-//   // sendfile(): sends HTML files to the browser
-//   response.render( 'index' );
-// });
-//
-// router.get( '/states', ( request, response ) => {
-//   models.States.find({}).then( ( states ) => {
-//     console.log( 'Sending states response' );
-//     response.send({ states });
-//
-//     // console.log( 'GET /states Response:\n', JSON.stringify( states, null, 2 ) );
-//   });
-// });
 
 
 // Add the router to the application
