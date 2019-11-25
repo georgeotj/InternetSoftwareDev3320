@@ -172,8 +172,3 @@ $( () => {
     $( '#checkout-total-value' ).text( `$${Number( totalCost ).toFixed( 2 )}` );
   });
 });
-
-// eslint-disable-next-line import/prefer-default-export
-export function sendShoppingCart () {
-  return productItems;
-}

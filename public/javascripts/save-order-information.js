@@ -37,14 +37,14 @@ function submitOrder() {
 
   const orderItems = getOrderItems();
   const orderPrice = getOrderPrice();
-  const userName = $( '.name-value' ).text();
+  const username = $( '#account-username-header' ).text();
 
-  if ( !userName ) {
+  if ( !username ) {
     // eslint-disable-next-line no-alert
     alert( 'Make an Account Before Completing a Purchase' );
   } else {
     const orderJSONRequest = {
-      userName: 'Trevor McDougald',
+      username,
       items: orderItems,
       totalPrice: orderPrice
     };
@@ -54,18 +54,20 @@ function submitOrder() {
       JSON.stringify( orderJSONRequest, null, 2 )
     );
 
-    $.post(
-      '/orders/new_order',
-      {
-        userName,
+    $.ajax({
+      url: '/orders/new_order',
+      type: 'POST',
+      headers: { Authorization: `Bearer ${localStorage.getItem( 'token' )}` },
+      data: {
+        username,
         items: orderItems,
         totalPrice: orderPrice
       },
-      ( data ) => {
+      success: ( response ) => {
         // eslint-disable-next-line no-alert
-        alert( data );
+        alert( response );
       }
-    )
+    })
       .then( ( r ) => {
         return console.log( 'POST /orders/new_order is Over! ' );
       });

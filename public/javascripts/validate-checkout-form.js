@@ -16,7 +16,7 @@ function checkNameOnCard() {
 
   const pattern = /^([\w]{3,})+\s+([\w\s]{3,})+$/i;
   const fieldName = cardName.val();
-  if ( cardName.isValid() && fieldName !== '' ) {
+  if ( pattern.test( fieldName ) && fieldName !== '' ) {
     cardNameErrorMessage.hide();
     cardName.addClass( 'field-is-valid' );
     if ( cardName.hasClass( 'field-is-invalid' ) ) {

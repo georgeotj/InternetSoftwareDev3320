@@ -152,8 +152,7 @@ app.use( '/orders', orders );
 app.use( expressWinston.errorLogger({
   transports: [
     new winston.transports.Console({
-      json: true,
-      colorize: true
+      json: true
     })
   ],
   format: winston.format.combine(

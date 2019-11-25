@@ -7,12 +7,14 @@ function getPaymentInformation() {
     paymentCardNumber: $( '#payment-card-number' ).val(),
     paymentCardExpirationDate: $( '#payment-expiration-date' ).val(),
     paymentCardVerificationCode: $( '#payment-card-verification' ).val(),
-    userName: $( '.name-value' ).text()
+    username: $( '#account-username-header' ).text()
   };
 }
 
 function submitPaymentInformationForm() {
   console.log( 'Attempting to save New Billing Information' );
+
+  const submitOrderButton = $( '#submit-order-information-btn' );
 
   const paymentInformation = getPaymentInformation();
 
@@ -22,19 +24,36 @@ function submitPaymentInformationForm() {
     expDate: paymentInformation.paymentCardExpirationDate,
     CVV: paymentInformation.paymentCardVerificationCode,
     cardName: paymentInformation.paymentCardName,
-    userFullName: paymentInformation.userName
+    username: paymentInformation.username
   };
 
-  $.post( '/users/billing_info', paymentInformationJSONRequest, ( data ) => {
-    // eslint-disable-next-line no-alert
-    alert( data );
+  $.ajax({
+    url: '/users/billing_info',
+    type: 'POST',
+    headers: { Authorization: `Bearer ${localStorage.getItem( 'token' )}` },
+    data: paymentInformationJSONRequest,
+    success: ( response ) => {
+      submitOrderButton.removeClass( 'disabled-button' );
+      submitOrderButton.removeAttr( 'disabled' );
+      // eslint-disable-next-line no-alert
+      alert( response );
+    }
   })
     .then( ( response ) => { return ( console.log( 'The billing AJAX is over' ) ); });
 }
 
 $( () => {
+
+
   $( '#submit-payment-information-btn' ).on( 'click', ( event ) => {
     event.preventDefault();
-    submitPaymentInformationForm();
+    const accountUsername = $( '#account-username-header' ).text();
+
+    if ( !accountUsername ) {
+      // eslint-disable-next-line no-alert
+      alert( 'Please Login Before Making a Purchase' );
+    } else {
+      submitPaymentInformationForm();
+    }
   });
 });

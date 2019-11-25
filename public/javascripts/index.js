@@ -27,6 +27,8 @@ import closingApplication from './application-closed';
 
 import './application-state';
 import './validate-user-form';
+import './register-user';
+import './payment-state';
 
 console.log( loadStates );
 

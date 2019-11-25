@@ -7,7 +7,15 @@ const { JWT_KEY } = require( '../../config/server.config' );
 
 const register = async ( user ) => {
 
+  console.log(
+    chalk.keyword( 'lightpink' )( '\n         User has been passed to "register" controller\n' )
+  );
+
   const hashedPassword = bcrypt.hashSync( user.password, 8 );
+
+  console.log(
+    chalk.keyword( 'hotpink' )( `Hashed Password Generated for User: ${hashedPassword}` )
+  );
 
   const userID = new mongoose.mongo.ObjectID();
   const newUser = new models.UserCredentials({
@@ -19,8 +27,11 @@ const register = async ( user ) => {
 
   try {
       const savedUser = await newUser.save();
-      console.log( 'Saving user was Successful!' );
-      console.log( chalk.keyword( 'blue' )( `User that was saved: ${savedUser}` ) );
+      console.log( chalk.keyword( 'lightgreen' )( '\nSaving user was Successful!' ) );
+      console.log( chalk.keyword( 'lightcoral' )( `User that was saved:\n ${savedUser}` ) );
+      console.log(
+        chalk.keyword( 'lightpink' )( '      "register" controller finished... Returning User\n' )
+      );
       return savedUser;
     // Generate and return the JWT Token
       // return jwt.sign({ id: savedUser.userID }, JWT_KEY, {
@@ -32,9 +43,16 @@ const register = async ( user ) => {
 };
 
 const generateAuthToken = async ( userID ) => {
+  console.log(
+    chalk.keyword( 'plum' )( '\n UserID has been passed to "generateAuthToken" controller\n' )
+  );
   const token = jwt.sign({ _id: userID }, JWT_KEY );
-  console.log( `Attempting to generate token for UserID: ${userID}` );
-  console.log( `Token Generated: ${token}` );
+  console.log(
+    chalk.keyword( 'darkorchid' )( `Attempting to generate token for UserID: ${userID}` )
+  );
+  console.log(
+    `Token Generated: ${token}\ngenerateAuthToken controller complete... Returning token`
+  );
   return token;
 };
 
@@ -93,4 +111,3 @@ module.exports = {
 //     });
 //   }
 // };
-
