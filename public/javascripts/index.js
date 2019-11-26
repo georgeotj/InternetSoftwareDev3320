@@ -8,6 +8,12 @@ import '../../node_modules/jquery-validation/dist/jquery.validate.min';
 
 import '../assets/Images/create-account-icon.jpg';
 import '../assets/Images/sign-into-account-icon.jpg';
+import '../assets/Images/payment-accepted-icon.jpg';
+import '../assets/Images/payment-rejected-icon.jpg';
+import '../assets/Images/payment-valid-date-accepted.jpg';
+import '../assets/Images/payment-valid-date-rejected.jpg';
+import '../assets/Images/cvv-payment-accepted-icon.jpg';
+import '../assets/Images/cvv-payment-rejected-icon.jpg';
 
 // // eslint-disable-next-line no-multi-assign
 // window.$ = window.jQuery = require( 'jquery' );

@@ -143,6 +143,8 @@
                             maxlength="100"
                             placeholder="Street Address"
                             pattern="^\s*\S+(?:\s+\S+){2,3}"
+                            width="382.5"
+                            height="43"
                             required
                     />
                     <span class="error-field" id="address-1-error-message"></span>
@@ -155,6 +157,8 @@
                             name="street_address2"
                             maxlength="100"
                             pattern="^[a-zA-Z0-9\s,.'-]{3,}$"
+                            width="382.5"
+                            height="43"
                             placeholder="Apt, Suite, Bldg, (optional)"
                     />
                     <span class="error-field" id="address-2-error-message"></span>
@@ -170,6 +174,8 @@
                             name="user_city"
                             placeholder="City"
                             pattern="^([a-zA-Z\u0080-\u024F]+(?:. |-| |'))*[a-zA-Z\u0080-\u024F]*$"
+                            width="382.5"
+                            height="43"
                             required
                     />
                     <!-- TODO: Move to a DB and load with AJAX -->
@@ -192,6 +198,8 @@
                             placeholder="Zip Code"
                             maxlength="9"
                             minlength="5"
+                            width="382.5"
+                            height="43"
                             pattern="(^\d{5}$)|(^\d{5}-\d{4}$)"
                             required
                     />

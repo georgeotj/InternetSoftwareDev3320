@@ -18,9 +18,9 @@ function checkNameOnCard() {
   const fieldName = cardName.val();
   if ( pattern.test( fieldName ) && fieldName !== '' ) {
     cardNameErrorMessage.hide();
-    cardName.addClass( 'field-is-valid' );
-    if ( cardName.hasClass( 'field-is-invalid' ) ) {
-      cardName.removeClass( 'field-is-invalid' );
+    cardName.addClass( 'payment-field-is-valid' );
+    if ( cardName.hasClass( 'payment-field-is-invalid' ) ) {
+      cardName.removeClass( 'payment-field-is-invalid' );
     }
     // cardName.css( 'border', '2px solid lightgreen' );
     // cardName.css( 'box-shadow', '0 0 8px 2px rgba(152, 251, 152, 0.75)' );
@@ -34,9 +34,9 @@ function checkNameOnCard() {
     // cardNameErrorMessage.css('display', 'inline-block');
     // cardNameErrorMessage.css('position', 'absolute');
     cardNameErrorMessage.show();
-    cardName.addClass( 'field-is-invalid' );
-    if ( cardName.hasClass( 'field-is-valid' ) ) {
-      cardName.removeClass( 'field-is-valid' );
+    cardName.addClass( 'payment-field-is-invalid' );
+    if ( cardName.hasClass( 'payment-field-is-valid' ) ) {
+      cardName.removeClass( 'payment-field-is-valid' );
     }
 
     // cardName.css( 'border', '2px solid salmon' );
@@ -75,9 +75,9 @@ function checkCardNumberValid() {
       fieldValue !== '' ) {
 
         cardNumberErrorMessage.hide();
-        cardNumber.addClass( 'field-is-valid' );
-        if ( cardNumber.hasClass( 'field-is-invalid' ) ) {
-          cardNumber.removeClass( 'field-is-invalid' );
+        cardNumber.addClass( 'payment-field-is-valid' );
+        if ( cardNumber.hasClass( 'payment-field-is-invalid' ) ) {
+          cardNumber.removeClass( 'payment-field-is-invalid' );
         }
         // cardNumber.css( 'border', '2px solid lightgreen' );
         // cardNumber.css( 'box-shadow', '0 0 8px 2px rgba(152, 251, 152, 0.75)' );
@@ -92,9 +92,9 @@ function checkCardNumberValid() {
     // cardNumberErrorMessage.css('position', 'absolute');
     cardNumberErrorMessage.show();
 
-    cardNumber.addClass( 'field-is-invalid' );
-    if ( cardNumber.hasClass( 'field-is-valid' ) ) {
-      cardNumber.removeClass( 'field-is-valid' );
+    cardNumber.addClass( 'payment-field-is-invalid' );
+    if ( cardNumber.hasClass( 'payment-field-is-valid' ) ) {
+      cardNumber.removeClass( 'payment-field-is-valid' );
     }
     // cardNumber.css( 'border', '2px solid salmon' );
     // cardNumber.css( 'box-shadow', '0 0 8px 2px rgba(250, 128, 114, 0.75)' );
@@ -135,9 +135,9 @@ function checkCardExpireDate() {
   const fieldValue = cardExpire.val();
   if ( pattern.test( fieldValue ) && fieldValue !== '' ) {
     cardExpireErrorMessage.hide();
-    cardExpire.addClass( 'field-is-valid' );
-    if ( cardExpire.hasClass( 'field-is-invalid' ) ) {
-      cardExpire.removeClass( 'field-is-invalid' );
+    cardExpire.addClass( 'payment-date-is-valid' );
+    if ( cardExpire.hasClass( 'payment-date-is-invalid' ) ) {
+      cardExpire.removeClass( 'payment-date-is-invalid' );
     }
     // cardExpire.css( 'border', '2px solid lightgreen' );
     // cardExpire.css( 'box-shadow', '0 0 8px 2px rgba(152, 251, 152, 0.75)' );
@@ -151,9 +151,9 @@ function checkCardExpireDate() {
     // cardExpireErrorMessage.css('display', 'inline-block');
     // cardExpireErrorMessage.css('position', 'absolute');
     cardExpireErrorMessage.show();
-    cardExpire.addClass( 'field-is-invalid' );
-    if ( cardExpire.hasClass( 'field-is-valid' ) ) {
-      cardExpire.removeClass( 'field-is-valid' );
+    cardExpire.addClass( 'payment-date-is-invalid' );
+    if ( cardExpire.hasClass( 'payment-date-is-valid' ) ) {
+      cardExpire.removeClass( 'payment-date-is-valid' );
     }
     // cardExpire.css( 'border', '2px solid salmon' );
     // cardExpire.css( 'box-shadow', '0 0 8px 2px rgba(250, 128, 114, 0.75)' );
@@ -169,14 +169,18 @@ function checkCardCVV() {
   const fieldValue = cardCVV.val();
   if ( pattern.test( fieldValue ) && fieldValue !== '' ) {
     cardCVVErrorMessage.hide();
-    cardCVV.css( 'border', '2px solid lightgreen' );
-    cardCVV.css( 'box-shadow', '0 0 8px 2px rgba(152, 251, 152, 0.75)' );
+    cardCVV.addClass( 'cvv-field-is-valid' );
+    if ( cardCVV.hasClass( 'cvv-field-is-invalid' ) ) {
+      cardCVV.removeClass( 'cvv-field-is-invalid' );
+    }
   }else {
     cardCVVErrorMessage.html( 'Invalid CVV Code' );
     cardCVVErrorMessage.css( 'color', '#b00808' );
     cardCVVErrorMessage.show();
-    cardCVV.css( 'border', '2px solid salmon' );
-    cardCVV.css( 'box-shadow', '0 0 8px 2px rgba(250, 128, 114, 0.75)' );
+    cardCVV.addClass( 'cvv-field-is-invalid' );
+    if ( cardCVV.hasClass( 'cvv-field-is-valid' ) ) {
+      cardCVV.removeClass( 'cvv-field-is-valid' );
+    }
     isCardCodeValid = false;
   }
 }
