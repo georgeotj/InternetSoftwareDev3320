@@ -38,7 +38,7 @@ const userCredentialsSchema = new Schema({
 
 userCredentialsSchema.statics.authenticate = async ( username, password ) => {
   // eslint-disable-next-line no-undef
-  const user = await UserCredentials.findOne({
+  const user = await UsersCredentials.findOne({
     username
   });
 

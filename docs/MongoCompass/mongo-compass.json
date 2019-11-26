@@ -1,0 +1,6 @@
+{"_id":{"$oid":"5dc53788e46a394c4883cf0c"},"productID":{"$oid":"5dd1023274004226f4babba2"},"name":"Product 1","description":"This is our first product","unitPrice":{"$numberInt":"1"}}
+{"_id":{"$oid":"5dc537fbe46a394c4883cf0d"},"productID":{"$oid":"5dd1025474004226f4babba3"},"name":"Product 2","description":"This is our second product","unitPrice":{"$numberInt":"2"}}
+{"_id":{"$oid":"5dc5382fe46a394c4883cf0e"},"productID":{"$oid":"5dd1026474004226f4babba4"},"name":"Product 3","description":"This is our third product","unitPrice":{"$numberInt":"3"}}
+{"_id":{"$oid":"5dc5386ee46a394c4883cf0f"},"productID":{"$oid":"5dd1026974004226f4babba5"},"name":"Product 4","description":"This is our fourth product","unitPrice":{"$numberInt":"4"}}
+{"_id":{"$oid":"5dc5389fe46a394c4883cf10"},"productID":{"$oid":"5dd1026e74004226f4babba6"},"name":"Product 5","description":"This is our fifth product","unitPrice":{"$numberInt":"5"}}
+{"_id":{"$oid":"5dc538d5e46a394c4883cf11"},"productID":{"$oid":"5dd1027674004226f4babba7"},"name":"Product 6","description":"This is our sixth product","unitPrice":{"$numberInt":"6"}}
