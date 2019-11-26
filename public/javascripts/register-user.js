@@ -35,6 +35,8 @@ function registerUser() {
       localStorage.setItem( 'userID', response.userID );
       applicationState.additionalInformationAccountState();
       $( '#account-username-header' ).text( response.username );
+      $( '.saved-payment-options-header' ).text( `${response.username} Saved Payment Methods` );
+      $( '#no-payment-methods-saved-message' ).text( 'Finish signing up to add a payment method' );
     // eslint-disable-next-line no-alert, max-len
       alert( `Thanks for Registering ${response.username}! Add additional required information before making a purchase.` );
   }).catch( ( err ) => {

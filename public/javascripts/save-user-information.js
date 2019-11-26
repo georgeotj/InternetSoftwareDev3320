@@ -108,6 +108,9 @@ function submitUserForm() {
     success( data ) {
       // eslint-disable-next-line no-alert
       alert( data );
+      $( '#no-payment-methods-saved-message' ).text( 'No payment methods saved' );
+      $( '#account-payment-methods-overview-message' ).text( 'No Payment Methods Saved' );
+      $( '#account-order-history-overview-message' ).text( 'You have not placed an order with us' );
     }
   }).done(
     setUserOverview(),
