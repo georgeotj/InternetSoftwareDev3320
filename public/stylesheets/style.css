@@ -752,6 +752,12 @@ input#user_city {
   padding: 4% 8% 4% 8%;
 }
 
+.username-input input[type="text"]:hover {
+  background-color: #f2f3f4;
+  border: 2px solid #c1b5e4;
+  border-radius: 8px;
+}
+
 .sign-in-account-buttons {
   display: flex;
   flex-direction: column;

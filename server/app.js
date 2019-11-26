@@ -102,8 +102,8 @@ app.use( assets({
 app.use( STATIC_MIDDLEWARE );
 
 // Use the body-parser middleware in the app
-app.use( bodyParser.json() );
 app.use( bodyParser.urlencoded({ extended: true }) );
+app.use( bodyParser.json() );
 
 
 // Helmet has 9 API middleware to prevent several attacks in HTTP

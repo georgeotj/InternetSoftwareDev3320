@@ -29,6 +29,7 @@ import './application-state';
 import './validate-user-form';
 import './register-user';
 import './payment-state';
+import './login-user';
 
 console.log( loadStates );
 

@@ -4,6 +4,7 @@ const chalk = require( 'chalk' );
 const bcrypt = require( 'bcrypt' );
 const models = require( '../models' );
 const auth = require( '../controllers/users/user.auth.controller' );
+const { login } = require( '../controllers/users/user.login.controller' );
 
 const { register, generateAuthToken } = require( '../controllers/users/user.register.controller' );
 
@@ -146,7 +147,7 @@ router.post( '/register', async ( req, res, next ) => {
   );
   const token = await generateAuthToken( createdUser.userID );
   console.log(
-    chalk.keyword( 'orange' )( '\n"users/register" Route Complete!, sending JWT in response header' )
+    chalk.keyword( 'orange' )( '\n"users/register" Route Complete, sending JWT in response header' )
   );
 
   res.header( 'x-auth-token', token )
@@ -155,6 +156,8 @@ router.post( '/register', async ( req, res, next ) => {
       username: createdUser.username,
       token
     });
+
+  next();
   //   await user.save();
   //   const token = await user.generateAuthToken();
   //   res.status( 201 ).send({
@@ -163,6 +166,32 @@ router.post( '/register', async ( req, res, next ) => {
   // } catch ( error ) {
   //   res.status( 400 ).send( error );
   // }
+});
+
+router.post( '/login', async ( req, res, next ) => {
+  console.log( chalk.keyword( 'ivory' )( 'Now Starting users/login POST ROUTE:\n',
+    'This is an authorized only request route... Request Body:\n',
+    JSON.stringify( req.body, null, 2 ) ) );
+
+  const user = {
+    username: req.body.username,
+    password: req.body.password
+  };
+  console.log( `username received: ${user.username} Password received: ${user.password}` );
+
+  const userToken = await login( user );
+
+  console.log(
+    chalk.keyword( 'orange' )( '\n"users/Login" Route Complete!, sending JWT in response header' )
+  );
+
+  res.header( 'x-auth-token', userToken )
+    .send({
+      userID: res.userID,
+      username: res.username,
+      userToken
+    });
+
 });
 
 // Pass the auth controller right before the method. This ensures controller is run

@@ -6,19 +6,19 @@ const models = require( '../../models' );
 const { JWT_KEY } = require( '../../config/server.config' );
 
 const login = async ( user ) => {
-  console.log( chalk.keyword( 'orange' )( 'Attempting to LOGIN a user... ' ) );
+  console.log( chalk.keyword( 'antiquewhite' )( '\nUser was passed to login middleware....' ) );
 
   console.log( `username received: ${user.username} Password received: ${user.password}` );
 
   const validUser = await models.UserCredentials.authenticate( user.username, user.password );
 
   if ( validUser ) {
-    console.log( 'User found, attempting to add JSON Web Token...' );
+    console.log( `This is the user found for the login:\n ${validUser}` );
 
     const token = jwt.sign({ id: validUser.userID }, JWT_KEY, {
       expiresIn: 86400 // 24 hours
     });
-    console.log( `This is the token: ${token}` );
+    console.log( `\nThis is the token: ${token}` );
     return token;
   } else {
       console.log( `Error returning UserCredentials Token for ${user.username}` );
