@@ -15,10 +15,10 @@ $( () => {
     return Number( getProductPrice );
   }
 
-  function displayProductPrice( produceValue ) {
-    document.getElementById( 'unit-price' ).value = Number.isNaN( produceValue ) ?
+  function displayProductPrice( productValue ) {
+    document.getElementById( 'unit-price' ).value = Number.isNaN( productValue ) ?
       0 :
-      produceValue;
+      productValue;
   }
 
   function getItemQuantity( units ) {
