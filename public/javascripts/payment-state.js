@@ -18,7 +18,12 @@ const paymentState = {
   },
 
   noSavedPaymentMethods() {
-    $( '#no-payment-methods-saved-message' ).text( 'No payment methods saved' );
+    const accountUserName = $( '#account-username-header' ).text();
+    if ( !accountUserName ) {
+      $( '#no-payment-methods-saved-message' ).text( 'Log In To Save a Payment Method!' );
+    } else {
+      $( '#no-payment-methods-saved-message' ).text( 'No payment methods saved' );
+    }
   },
 
   savingCardInformation() {
@@ -69,3 +74,7 @@ $( () => {
   });
 
 });
+
+module.exports = {
+  paymentState
+};
