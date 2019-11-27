@@ -11,17 +11,17 @@ const register = async ( user ) => {
     chalk.keyword( 'lightpink' )( '\n         User has been passed to "register" controller\n' )
   );
 
-  const hashedPassword = bcrypt.hashSync( user.password, 8 );
+  // const hashedPassword = bcrypt.hashSync( user.password, 8 );
 
-  console.log(
-    chalk.keyword( 'hotpink' )( `Hashed Password Generated for User: ${hashedPassword}` )
-  );
+  // console.log(
+  //   chalk.keyword( 'hotpink' )( `Hashed Password Generated for User: ${hashedPassword}` )
+  // );
 
   const userID = new mongoose.mongo.ObjectID();
   const newUser = new models.UserCredentials({
     userID,
     username: user.username,
-    password: hashedPassword,
+    password: user.password,
     dateCreated: new Date()
   });
 

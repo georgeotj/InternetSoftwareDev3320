@@ -36,7 +36,6 @@ function loginUser() {
     applicationState.additionalInformationAccountState();
     $( '#account-username-header' ).text( response.username );
     // eslint-disable-next-line no-alert, max-len
-    alert( `Thanks for Registering ${response.username}! Add additional required information before making a purchase.` );
   }).catch( ( err ) => {
     // Error during request
     console.log( `Error registering a user: ${err}` );
@@ -48,7 +47,7 @@ $( () => {
   $( '#sign-in-account-btn' ).on( 'click', ( event ) => {
     event.preventDefault();
 
-    if ( $( 'form[name=\'create-account-form\']' ).valid() ) {
+    if ( $( 'form[name=\'sign-in-form\']' ).valid() ) {
       loginUser();
     }
 
