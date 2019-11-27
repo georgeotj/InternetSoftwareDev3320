@@ -1,5 +1,6 @@
 const mongoose = require( 'mongoose' );
 const bcrypt = require( 'bcrypt' );
+const chalk = require( 'chalk' );
 const jwt = require( 'jsonwebtoken' );
 const { JWT_KEY } = require( '../config/server.config' );
 
@@ -57,13 +58,23 @@ userCredentialsSchema.statics.authenticate = async ( username, password ) => {
 // PRE-save action. Before saving the user model to DB, run code to hash the password
 userCredentialsSchema.pre( 'save', async function save( next ) {
   const user = this;
+  console.log( '\n\nUserCredentials Schema Pre Save Middleware is running' );
+  console.log( `This is the user: ${user}`);
   // only use this logic if the password is modified
   if ( user.isModified( 'password' ) ) {
+
+    console.log( '\nUsers password was modified!' );
+
+    console.log( `\nOld User Password:\n${user.password}` );
     // hash the password with bcrypt. salt is so that even if two inputs
     // are the same, the hash will not be identical. This indicates 8 salt rounds
     // which determines the "cost factor" to calculate a single hash. Higher number
     // means more hashing rounds are done.
     user.password = await bcrypt.hash( user.password, 8 );
+
+    console.log(
+      chalk.keyword( 'hotpink' )( `Hashed Password Generated for User: ${user.password}` )
+    );
   }
   next();
 });
