@@ -33,7 +33,8 @@ function registerUser() {
       console.log( 'Registering was a success!' );
       localStorage.setItem( 'token', response.token );
       localStorage.setItem( 'userID', response.userID );
-      applicationState.additionalInformationAccountState();
+      localStorage.setItem( 'username', response.username );
+    applicationState.additionalInformationAccountState();
       $( '#account-username-header' ).text( response.username );
       $( '.saved-payment-options-header' ).text( `${response.username} Saved Payment Methods` );
       $( '#no-payment-methods-saved-message' ).text( 'Finish signing up to add a payment method' );

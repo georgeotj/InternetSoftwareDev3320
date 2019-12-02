@@ -31,10 +31,31 @@ function loginUser() {
     // }
   }).then( ( response ) => {
     console.log( 'Logging in was a success!' );
+    console.log( response );
     localStorage.setItem( 'token', response.token );
     localStorage.setItem( 'userID', response.userID );
-    applicationState.additionalInformationAccountState();
-    $( '#account-username-header' ).text( response.username );
+    localStorage.setItem( 'username', response.username );
+    if( response.additionalInfoRequired ) {
+      applicationState.additionalInformationAccountState();
+      $( '#account-username-header' ).text( response.username );
+    } else {
+      applicationState.registeredUserWithAdditionalInformationState();
+      $( '#account-username-header' ).text( response.username );
+      $( '.name-value' ).text( response.fullname );
+      $( '.address-1-value' ).text( response.user_address1 );
+      if ( response.user_address2 !== '' ) {
+        $( '.address-2-value' ).text( response.user_address2 );
+      }else {
+        $( '.address-2-value' ).css( 'display', 'none' );
+        $( '.address-2-label' ).css( 'display', 'none' );
+        $( '.show-address2-block' ).css( 'display', 'none' );
+      }
+      $( '.city-value' ).text( response.user_city );
+      $( '.state-value' ).text( response.user_state );
+      $( '.zip-code-value' ).text( response.user_zipcode );
+      $( '.phone-value' ).text( response.user_phone );
+      $( '.email-value' ).text( response.user_email );
+    }
     // eslint-disable-next-line no-alert, max-len
   }).catch( ( err ) => {
     // Error during request

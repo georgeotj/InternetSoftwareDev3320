@@ -29,6 +29,10 @@ const userCredentialsSchema = new Schema({
   //     required: true
   //   }
   // } ],
+  additionalInfoRequired: {
+    type: Boolean,
+    required: true
+  },
   dateCreated: {
     type: Date,
     default: Date.now
@@ -59,7 +63,7 @@ userCredentialsSchema.statics.authenticate = async ( username, password ) => {
 userCredentialsSchema.pre( 'save', async function save( next ) {
   const user = this;
   console.log( '\n\nUserCredentials Schema Pre Save Middleware is running' );
-  console.log( `This is the user: ${user}`);
+  console.log( `This is the user: ${user}` );
   // only use this logic if the password is modified
   if ( user.isModified( 'password' ) ) {
 
@@ -82,6 +86,12 @@ userCredentialsSchema.pre( 'save', async function save( next ) {
 // "class method" defined on the userCredentialsSchema, determine if user exist or not
 userCredentialsSchema.statics.doesNotExist = async function doesNotExist( field ) {
   return await this.where( field ).countDocuments() === 0;
+};
+
+userCredentialsSchema.statics.additionalInfoAdded = async function additionalInfoAdded( field ) {
+  const user = this;
+
+  user.update({}, { $set: { additionalInformationRequired: true } });
 };
 
 userCredentialsSchema.methods.generateAuthToken = async function generateAuthToken() {

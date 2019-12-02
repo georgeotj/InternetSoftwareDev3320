@@ -36,9 +36,24 @@ const applicationState = {
   additionalInformationAccountState() {
     $( '#registered-top-bar-column-2' ).css( 'display', 'block' );
     $( '#unregistered-top-bar-column-2' ).css( 'display', 'none' );
+    $( '#sign-in-panel' ).css( 'display', 'none' );
     $( '#sign-up-create-acc-panel' ).css( 'display', 'none' );
     $( '#sign-up-additional-information-panel' ).css( 'display', 'flex' );
     $( '#account-login-signup-header' ).html( 'Finish Registering!' );
+  },
+
+  registeredUserWithAdditionalInformationState() {
+    $( '#registered-top-bar-column-2' ).css( 'display', 'block' );
+    $( '#sign-in-panel' ).css( 'display', 'none' );
+    $( '#sign-up-create-acc-panel' ).css( 'display', 'none' );
+    $( '#sign-up-additional-information-panel' ).css( 'display', 'none' );
+    $( '#unregistered-top-bar-column-2' ).css( 'display', 'none' );
+    const userOverview = $( 'section.account-information' );
+    userOverview.css( 'display', 'block' );
+    $( 'section.register-account' ).css( 'display', 'none' );
+    $( '.shipping-info-panel' ).css( 'display', 'none' );
+    $( '.saved-payment-methods-panel' ).css( 'display', 'none' );
+    $( '.order-history-panel' ).css( 'display', 'none' );
   },
 
   registeredShippingInfoAccountState() {
@@ -112,6 +127,7 @@ const applicationState = {
       $( '#order-history-link' ).removeClass( 'active' );
     }
   }
+
 };
 
 $( () => {
