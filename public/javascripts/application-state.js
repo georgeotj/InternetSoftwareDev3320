@@ -50,6 +50,10 @@ const applicationState = {
     $( '#unregistered-top-bar-column-2' ).css( 'display', 'none' );
     const userOverview = $( 'section.account-information' );
     userOverview.css( 'display', 'block' );
+    $( 'section.register-account' ).css( 'display', 'none' );
+    $( '.shipping-info-panel' ).css( 'display', 'none' );
+    $( '.saved-payment-methods-panel' ).css( 'display', 'none' );
+    $( '.order-history-panel' ).css( 'display', 'none' );
   },
 
   registeredShippingInfoAccountState() {
@@ -122,7 +126,7 @@ const applicationState = {
     } else if ( $( '#order-history-link' ).hasClass( 'active' ) ) {
       $( '#order-history-link' ).removeClass( 'active' );
     }
-  },
+  }
 
 };
 
