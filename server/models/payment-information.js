@@ -36,6 +36,11 @@ const paymentInformationSchema = new Schema({
     type: Number,
     required: true,
     unique: false
+  },
+  saveForFuturePurchases: {
+    type: Boolean,
+    default: false,
+    required: true
   }
 });
 const paymentInformation = mongoose.model( 'paymentInformation', paymentInformationSchema );

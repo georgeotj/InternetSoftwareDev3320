@@ -22,6 +22,7 @@ const register = async ( user ) => {
     userID,
     username: user.username,
     password: user.password,
+    additionalInfoRequired: true,
     dateCreated: new Date()
   });
 

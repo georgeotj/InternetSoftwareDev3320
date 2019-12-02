@@ -88,6 +88,7 @@ function submitUserForm() {
 
   const userInformation = {
     userID: localStorage.getItem( 'userID' ),
+    username: localStorage.getItem( 'username' ),
     fullname: `${firstName} ${lastName}`,
     user_phone: phone,
     user_email: email,

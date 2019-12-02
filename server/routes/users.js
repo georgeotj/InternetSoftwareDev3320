@@ -4,14 +4,18 @@ const chalk = require( 'chalk' );
 const bcrypt = require( 'bcrypt' );
 const models = require( '../models' );
 const auth = require( '../controllers/users/user.auth.controller' );
-const { login } = require( '../controllers/users/user.login.controller' );
+const { login, needsAdditionalInfo } = require( '../controllers/users/user.login.controller' );
 
 const { register, generateAuthToken } = require( '../controllers/users/user.register.controller' );
+
+const { toggleUserInformationStatus } = require(
+  '../controllers/users/user-information.controller'
+  );
 
 const router = express.Router();
 
 /* POST users listing. */
-router.post( '/additional_info', auth, ( req, res, next ) => {
+router.post( '/additional_info', auth, async ( req, res, next ) => {
   console.log( chalk.yellow( '\nNow Starting users/additional_info POST ROUTE:\n',
     'This is an authorized only request route... Request Body:\n',
     JSON.stringify( req.body, null, 2 ) ) );
@@ -31,6 +35,7 @@ router.post( '/additional_info', auth, ( req, res, next ) => {
       chalk.keyword( 'white' )( '\nThe Additional Information in Mongoose Schema Format:\n' )
     );
     console.log( user );
+    await toggleUserInformationStatus( user );
 
     user.save()
       .then( () => {
@@ -181,22 +186,51 @@ router.post( '/login', async ( req, res, next ) => {
 
   const userToken = await login( user );
 
+  const getAdditionalInfo = await needsAdditionalInfo( user );
+
+  console.log(
+    // eslint-disable-next-line max-len
+    chalk.keyword( 'tomato' )( `\n"This is the additional information found for the user\n${getAdditionalInfo}` )
+  );
+
   console.log(
     chalk.keyword( 'orange' )( '\n"users/Login" Route Complete!, sending JWT in response header' )
   );
 
-  res.header( 'x-auth-token', userToken )
-    .send({
-      userID: res.userID,
-      username: res.username,
-      userToken
-    });
-
+  if ( !getAdditionalInfo.fullname ) {
+    res.header( 'x-auth-token', userToken )
+      .send({
+        userID: getAdditionalInfo,
+        username: req.body.username,
+        additionalInfoRequired: true,
+        token: userToken
+      });
+    next();
+  }
+  if ( getAdditionalInfo.fullname ) {
+    res.header( 'x-auth-token', userToken )
+      .send({
+        userID: getAdditionalInfo.userID,
+        username: req.body.username,
+        additionalInfoRequired: false,
+        token: userToken,
+        fullname: getAdditionalInfo.fullname,
+        user_phone: getAdditionalInfo.user_phone,
+        user_email: getAdditionalInfo.user_email,
+        user_address1: getAdditionalInfo.user_address1,
+        user_address2: getAdditionalInfo.user_address2,
+        user_city: getAdditionalInfo.user_city,
+        user_state: getAdditionalInfo.user_state,
+        user_zipcode: getAdditionalInfo.user_zipcode
+      });
+    next();
+  }
+  next();
 });
 
 // Pass the auth controller right before the method. This ensures controller is run
 // just before executing the rest of the function.
-router.get( '/profile', auth, async ( req, res ) => {
+router.post( '/profile', auth, async ( req, res ) => {
   // View logged in user profile
 
   // get the user from the request ( added user to the request in auth controller )
