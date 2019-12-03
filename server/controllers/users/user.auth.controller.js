@@ -26,12 +26,30 @@ const auth = async( req, res, next ) => {
   // use JWT verify method to see if token received is valid or was created with this JWT_KEY
   // JWT verify method returns the payload that was used to create the token.
   const decoded = jwt.verify( token, JWT_KEY );
+
+  console.log(
+    chalk.keyword( 'deepskyblue' )( '\nThis is the decoded user verified for the jwt:\n',
+      JSON.stringify( decoded, null, 2 ) )
+  );
+
   try {
     // with the payload from the token, find a user with that id, also where token is in user's
     // token array
-    const user = await models.UserCredentials.findOne({
-      userID: decoded._id
-    });
+
+    let user;
+
+    if ( decoded._id ) {
+      user = await models.UserCredentials.findOne({
+        userID: decoded._id
+      });
+    } else if ( decoded.id ) {
+      user = await models.UserCredentials.findOne({
+        userID: decoded.id
+      });
+    } else {
+      console.log( '\nCan\'t Find The Fucking Decoded ID' );
+    }
+
 
     // Handle an error if a user is not returned
     if ( !user ) {
@@ -46,12 +64,13 @@ const auth = async( req, res, next ) => {
     // req.token = token;
     console.log(
       chalk.keyword( 'lightblue' )( '\nThe Decoded User is Now Attached to This Request.' +
-        ' Authentication Middleware is Complete' )
+        ' Authentication Middleware is Complete', req.user )
     );
     // // Move onto next middleware
     next();
   } catch ( error ) {
     res.status( 401 ).send({ error: 'Not authorized to access this resource' });
+    console.log( chalk.keyword( 'purple' )( error ) );
   }
 
 };

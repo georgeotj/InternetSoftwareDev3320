@@ -13,17 +13,18 @@ router.post( '/new_order', auth, ( req, res, next ) => {
     JSON.stringify( req.body, null, 2 ) ) );
 
   console.log( `User's Name for Order: ${req.body.username}` );
-  console.log( `User's Items for Order: ${req.body.items}` );
+  console.log( 'User\'s Items for Order:\n',
+    JSON.stringify( req.body.items, null, 2 ) );
   console.log( `Price for User's Order: ${req.body.totalPrice}` );
 
   console.log( chalk.keyword( 'cyan' )( `          Username: ${req.body.username}` ) );
-  console.log( chalk.keyword( 'cyan' )( `    Decoded UserID: ${req.user._id}` ) );
+  console.log( chalk.keyword( 'cyan' )( `    Decoded UserID: ${req.user.id}` ) );
 
   const orderNumber = new mongoose.mongo.ObjectID();
   const { items } = req.body;
   const { totalPrice } = req.body;
   const orderInformation = {
-        userID: req.user._id,
+        userID: req.user.id,
         orderNumber,
         items,
         totalPrice
@@ -49,6 +50,21 @@ router.post( '/new_order', auth, ( req, res, next ) => {
     });
 });
 
+router.post( '/user_orders', auth, async ( req, res, next ) => {
+  console.log( chalk.keyword( 'lightyellow' )( '\nNow Starting orders/user_orders POST ROUTE:\n',
+    'This is an authorized only request route... Request Body:\n',
+    JSON.stringify( req.body, null, 2 ) ) );
+
+  const userOrders = await models.Orders.find({
+    userID: req.body.userID
+  });
+
+  console.log(
+    chalk.keyword( 'moccasin' )( `\nUser's Order History:\n${userOrders}` )
+  );
+
+  res.send( userOrders );
+});
 
 module.exports = router;
 // const findUserID = {

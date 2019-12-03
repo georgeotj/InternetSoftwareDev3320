@@ -36,6 +36,8 @@ import './validate-user-form';
 import './register-user';
 import './payment-state';
 import './login-user';
+import './logout-user';
+import './get-user-order-history';
 
 console.log( loadStates );
 
@@ -61,8 +63,3 @@ $( () => {
   validateShippingForm();
   closingApplication();
 });
-
-// eslint-disable-next-line no-multi-assign
-module.exports = $.fn.isValid = function isValid() {
-  return this[ 0 ].checkValidity();
-};

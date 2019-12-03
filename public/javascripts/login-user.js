@@ -11,6 +11,31 @@ function getUserAccountInfo() {
   };
 }
 
+function clearUserFields() {
+  $( '#sign-in-username' ).val( '' );
+  $( '#user-password-attempt' ).val( '' );
+}
+
+function setUserInformation( response ) {
+  $( '#account-username-header' ).text( response.username );
+  $( '.saved-payment-options-header' ).text( `${localStorage
+    .getItem( 'username' )} Saved Payment Methods` );
+  $( '.name-value' ).text( response.fullname );
+  $( '.address-1-value' ).text( response.user_address1 );
+  if ( response.user_address2 !== '' ) {
+    $( '.address-2-value' ).text( response.user_address2 );
+  }else {
+    $( '.address-2-value' ).css( 'display', 'none' );
+    $( '.address-2-label' ).css( 'display', 'none' );
+    $( '.show-address2-block' ).css( 'display', 'none' );
+  }
+  $( '.city-value' ).text( response.user_city );
+  $( '.state-value' ).text( response.user_state );
+  $( '.zip-code-value' ).text( response.user_zipcode );
+  $( '.phone-value' ).text( response.user_phone );
+  $( '.email-value' ).text( response.user_email );
+}
+
 function loginUser() {
   console.log( 'Attempting to Login a New User...' );
 
@@ -32,6 +57,7 @@ function loginUser() {
   }).then( ( response ) => {
     console.log( 'Logging in was a success!' );
     console.log( response );
+    clearUserFields();
     localStorage.setItem( 'token', response.token );
     localStorage.setItem( 'userID', response.userID );
     localStorage.setItem( 'username', response.username );
@@ -40,21 +66,7 @@ function loginUser() {
       $( '#account-username-header' ).text( response.username );
     } else {
       applicationState.registeredUserWithAdditionalInformationState();
-      $( '#account-username-header' ).text( response.username );
-      $( '.name-value' ).text( response.fullname );
-      $( '.address-1-value' ).text( response.user_address1 );
-      if ( response.user_address2 !== '' ) {
-        $( '.address-2-value' ).text( response.user_address2 );
-      }else {
-        $( '.address-2-value' ).css( 'display', 'none' );
-        $( '.address-2-label' ).css( 'display', 'none' );
-        $( '.show-address2-block' ).css( 'display', 'none' );
-      }
-      $( '.city-value' ).text( response.user_city );
-      $( '.state-value' ).text( response.user_state );
-      $( '.zip-code-value' ).text( response.user_zipcode );
-      $( '.phone-value' ).text( response.user_phone );
-      $( '.email-value' ).text( response.user_email );
+      setUserInformation( response );
     }
     // eslint-disable-next-line no-alert, max-len
   }).catch( ( err ) => {
