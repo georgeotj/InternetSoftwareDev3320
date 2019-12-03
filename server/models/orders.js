@@ -5,9 +5,9 @@ const { Schema } = mongoose;
 
 const orderItemsSchema = new Schema({
   itemID: {
-    type: Schema.Types.ObjectId,
+    type: String,
     required: true,
-    unique: true
+    unique: false
   },
   quantity: {
     type: Number,
@@ -23,7 +23,7 @@ const ordersSchema = new Schema({
   userID: {
     type: String,
     required: true,
-    unique: true
+    unique: false
   },
   orderNumber: {
     type: Schema.Types.ObjectId,

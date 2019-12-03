@@ -26,7 +26,7 @@ router.post( '/additional_info', auth, async ( req, res, next ) => {
   console.log( chalk.keyword( 'cyan' )( `            UserID: ${req.body.userID}` ) );
   console.log( chalk.keyword( 'cyan' )( `    Decoded UserID: ${req.user._id}` ) );
 
-  if ( req.body.userID === req.user._id ) {
+  if ( req.body.userID === ( req.user._id || req.user.id ) ) {
     console.log( chalk.keyword( 'green' )( '\nThis User is Authentic!!' ) );
     console.log( '\n\nStarting Attempt to Save User\'s additional information...' );
     const user = new models.UserInformation( req.body );
@@ -61,11 +61,11 @@ router.post( '/billing_info', auth, ( req, res, next ) => {
     JSON.stringify( req.body, null, 2 ) ) );
 
   console.log( chalk.keyword( 'cyan' )( `          Username: ${req.body.username}` ) );
-  console.log( chalk.keyword( 'cyan' )( `    Decoded UserID: ${req.user._id}` ) );
+  console.log( chalk.keyword( 'cyan' )( `    Decoded UserID: ${req.user.id}` ) );
 
 
     const billingInformation = {
-      userID: req.user._id,
+      userID: req.user.id,
       cardType: req.body.cardType,
       cardName: req.body.cardName,
       cardNumber: req.body.cardNumber,
@@ -97,11 +97,21 @@ router.post( '/shipping_info', auth, ( req, res, next ) => {
     JSON.stringify( req.body, null, 2 ) ) );
 
   console.log( chalk.keyword( 'cyan' )( `          Username: ${req.body.username}` ) );
-  console.log( chalk.keyword( 'cyan' )( `    Decoded UserID: ${req.user._id}` ) );
+
+  let decodedUserID;
+
+  if ( req.user._id ) {
+    decodedUserID = req.user._id;
+    console.log( chalk.keyword( 'cyan' )( `    Decoded UserID: ${req.user._id}` ) );
+  }
+  if ( req.user.id ) {
+    decodedUserID = req.user.id;
+    console.log( chalk.keyword( 'cyan' )( `    Decoded UserID: ${req.user.id}` ) );
+  }
 
 
   const shippingInformation = {
-    userID: req.user._id,
+    userID: decodedUserID,
     shipping_address1: req.body.shipping_address1,
     shipping_address2: req.body.shipping_address2,
     shipping_city: req.body.shipping_city,
@@ -238,16 +248,45 @@ router.post( '/profile', auth, async ( req, res ) => {
 });
 
 
-router.post( '/profile/logout', auth, async ( req, res ) => {
+router.post( '/account/logout', auth, async ( req, res ) => {
+  console.log(
+    chalk.keyword( 'violet' )( '\nNow Starting "users/account/logout POST ROUTE:' )
+  );
+
   // Log user out of the application
   try {
     // Get array of all tokens NOT used by the user to login
-    req.user.tokens = req.user.tokens.filter( ( token ) => {
-      return token.token !== req.token;
+    const usersInformation = await models.UserInformation.findOne({
+      userID: req.body.userID
     });
-    await req.user.save();
-    res.send();
-  }catch ( error ) {
+
+    console.log(
+      chalk.keyword( 'plum' )( `\nUserInformation for this logout:\n ${usersInformation}` )
+    );
+
+    const user = await models.UserCredentials.findOne({
+      userID: req.body.userID
+    });
+
+    console.log(
+      chalk.keyword( 'orchid' )( `\nUser for this logout:\n ${user}` )
+    );
+
+    console.log(
+      chalk.keyword( 'blueviolet' )( '\n\nSaving the above information before logging out...' )
+    );
+
+    if ( usersInformation ) {
+      await usersInformation.save();
+    }
+    await user.save();
+
+    res.send( 'Logout Successful!! Thanks for your business' );
+
+    console.log(
+      chalk.keyword( 'mediumpurple' )( '\nusers/account/logout route is now complete!' )
+    );
+  } catch ( error ) {
     res.status( 500 )
       .send( error );
   }

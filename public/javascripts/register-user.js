@@ -11,6 +11,12 @@ function getNewAccountInfo() {
   };
 }
 
+function clearNewAccountFields() {
+  $( '#new-username' ).val( '' );
+  $( '#new-password' ).val( '' );
+  $( '#new-password-confirm' ).val( '' );
+}
+
 function registerUser() {
   console.log( 'Attempting to Register a New User...' );
 
@@ -34,6 +40,7 @@ function registerUser() {
       localStorage.setItem( 'token', response.token );
       localStorage.setItem( 'userID', response.userID );
       localStorage.setItem( 'username', response.username );
+      clearNewAccountFields();
     applicationState.additionalInformationAccountState();
       $( '#account-username-header' ).text( response.username );
       $( '.saved-payment-options-header' ).text( `${response.username} Saved Payment Methods` );

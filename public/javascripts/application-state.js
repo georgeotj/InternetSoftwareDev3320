@@ -9,6 +9,24 @@ const applicationState = {
     $( '#sign-up-additional-information-panel' ).css( 'display', 'none' );
     // Hide the registered user navigation
     $( '#registered-top-bar-column-2' ).css( 'display', 'none' );
+    // Make sure the unregistered user navigation is showing
+    $( '#unregistered-top-bar-column-2' ).css( 'display', 'block' );
+
+  },
+
+  userLogoutAccountPageState() {
+    $( 'section.register-account' ).css( 'display', 'block' );
+    $( 'section.account-information' ).css( 'display', 'none' );
+    $( '.saved-payment-options-header' ).text( 'Saved Payment Methods' );
+    $( '#sign-in-panel' ).css( 'display', 'flex' );
+    // Hide the Sign in Panel
+    $( '#sign-up-create-acc-panel' ).css( 'display', 'none' );
+    // Hide the Additional Information Panel
+    $( '#sign-up-additional-information-panel' ).css( 'display', 'none' );
+    // Hide the registered user navigation
+    $( '#registered-top-bar-column-2' ).css( 'display', 'none' );
+    // Make sure the unregistered user navigation is showing
+    $( '#unregistered-top-bar-column-2' ).css( 'display', 'block' );
   },
 
   registerAccountPageState() {

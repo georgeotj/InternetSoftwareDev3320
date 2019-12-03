@@ -1136,7 +1136,17 @@ li.account-nav-item {
   margin: 5% auto;
   text-align: center;
   width: 40%;
-  height: 450px;
+  min-height: 450px;
+  height: fit-content;
+}
+
+table#user-order-table {
+  font-size: 0.6em;
+}
+
+#user-order-table td {
+  padding: 5% 0;
+  text-align: center;
 }
 
 .checkout-panel {
