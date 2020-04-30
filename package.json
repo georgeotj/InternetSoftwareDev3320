@@ -69,7 +69,7 @@
     "jade": "^1.11.0",
     "jbox": "^1.0.6",
     "jest": "^24.9.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jquery-easy-loading": "^2.0.0-rc.2",
     "jquery-loading": "^0.2.8",
     "jquery-mask-plugin": "^1.14.16",
