@@ -76,7 +76,7 @@
     "jquery-ui": "^1.12.1",
     "jquery-ui-dist": "^1.12.1",
     "jquery-validate": "^2.0.0",
-    "jquery-validation": "^1.19.1",
+    "jquery-validation": "^1.19.3",
     "jquery.cookie": "^1.4.1",
     "jscs": "^3.0.7",
     "jsonwebtoken": "^8.5.1",
