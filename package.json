@@ -96,7 +96,7 @@
     "postcss-import": "^12.0.1",
     "pretty-dropdowns": "^4.17.0",
     "pretty-error": "^2.1.1",
-    "pug": "^2.0.4",
+    "pug": "^3.0.1",
     "purgecss-webpack-plugin": "^1.6.0",
     "readline": "^1.3.0",
     "sass-loader": "^8.0.0",
